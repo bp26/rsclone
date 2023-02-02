@@ -1,6 +1,7 @@
 export class ProfileView {
   render() {
     const root = document.querySelector('#root');
+    root!.innerHTML = '';
     const html = document.createElement('main');
     html.innerHTML = ` <div class="container-fluid">
         <div class="row p-5">

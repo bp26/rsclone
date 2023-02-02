@@ -1,6 +1,7 @@
 export class LessonView {
   render() {
     const root = document.querySelector('#root');
+    root!.innerHTML = '';
     const html = document.createElement('main');
     html.innerHTML = `<div class="container-fluid">
     <button

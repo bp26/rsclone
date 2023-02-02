@@ -4,4 +4,8 @@ export class DocumentController {
   constructor() {
     this.view = new DocumentView();
   }
+
+  start() {
+    this.view.render();
+  }
 }
