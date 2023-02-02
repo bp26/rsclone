@@ -1,9 +1,12 @@
-@import '~bootstrap/scss/bootstrap';
+$dark: #2c3439;
+$secondary: #293d57;
+$primary: #1b2b37;
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 10px;
+.side-bar-arrow {
+  border-radius: 0 0 10px 0 !important;
+}
+
+.progress-bar-collor {
+  background: #14ff00;
 }
