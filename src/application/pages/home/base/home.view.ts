@@ -15,6 +15,8 @@ class HomeView {
   }
 
   public render(): void {
+    this.root.innerHTML = '';
+
     const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
     addButton.node.onclick = () => homeController.add();
   }
