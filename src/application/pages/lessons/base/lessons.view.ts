@@ -1,9 +1,24 @@
-export class LessonView {
-  render() {
-    const root = document.querySelector('#root');
-    root!.innerHTML = '';
+import { lessonsController } from './lessons.controller';
+import { getSafeElement } from '../../../utils/helpers';
+import { Element } from '../../../utils/element';
+import { HTMLTag, EmitterViewEvents } from '../../../types/enums';
+import { emitter } from '../../../utils/emitter';
+
+class LessonsView {
+  private root: HTMLElement;
+
+  constructor() {
+    const root = document.querySelector('.root');
+    this.root = getSafeElement(root);
+
+    this.subscribe();
+  }
+
+  public render(): void {
+    this.root.innerHTML = '';
     const html = document.createElement('main');
-    html.innerHTML = `<div class="container-fluid">
+    if (html)
+      html.innerHTML = `<div class="container-fluid">
     <button
     class="btn btn-primary position-absolute d-flex align-items-center justify-content-center rounded-end"
     style="z-index: 50"
@@ -330,6 +345,14 @@ export class LessonView {
   </div>
 </div>
 `;
-    if (root) root.append(html);
+    this.root.append(html);
+    const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
+    addButton.node.onclick = () => lessonsController.add();
+  }
+
+  private subscribe() {
+    emitter.subscribe(EmitterViewEvents.HOME_UPDATE, this.render.bind(this));
   }
 }
+
+export const lessonsView = new LessonsView();

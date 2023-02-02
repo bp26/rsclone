@@ -1,7 +1,15 @@
-export class ProfileView {
-  render() {
-    const root = document.querySelector('#root');
-    root!.innerHTML = '';
+import { userController } from './user.controller';
+import { getSafeElement } from '../../../utils/helpers';
+import { Element } from '../../../utils/element';
+import { HTMLTag, EmitterViewEvents } from '../../../types/enums';
+import { emitter } from '../../../utils/emitter';
+
+class UserView {
+  private root: HTMLElement;
+
+  constructor() {
+    const root = document.querySelector('.root');
+    this.root = getSafeElement(root);
     const html = document.createElement('main');
     html.innerHTML = ` <div class="container-fluid">
         <div class="row p-5">
@@ -43,6 +51,19 @@ export class ProfileView {
         </div>
       </div>
 `;
-    if (root) root.append(html);
+    this.subscribe();
+  }
+
+  public render(): void {
+    this.root.innerHTML = '';
+
+    const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
+    addButton.node.onclick = () => userController.add();
+  }
+
+  private subscribe() {
+    emitter.subscribe(EmitterViewEvents.HOME_UPDATE, this.render.bind(this));
   }
 }
+
+export const userView = new UserView();
