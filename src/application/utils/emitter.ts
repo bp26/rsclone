@@ -25,5 +25,3 @@ class Emitter {
 }
 
 export const emitter = new Emitter();
-
-

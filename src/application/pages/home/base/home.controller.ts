@@ -1,8 +1,7 @@
-import { homeModel } from "./home.model";
-import { homeView } from "./home.view";
+import { homeModel } from './home.model';
+import { homeView } from './home.view';
 
 class HomeController {
-
   public add(): void {
     homeModel.add();
   }

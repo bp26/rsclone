@@ -1,4 +1,4 @@
-import { HTMLTag } from "../types/enums";
+import { HTMLTag } from '../types/enums';
 
 export class Element {
   node: HTMLElement;

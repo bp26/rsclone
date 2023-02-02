@@ -1,5 +1,5 @@
-import { model } from "./model";
-import { homeController } from "../pages/home/base/home.controller";
+import { model } from './model';
+import { homeController } from '../pages/home/base/home.controller';
 
 class Controller {
   public initHomePage(): void {
@@ -7,19 +7,19 @@ class Controller {
   }
 
   public initDocumentationPage(): void {
-
+    //
   }
 
   public initLessonsPage(): void {
-
+    //
   }
 
   public initUserPage(): void {
-
+    //
   }
 
   public initRoadmapPage(): void {
-
+    //
   }
 }
 

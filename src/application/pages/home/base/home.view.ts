@@ -1,8 +1,8 @@
-import { homeController } from "./home.controller";
-import { getSafeElement } from "../../../utils/helpers";
-import { Element } from "../../../utils/element";
-import { HTMLTag, EmitterViewEvents } from "../../../types/enums";
-import { emitter } from "../../../utils/emitter";
+import { homeController } from './home.controller';
+import { getSafeElement } from '../../../utils/helpers';
+import { Element } from '../../../utils/element';
+import { HTMLTag, EmitterViewEvents } from '../../../types/enums';
+import { emitter } from '../../../utils/emitter';
 
 class HomeView {
   private root: HTMLElement;
