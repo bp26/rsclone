@@ -10,3 +10,57 @@ $primary: #1b2b37;
 .progress-bar-collor {
   background: #14ff00;
 }
+
+// .my-modal__cover {
+//   position: fixed;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.);
+
+// }
+
+.my-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+// .my-modal.hidden-modal {
+//   animation: show 2s ease;
+// }
+
+.sloth__text-block {
+  width: 60%;
+  padding: 15px;
+}
+
+.sloth__text-block p {
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  .sloth__text-block {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+.show-modal {
+  opacity: 1;
+}
+
+.hidden-modal {
+  opacity: 0;
+}

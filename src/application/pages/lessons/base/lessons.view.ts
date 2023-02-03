@@ -1,14 +1,13 @@
-import { lessonsController } from './lessons.controller';
 import { getSafeElement } from '../../../utils/helpers';
-import { Element } from '../../../utils/element';
-import { HTMLTag, EmitterViewEvents } from '../../../types/enums';
+import { EmitterViewEvents } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
+import sloth from '../../../modules/sloth';
 
 class LessonsView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.root');
+    const root = document.querySelector('#root');
     this.root = getSafeElement(root);
 
     this.subscribe();
@@ -346,8 +345,13 @@ class LessonsView {
 </div>
 `;
     this.root.append(html);
-    const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
-    addButton.node.onclick = () => lessonsController.add();
+    console.log('append html');
+    // const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
+    // addButton.node.onclick = () => lessonsController.add();
+    window.addEventListener('DOMContentLoaded', () => {
+      sloth.render();
+      sloth.startTutorial();
+    });
   }
 
   private subscribe() {

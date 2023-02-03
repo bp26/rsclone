@@ -8,7 +8,7 @@ class HomeView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.root');
+    const root = document.querySelector('#root');
     this.root = getSafeElement(root);
 
     this.subscribe();

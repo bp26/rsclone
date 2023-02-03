@@ -1,4 +1,5 @@
-import { model } from './model';
+import { userController } from './../pages/user/base/user.controller';
+import { lessonsController } from './../pages/lessons/base/lessons.controller';
 import { homeController } from '../pages/home/base/home.controller';
 
 class Controller {
@@ -11,11 +12,11 @@ class Controller {
   }
 
   public initLessonsPage(): void {
-    //
+    lessonsController.init();
   }
 
   public initUserPage(): void {
-    //
+    userController.init();
   }
 
   public initRoadmapPage(): void {

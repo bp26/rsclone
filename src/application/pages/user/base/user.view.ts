@@ -1,28 +1,32 @@
-import { userController } from './user.controller';
 import { getSafeElement } from '../../../utils/helpers';
-import { Element } from '../../../utils/element';
-import { HTMLTag, EmitterViewEvents } from '../../../types/enums';
+import { EmitterViewEvents } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 
 class UserView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.root');
+    const root = document.querySelector('#root');
     this.root = getSafeElement(root);
+
+    this.subscribe();
+  }
+
+  public render(): void {
+    this.root.innerHTML = '';
     const html = document.createElement('main');
     html.innerHTML = ` <div class="container-fluid">
         <div class="row p-5">
           <div class="col-6">
             <div class="user-data d-flex align-items-center flex-column flex-md-row gap-3">
-              <img class="d-block" style="min-width:30%;" src="./assets/svg/Profile.svg" alt="profile" />
+              <img class="d-block" style="min-width:30%;" src="./images/Profile.svg" alt="profile" />
               <p class="user__name mb-0">User Name</p>
             </div>
           </div>
           <div class="col-6 d-flex align-items-center justify-content-end">
             <div class="coins d-flex gap-3 align-items-center justify-content-around bg-primary p-2 rounded-5">
               <span>150</span>
-              <img class="w-25" src="../../../assets/svg/coin.svg" alt="coin" />
+              <img class="w-25" src="./images/coin.svg" alt="coin" />
             </div>
           </div>
         </div>
@@ -31,7 +35,7 @@ class UserView {
           <div class="col">
             <div class="user__rang me-auto d-inline-block">
               <span>Rang:</span>
-              <img class="w-50" src="" alt="BabeImg" />
+              <img class="w-50" src="./images/RangBabe.svg" alt="BabeImg" />
             </div>
           </div>
         </div>
@@ -51,14 +55,9 @@ class UserView {
         </div>
       </div>
 `;
-    this.subscribe();
-  }
-
-  public render(): void {
-    this.root.innerHTML = '';
-
-    const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
-    addButton.node.onclick = () => userController.add();
+    this.root.append(html);
+    // const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
+    // addButton.node.onclick = () => userController.add();
   }
 
   private subscribe() {
