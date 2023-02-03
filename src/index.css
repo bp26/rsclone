@@ -11126,32 +11126,28 @@ fieldset:disabled .btn {
 }
 
 .my-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  display: none;
 }
 
-.sloth__text-block {
-  width: 60%;
-  padding: 15px;
+.my-modal.show {
+  display: '';
 }
 
-.sloth__text-block p {
-  margin-bottom: 2px;
+.sloth__text {
+  opacity: 0;
+  transition: all 1s;
 }
 
-@media (max-width: 768px) {
-  .sloth__text-block {
-    width: 80%;
-    padding: 10px;
-    font-size: 14px;
-  }
+.sloth__text.show {
+  opacity: 1;
+}
+
+.sloth__img {
+  transition: all 0.5s;
+  left: -1000px;
+}
+
+.sloth__img.show {
+  left: 50%;
+  transform: translateX(-50%);
 } /*# sourceMappingURL=index.css.map */

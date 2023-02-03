@@ -350,7 +350,9 @@ class LessonsView {
     // addButton.node.onclick = () => lessonsController.add();
     window.addEventListener('DOMContentLoaded', () => {
       sloth.render();
-      sloth.startTutorial();
+      setTimeout(() => {
+        sloth.startTutorial();
+      }, 0);
     });
   }
 
