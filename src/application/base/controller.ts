@@ -1,7 +1,15 @@
-import { model } from './model';
+import { layoutController } from '../pages/layout/base/layoutController';
 import { homeController } from '../pages/home/base/home.controller';
 
 class Controller {
+  constructor() {
+    layoutController.init();
+  }
+
+  public initLayoutContent(): void {
+    layoutController.init();
+  }
+
   public initHomePage(): void {
     homeController.init();
   }

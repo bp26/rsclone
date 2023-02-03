@@ -20,4 +20,5 @@ export const enum HTMLTag {
 
 export const enum EmitterViewEvents {
   HOME_UPDATE = 'HOME_UPDATE',
+  LAYOUT_UPDATE = 'LAYOUT_UPDATE',
 }
