@@ -10,28 +10,30 @@ export class LayoutHeaderView {
     const header = document.createElement('div');
     header.classList.add('header__wrap');
     header.innerHTML = `
-        <div class="block__logo">
-          <svg height="30px" width="30px">
-            <use href="#logo"></use>
-          </svg>
-          <h1 class="title-logo">Rush</h1>
+        <div class="block-header-content">
+          <div class="block__logo">
+            <svg height="30px" width="30px">
+              <use href="#logo"></use>
+            </svg>
+            <h1 class="title-logo">Rush</h1>
+          </div>
+          <nav class="block__navigation">
+            <ul class="nav-item">
+              <li class="nav-list">
+                <a class="nav-list__link" href="#">Home</a>
+              </li>
+              <li class="nav-list">
+                <a class="nav-list__link" href="#">Documentaition</a>
+              </li>
+              <li class="nav-list">
+                <a class="nav-list__link" href="#">Lessons</a>
+              </li>
+              <li class="nav-list">
+                <a class="nav-list__link" href="#">RoadMap</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <nav class="block__navigation">
-          <ul class="nav-item">
-            <li class="nav-list">
-              <a href="">Home</a>
-            </li>
-            <li class="nav-list">
-              <a href="">Documentaition</a>
-            </li>
-            <li class="nav-list">
-              <a href="">Lessons</a>
-            </li>
-            <li class="nav-list">
-              <a href="">RoadMap</a>
-            </li>
-          </ul>
-        </nav>
         <div class="wrapper-controls">
           <div class="block__toggle-content">
             <button class="button-toggle">

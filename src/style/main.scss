@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.main__root {
+  max-width: 1800px;
+  width: 100%;
+}
