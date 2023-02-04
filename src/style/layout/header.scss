@@ -42,6 +42,16 @@
 .image_profile {
   color: $color-base;
   font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.block-profile {
+  color: $color-user-icon;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $hover-color-user-logo;
+  }
 }
 
 .block__toggle-content {
@@ -71,6 +81,11 @@
 .nav-list__link {
   color: $color-base;
   text-decoration: none;
+  transition: all 0.3s ease;
+  &:hover {
+    transition: all 0.3s ease;
+    color: $hover-color-nav-link;
+  }
 }
 
 .button-toggle {
@@ -85,6 +100,12 @@
   font-weight: 600;
   line-height: 29px;
   border: none;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: $hover-background-btn-lang;
+  }
 }
 
 .button-toggle_en {
@@ -109,6 +130,13 @@
   font-size: 24px;
   font-weight: 600;
   line-height: 29px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: $hover-background-btn-base;
+  }
 }
 
 .wrapper-controls {

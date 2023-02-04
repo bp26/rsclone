@@ -1,5 +1,5 @@
-import { layoutModel } from './layoutModel';
-import { layoutView } from './layoutView';
+import { layoutModel } from './layout.model';
+import { layoutView } from './layout.view';
 
 class LayoutController {
   public add(): void {

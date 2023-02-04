@@ -2,9 +2,11 @@
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  background-color: $background-main;
 }
 
 .main__root {
   max-width: 1800px;
   width: 100%;
+  padding: 0 20px;
 }

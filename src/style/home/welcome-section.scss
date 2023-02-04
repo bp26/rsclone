@@ -1,0 +1,43 @@
+.home-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 46px 0 64px 0;
+}
+
+.start-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 47px;
+  max-width: 990px;
+  width: 100%;
+}
+
+.start-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 100px;
+  background-color: $background-button-autorization;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 44px;
+  color: $color-button-section-start;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: $hover-background-btn-base;
+  }
+}
+
+.sloth-start {
+  width: 450px;
+  height: 450px;
+  @include background-image;
+  background-image: url('../../assets/png/sloth-start.png');
+}

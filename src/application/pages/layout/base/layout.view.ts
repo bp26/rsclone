@@ -1,23 +1,18 @@
-import { LayoutHeaderView } from '../modules/layoutHeaderView';
-import { LayoutFooterView } from '../modules/layoutFooterView';
+import { layoutHeaderView } from '../modules/layout.header.view';
+import { layoutFooterView } from '../modules/layout.footer.view';
 import { Sprite } from '../modules/sprite';
 import { EmitterViewEvents } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 
 class LayoutView {
-  private layoutHeaderView: LayoutHeaderView;
-  private layoutFooterView: LayoutFooterView;
   constructor() {
-    this.layoutHeaderView = new LayoutHeaderView();
-    this.layoutFooterView = new LayoutFooterView();
     const spritesIgnore = new Sprite();
-
     this.subscribe();
   }
 
   public render(): void {
-    this.layoutHeaderView.render();
-    this.layoutFooterView.render();
+    layoutHeaderView.render();
+    layoutFooterView.render();
   }
 
   private subscribe() {

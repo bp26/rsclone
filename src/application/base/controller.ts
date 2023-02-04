@@ -1,4 +1,4 @@
-import { layoutController } from '../pages/layout/base/layoutController';
+import { layoutController } from '../pages/layout/base/layout.controller';
 import { homeController } from '../pages/home/base/home.controller';
 
 class Controller {

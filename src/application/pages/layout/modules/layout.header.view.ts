@@ -1,6 +1,6 @@
 import { getSafeElement } from '../../../utils/helpers';
 
-export class LayoutHeaderView {
+class LayoutHeaderView {
   private root: HTMLElement;
   constructor() {
     const root = document.querySelector('.header__root');
@@ -63,3 +63,5 @@ export class LayoutHeaderView {
     this.root.append(header);
   }
 }
+
+export const layoutHeaderView = new LayoutHeaderView();
