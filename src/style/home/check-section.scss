@@ -1,0 +1,22 @@
+.home__check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 98px 0 92px 0;
+}
+
+.sloth-check {
+  width: 600px;
+  height: 460px;
+  @include background-image;
+  background-image: url('../../assets/image/png/sloth-check.png');
+}
+
+.check-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 1030px;
+  width: 100%;
+  text-align: center;
+}

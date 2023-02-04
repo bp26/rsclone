@@ -1,0 +1,23 @@
+.home__traine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 102px;
+  padding-bottom: 155px;
+}
+
+.sloth-traine {
+  width: 480px;
+  height: 480px;
+  @include background-image;
+  background-image: url('../../assets/image/png/sloth-traine.png');
+}
+
+.traine-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 970px;
+  width: 100%;
+  text-align: center;
+}
