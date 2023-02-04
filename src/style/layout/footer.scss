@@ -1,0 +1,74 @@
+.footer__root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-header-or-footer;
+  flex-shrink: 1;
+  padding: 0 20px;
+}
+
+.footer__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1800px;
+  width: 100%;
+  height: 120px;
+}
+
+.githubs-logo {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.github-art {
+  color: $color-git-art;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-hover-git-art;
+  }
+}
+
+.github-alex {
+  color: $color-git-alex;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-hover-git-alex;
+  }
+}
+
+.github-menther {
+  color: $color-git-menther;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-hover-git-menther;
+  }
+}
+
+.year-create {
+  font-weight: 600;
+  font-size: 38px;
+  color: $color-base;
+}
+
+.rs-logo {
+  max-width: 310px;
+  width: 100%;
+  text-align: end;
+  &__link {
+    color: $color-base;
+    transition: all 0.3s ease;
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: $color-hover-rs-logo;
+    }
+  }
+}

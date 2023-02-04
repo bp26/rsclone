@@ -1,0 +1,145 @@
+.header__root {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  background-color: $background-header-or-footer;
+  padding: 0 20px;
+}
+
+.header__wrap {
+  max-width: 1800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.block-header-content {
+  display: flex;
+  align-items: center;
+  gap: 83px;
+}
+
+.block__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-logo {
+  color: $color-base;
+  font-size: 24px;
+}
+
+.image {
+  color: $color-base;
+  font-size: 16px;
+}
+
+.image_profile {
+  color: $color-base;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.block-profile {
+  color: $color-user-icon;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $hover-color-user-logo;
+  }
+}
+
+.block__toggle-content {
+  display: flex;
+  gap: 38px;
+}
+
+.block__autorization {
+  display: flex;
+  gap: 30px;
+}
+
+.buttons__autorization {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-item {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-list {
+  display: inline-block;
+}
+
+.nav-list__link {
+  color: $color-base;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  &:hover {
+    transition: all 0.3s ease;
+    color: $hover-color-nav-link;
+  }
+}
+
+.button-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 128px;
+  background-color: $background-button-toogle-lang-or-theme;
+  color: $color-content-btn-toggle-lang-or-theme;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  border: none;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: $hover-background-btn-lang;
+  }
+}
+
+.button-toggle_en {
+  width: 50px;
+  height: 50px;
+}
+
+.block-autorization {
+  display: flex;
+  gap: 30px;
+}
+
+.button-autorization {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 206px;
+  border-radius: 15px;
+  background-color: $background-button-autorization;
+  color: $color-base;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: $hover-background-btn-base;
+  }
+}
+
+.wrapper-controls {
+  display: flex;
+  gap: 50px;
+}
