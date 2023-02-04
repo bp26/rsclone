@@ -1,6 +1,6 @@
 import { getSafeElement } from '../../../utils/helpers';
 
-class LayoutFooterView {
+class FooterView {
   private root: HTMLElement;
   constructor() {
     const root = document.querySelector('.footer__root');
@@ -47,4 +47,4 @@ class LayoutFooterView {
   }
 }
 
-export const layoutFooterView = new LayoutFooterView();
+export const footerView = new FooterView();
