@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1f2023;
+  background-color: $background-header-or-footer;
   flex-shrink: 1;
   padding: 0 20px;
 }
@@ -23,39 +23,39 @@
 }
 
 .github-art {
-  color: brown;
+  color: $color-git-art;
   transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #dd2929;
+    color: $color-hover-git-art;
   }
 }
 
 .github-alex {
-  color: darkgoldenrod;
+  color: $color-git-alex;
   transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #f1ba34;
+    color: $color-hover-git-alex;
   }
 }
 
 .github-menther {
-  color: darkgreen;
+  color: $color-git-menther;
   transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #15b115;
+    color: $color-hover-git-menther;
   }
 }
 
 .year-create {
   font-weight: 600;
   font-size: 38px;
-  color: #bcbec1;
+  color: $color-base;
 }
 
 .rs-logo {
@@ -63,12 +63,12 @@
   width: 100%;
   text-align: end;
   &__link {
-    color: #bcbec1;
+    color: $color-base;
     transition: all 0.3s ease;
     &:hover {
       cursor: pointer;
       transition: all 0.3s ease;
-      color: #e4e7ec;
+      color: $color-hover-rs-logo;
     }
   }
 }
