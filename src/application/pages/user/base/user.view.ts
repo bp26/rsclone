@@ -6,7 +6,7 @@ class UserView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('#root');
+    const root = document.querySelector('.main__root');
     this.root = getSafeElement(root);
 
     this.subscribe();
@@ -14,7 +14,7 @@ class UserView {
 
   public render(): void {
     this.root.innerHTML = '';
-    const html = document.createElement('main');
+    const html = document.createElement('div');
     html.innerHTML = ` <div class="container-fluid">
         <div class="row p-5">
           <div class="col-6">

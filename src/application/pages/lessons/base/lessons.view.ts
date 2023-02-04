@@ -7,7 +7,7 @@ class LessonsView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('#root');
+    const root = document.querySelector('.main__root');
     this.root = getSafeElement(root);
 
     this.subscribe();
@@ -15,7 +15,7 @@ class LessonsView {
 
   public render(): void {
     this.root.innerHTML = '';
-    const html = document.createElement('main');
+    const html = document.createElement('div');
     if (html)
       html.innerHTML = `<div class="container-fluid">
     <button
