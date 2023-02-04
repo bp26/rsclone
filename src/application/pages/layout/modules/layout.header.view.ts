@@ -20,16 +20,16 @@ class LayoutHeaderView {
           <nav class="block__navigation">
             <ul class="nav-item">
               <li class="nav-list">
-                <a class="nav-list__link" href="#">Home</a>
+                <a class="nav-list__link routing" href="/">Home</a>
               </li>
               <li class="nav-list">
-                <a class="nav-list__link" href="#">Documentaition</a>
+                <a class="nav-list__link routing" href="/documentation">Documentaition</a>
               </li>
               <li class="nav-list">
-                <a class="nav-list__link" href="#">Lessons</a>
+                <a class="nav-list__link routing" href="/lessons">Lessons</a>
               </li>
               <li class="nav-list">
-                <a class="nav-list__link" href="#">RoadMap</a>
+                <a class="nav-list__link routing" href="/roadmap">RoadMap</a>
               </li>
             </ul>
           </nav>
@@ -53,9 +53,11 @@ class LayoutHeaderView {
               </button>
             </div>
             <div class="block-profile">
-              <svg height="50px" width="50px">
-                <use href="#user"></use>
-              </svg>
+              <a class="block-profile routing" href='/profile'>
+                <svg height="50px" width="50px">
+                  <use href="#user"></use>
+                </svg>
+              </a>
             </div>
           </div>
         </div>
