@@ -1,4 +1,4 @@
-import { getSafeElement } from '../../../utils/helpers';
+import { getSafeElement } from '../../utils/helpers';
 
 class HeaderView {
   private root: HTMLElement;

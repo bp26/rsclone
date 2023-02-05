@@ -1,5 +1,5 @@
-import { headerController } from '../pages/layout/base/header.controller';
-import { footerController } from '../pages/layout/base/footer.controller';
+import { headerController } from '../modules/header/header.controller';
+import { footerController } from '../modules/footer/footer.controller';
 import { homeController } from '../pages/home/base/home.controller';
 
 class Controller {
