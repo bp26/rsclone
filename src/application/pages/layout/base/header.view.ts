@@ -1,3 +1,4 @@
+import router from '../../../router/router';
 import { getSafeElement } from '../../../utils/helpers';
 
 class HeaderView {
@@ -63,6 +64,7 @@ class HeaderView {
         </div>
     `;
     this.root.append(header);
+    router.hungRouteListeners('routing');
   }
 }
 

@@ -1,39 +1,32 @@
 import { controller } from '../base/controller';
 class Router {
   hungRouteListeners = (className: string) => {
+    console.log('first rout');
     const anchors = document.querySelectorAll(`.${className}`);
     anchors.forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.urlRoute(e);
-      });
+      anchor.addEventListener(
+        'click',
+        (e) => {
+          e.preventDefault();
+          this.urlRoute(e);
+        },
+        { capture: true }
+      );
     });
   };
 
   urlRoute = (event: Event) => {
     event = event || window.event;
     event.preventDefault();
-    if (event.target === null) throw new Error('Event target :' + event.target);
-    const target = event.target as HTMLLinkElement;
+    if (event.currentTarget === null) throw new Error('Event target :' + event.target);
+    const target = event.currentTarget as HTMLLinkElement;
     window.history.pushState({}, '', target.href);
     this.locationHandler();
   };
 
   locationHandler = async () => {
     const pathName = window.location.pathname.split('/').at(-1);
-    const page =
-      pathName === ''
-        ? '/'
-        : pathName === 'lessons'
-        ? '/lessons'
-        : pathName === 'documentation'
-        ? '/documentation'
-        : pathName === 'profile'
-        ? '/profile'
-        : pathName === 'roadmap'
-        ? '/roadmap'
-        : '/404';
-    switch (page) {
+    switch (this.getUrl(pathName)) {
       case '/':
         controller.initHomePage();
         break;
@@ -53,6 +46,20 @@ class Router {
         alert('404');
     }
   };
+  getUrl(value: string | undefined) {
+    switch (value) {
+      case '':
+        return '/';
+      case 'lessons':
+        return '/lessons';
+      case 'documentation':
+        return '/documentation';
+      case 'profile':
+        return '/profile';
+      case 'roadmap':
+        return '/roadmap';
+    }
+  }
 }
 
 export default new Router();
