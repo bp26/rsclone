@@ -41,7 +41,6 @@ export class Sprite {
             <rect width="128" height="47.5369" fill="currentColor" />
             </clippath>
           </defs>
-          </svg>
         </symbol>
       </svg>
     `;
