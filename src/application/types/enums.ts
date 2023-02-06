@@ -19,6 +19,20 @@ export const enum HTMLTag {
 }
 
 export const enum EmitterViewEvents {
-  HOME_UPDATE = 'HOME_UPDATE',
-  LAYOUT_UPDATE = 'LAYOUT_UPDATE',
+  AUTH_SWITCH = 'AUTH_SWITCH',
+}
+
+export const enum StatusCode {
+  OK = '200',
+  BAD_REQUEST = '400',
+  UNAUTHORIZED = '401',
+  FORBIDDEN = '403',
+  NOT_FOUND = '404',
+  CONFLICT = '409',
+  SERVER_ERROR = '500',
+}
+
+export const enum AuthMode {
+  REGISTER = 'Register',
+  LOGIN = 'Sign in',
 }
