@@ -1,7 +1,6 @@
 import { controller } from '../base/controller';
 class Router {
   hungRouteListeners = (className: string) => {
-    console.log('first rout');
     const anchors = document.querySelectorAll(`.${className}`);
     anchors.forEach((anchor) => {
       anchor.addEventListener(

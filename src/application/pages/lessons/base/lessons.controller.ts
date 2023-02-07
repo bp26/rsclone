@@ -12,8 +12,7 @@ class LessonsController {
   }
 
   private initChilden(): void {
-    // chatController.init()
-    // menuController.init()
+    //
   }
 }
 

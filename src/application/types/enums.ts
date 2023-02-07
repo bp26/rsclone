@@ -22,3 +22,13 @@ export const enum EmitterViewEvents {
   HOME_UPDATE = 'HOME_UPDATE',
   LAYOUT_UPDATE = 'LAYOUT_UPDATE',
 }
+
+export interface Tutorial {
+  selector: string;
+  text: string;
+}
+
+export const enum Storage {
+  TUTORIAL = 'tutorial',
+  COMPLETE = 'complete',
+}

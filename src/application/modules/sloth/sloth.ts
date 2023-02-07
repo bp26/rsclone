@@ -1,28 +1,15 @@
+import { getSafeElement } from './../../utils/helpers';
+import { Storage, Tutorial } from './../../types/enums';
+import { exampleTutorial } from '../../utils/constants/slothExampleTutorialArray';
 import { heroIcon } from '../../utils/constants/slothIcons/icons';
 class Sloth {
-  tutorial: { selector: string; text: string }[];
+  tutorial: Tutorial[];
+  count: number;
   constructor() {
-    this.tutorial = [
-      {
-        selector: '',
-        text: 'HELLO MY NEW FRIEND!! Nice to meet you. My name is Rush. I will help you for get fundamentals knowladge about JavaScript.',
-      },
-      {
-        selector: '.lessons-block',
-        text: 'тут уроки короче',
-      },
-      {
-        selector: '.block__navigation',
-        text: 'тут навигация',
-      },
-      {
-        selector: '.block-autorization',
-        text: 'тут авторизация',
-      },
-    ];
+    this.tutorial = exampleTutorial;
+    this.count = 0;
   }
   render() {
-    const root = document.querySelector('body');
     const html = document.createElement('div');
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
@@ -33,78 +20,70 @@ class Sloth {
       ${heroIcon}
     </div>
     `;
-    root!.append(html);
-    this.handler();
-    this.initTutorial(this.tutorial);
-  }
-  handler() {
-    const modal = document.querySelector('.my-modal');
-    if (modal)
-      modal.addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-          console.log('click');
-          this.hiddenSloth();
-        }
-      });
-  }
-  initTutorial(data: { selector: string; text: string }[]) {
-    if (localStorage.getItem('tutorial')) {
+
+    document.body.append(html);
+    if (localStorage.getItem(Storage.TUTORIAL)) {
       return;
-    }
-    const coverTutorial = document.createElement('div');
-
-    coverTutorial.style.cssText = 'position:fixed; top:0;bottom:0;left:0;right:0; height:100vh;z-index:100; background-color: rbga(0,0,0,0.6)';
-    const body = document.querySelector('body');
-    body!.append(coverTutorial);
-    let count = 0;
-    showS(data[count]);
-    const startTutorialHandler = () => {
-      changeCount();
-      if (count < data.length) {
-        console.log('show', count, data);
-        showS(data[count]);
-        hiddenPrev(data[count - 1].selector);
-      } else {
-        hiddenPrev(data[count - 1].selector);
-        coverTutorial.remove();
-        this.hiddenSloth();
-        localStorage.setItem('tutorial', 'complete');
-        window.removeEventListener('click', startTutorialHandler);
-      }
-    };
-    window.addEventListener('click', startTutorialHandler);
-
-    function hiddenPrev(selector: string) {
-      if (selector !== '') {
-        const block = document.querySelector(selector);
-        block?.classList.remove('show-tutorial-block');
-      }
-    }
-    function changeCount() {
-      count = count + 1;
-    }
-    function showS({ selector, text }: { selector: string; text: string }) {
-      console.log('SHOW THis', selector, text);
-      if (selector !== '') {
-        const block = document.querySelector(selector);
-        block?.classList.add('show-tutorial-block');
-      }
-      const textBlock = document.querySelector('.sloth__text');
-      textBlock!.textContent = text;
+    } else {
+      this.showSloth();
+      this.initTutorial();
     }
   }
+  initTutorial() {
+    this.count = 0;
+    const coverTutorial = document.createElement('div');
+    coverTutorial.classList.add('cover-tutorial');
+    coverTutorial.style.cssText = 'position:fixed; top:0;bottom:0;left:0;right:0; height:100vh;z-index:150; background-color: rbga(0,0,0,0.6)';
+    document.body.append(coverTutorial);
+    this.showSlothTutorial(this.tutorial[this.count]);
+    coverTutorial.addEventListener('click', this.startTutorialHandler);
+  }
+
+  hiddenPrev(selector: string) {
+    if (selector !== '') {
+      const block = getSafeElement(document.querySelector(selector));
+      block.classList.remove('show-tutorial-block');
+    }
+  }
+  changeCount() {
+    this.count = this.count + 1;
+  }
+  showSlothTutorial({ selector, text }: Tutorial) {
+    if (selector !== '') {
+      const block = getSafeElement(document.querySelector(selector));
+      block.classList.add('show-tutorial-block');
+    }
+    const textBlock = getSafeElement(document.querySelector('.sloth__text'));
+    textBlock.textContent = text;
+  }
+
+  startTutorialHandler = () => {
+    const cover = getSafeElement(document.querySelector('.cover-tutorial'));
+    this.changeCount();
+    if (this.count < this.tutorial.length) {
+      this.showSlothTutorial(this.tutorial[this.count]);
+      this.hiddenPrev(this.tutorial[this.count - 1].selector);
+    } else {
+      localStorage.setItem(Storage.TUTORIAL, Storage.COMPLETE);
+      this.hiddenPrev(this.tutorial[this.count - 1].selector);
+      this.hiddenSloth();
+      cover.removeEventListener('click', this.startTutorialHandler);
+      cover.remove();
+    }
+  };
+
   showSloth() {
-    document.querySelector('body')!.style.overflow = 'hidden';
-    document.querySelector('.my-modal')?.classList.add('show-modal');
-    document.querySelector('.sloth__text')?.classList.add('show-text');
-    document.querySelector('.sloth__img')?.classList.add('show-img');
+    console.log('show');
+    document.body.style.overflow = 'hidden';
+    getSafeElement(document.querySelector('.my-modal')).classList.add('show-modal');
+    getSafeElement(document.querySelector('.sloth__text')).classList.add('show-text');
+    getSafeElement(document.querySelector('.sloth__img')).classList.add('show-img');
   }
   hiddenSloth = () => {
-    console.log('hidden');
-    document.querySelector('body')!.style.overflow = '';
-    document.querySelector('.my-modal')?.classList.remove('show-modal');
-    document.querySelector('.sloth__text')?.classList.remove('show-text');
-    document.querySelector('.sloth__img')?.classList.remove('show-img');
+    document.body.style.overflow = '';
+    getSafeElement(document.querySelector('.my-modal')).classList.remove('show-modal');
+    getSafeElement(document.querySelector('.sloth__text')).classList.remove('show-text');
+    getSafeElement(document.querySelector('.sloth__img')).classList.remove('show-img');
   };
 }
 

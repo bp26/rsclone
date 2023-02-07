@@ -1,5 +1,4 @@
 import { Sprite } from './../pages/layout/modules/sprite';
-import router from '../router/router';
 import { userController } from './../pages/user/base/user.controller';
 import { lessonsController } from './../pages/lessons/base/lessons.controller';
 import { headerController } from '../pages/layout/base/header.controller';

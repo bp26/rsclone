@@ -8,7 +8,6 @@ class UserView {
   constructor() {
     const root = document.querySelector('.main__root');
     this.root = getSafeElement(root);
-
     this.subscribe();
   }
 
@@ -56,8 +55,6 @@ class UserView {
       </div>
 `;
     this.root.append(html);
-    // const addButton = new Element(this.root, HTMLTag.BUTTON, 'home__add', 'Add');
-    // addButton.node.onclick = () => userController.add();
   }
 
   private subscribe() {
