@@ -18,8 +18,9 @@ export const enum HTMLTag {
   TD = 'td',
 }
 
-export const enum EmitterViewEvents {
+export const enum EmitterEventName {
   AUTH_SWITCH = 'AUTH_SWITCH',
+  AUTH_ERROR = 'AUTH_ERROR_SERVER',
 }
 
 export const enum StatusCode {
