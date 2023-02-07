@@ -73,7 +73,6 @@ class Sloth {
   };
 
   showSloth() {
-    console.log('show');
     document.body.style.overflow = 'hidden';
     getSafeElement(document.querySelector('.my-modal')).classList.add('show-modal');
     getSafeElement(document.querySelector('.sloth__text')).classList.add('show-text');
