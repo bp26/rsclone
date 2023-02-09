@@ -25,7 +25,7 @@ class HeaderView {
                 <a class="nav-list__link routing" href="/">Home</a>
               </li>
               <li class="nav-list">
-                <a class="nav-list__link routing" href="/documentation">Documentaition</a>
+                <a class="nav-list__link routing" href="/documentation">Documentation</a>
               </li>
               <li class="nav-list">
                 <a class="nav-list__link routing" href="/lessons">Lessons</a>

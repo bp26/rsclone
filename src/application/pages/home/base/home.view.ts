@@ -19,7 +19,7 @@ class HomeView {
         <div class="start-content">
           <h2 class="home-title">As long as dreamers keep dreaming, you will code and succeed!</h2>
           <button class="start-button">
-            <span>Get start</span>
+            <span>Get started</span>
           </button>
         </div>
         <div class="sloth-start"></div>
