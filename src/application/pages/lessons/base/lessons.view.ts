@@ -4,7 +4,7 @@ import { lessonsBlock } from './../modules/lessonsBlock';
 import { chat } from '../modules/chat';
 import { task } from './../modules/task';
 import { getSafeElement } from '../../../utils/helpers';
-import { EmitterViewEvents } from '../../../types/enums';
+import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import sloth from '../../../modules/sloth/sloth';
 
@@ -14,7 +14,6 @@ class LessonsView {
   constructor() {
     const root = document.querySelector('.main__root');
     this.root = getSafeElement(root);
-    this.subscribe();
   }
 
   public render(): void {
@@ -108,9 +107,6 @@ class LessonsView {
 `;
     this.root.append(html);
     sloth.render();
-  }
-  private subscribe() {
-    emitter.subscribe(EmitterViewEvents.HOME_UPDATE, this.render.bind(this));
   }
 }
 

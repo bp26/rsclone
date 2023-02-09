@@ -1,5 +1,5 @@
 import { getSafeElement } from '../../../utils/helpers';
-import { EmitterViewEvents } from '../../../types/enums';
+import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 
 class HomeView {
@@ -8,8 +8,6 @@ class HomeView {
   constructor() {
     const root = document.querySelector('.main__root');
     this.root = getSafeElement(root);
-
-    this.subscribe();
   }
 
   public render(): void {
@@ -62,10 +60,6 @@ class HomeView {
       </section>
     `;
     this.root.append(container);
-  }
-
-  private subscribe() {
-    emitter.subscribe(EmitterViewEvents.HOME_UPDATE, this.render.bind(this));
   }
 }
 
