@@ -1,11 +1,13 @@
-import { getSafeElement } from '../../utils/helpers';
+import { getSafeElement } from '../../../utils/helpers';
 
 class HeaderView {
   private root: HTMLElement;
+
   constructor() {
     const root = document.querySelector('.header__root');
     this.root = getSafeElement(root);
   }
+
   public render(): void {
     const header = document.createElement('div');
     header.classList.add('header__wrap');

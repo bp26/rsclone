@@ -5,10 +5,12 @@ import { heroIcon } from '../../utils/constants/slothIcons/icons';
 class Sloth {
   tutorial: Tutorial[];
   count: number;
+
   constructor() {
     this.tutorial = exampleTutorial;
     this.count = 0;
   }
+
   render() {
     const html = document.createElement('div');
     html.innerHTML = `
@@ -29,6 +31,7 @@ class Sloth {
       this.initTutorial();
     }
   }
+
   initTutorial() {
     this.count = 0;
     const coverTutorial = document.createElement('div');

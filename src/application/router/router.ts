@@ -45,6 +45,7 @@ class Router {
         alert('404');
     }
   };
+
   getUrl(value: string | undefined) {
     switch (value) {
       case '':

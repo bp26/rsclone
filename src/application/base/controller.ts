@@ -1,12 +1,12 @@
 import { Sprite } from '../ui/sprite/sprite';
 import { userController } from './../pages/user/base/user.controller';
 import { lessonsController } from './../pages/lessons/base/lessons.controller';
-import { headerController } from '../modules/header/header.controller';
-import { footerController } from '../modules/footer/footer.controller';
+import { headerController } from '../modules/header/base/header.controller';
+import { footerController } from '../modules/footer/base/footer.controller';
 import { homeController } from '../pages/home/base/home.controller';
 
 class Controller {
-  init() {
+  public init() {
     headerController.init();
     footerController.init();
     new Sprite();

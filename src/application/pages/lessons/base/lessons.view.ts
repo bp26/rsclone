@@ -105,6 +105,7 @@ class LessonsView {
   </div>
 </div>
 `;
+
     this.root.append(html);
     sloth.render();
   }
