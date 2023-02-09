@@ -39,3 +39,13 @@ export const enum AuthMode {
   REGISTER = 'Register',
   LOGIN = 'Sign in',
 }
+
+export interface Tutorial {
+  selector: string;
+  text: string;
+}
+
+export const enum Storage {
+  TUTORIAL = 'tutorial',
+  COMPLETE = 'complete',
+}

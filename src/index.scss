@@ -1,11 +1,73 @@
+$dark: #2c3439;
+$secondary: #293d57;
+$primary: #1b2b37;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import './style/variables';
 @import './style/mixins';
 @import './style/font';
 @import './style/layout/layout.scss';
 @import './style/home/home-page.scss';
+@import './application/modules/sloth/sloth.scss';
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.side-bar-arrow {
+  border-radius: 0 0 10px 0 !important;
+}
+
+.progress-bar-collor {
+  background: #14ff00;
+}
+
+.my-modal {
+  display: none;
+}
+
+.my-modal.show-modal {
+  display: block;
+  opacity: 0.6;
+}
+
+.sloth__text {
+  color: #fff;
+  opacity: 0;
+  transition: all 0.5s;
+  bottom: 20%;
+  opacity: 0;
+}
+
+.sloth__text.show-text {
+  transition: all 2s;
+  opacity: 1;
+}
+
+.sloth__img {
+  transition: all 0.5s;
+  left: -1000px;
+}
+
+.sloth__img.show-img {
+  transition: all 0.5s;
+  bottom: 0;
+  left: 75%;
+  transform: translateX(-50%);
+}
+
+@keyframes show-text {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
