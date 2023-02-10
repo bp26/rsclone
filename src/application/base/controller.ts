@@ -4,6 +4,7 @@ import { lessonsController } from './../pages/lessons/base/lessons.controller';
 import { headerController } from '../pages/layout/base/header.controller';
 import { footerController } from '../pages/layout/base/footer.controller';
 import { homeController } from '../pages/home/base/home.controller';
+import { roadController } from '../pages/roadmap/base/road.controller';
 
 class Controller {
   init() {
@@ -28,7 +29,7 @@ class Controller {
   }
 
   public initRoadmapPage(): void {
-    //
+    roadController.init();
   }
 }
 
