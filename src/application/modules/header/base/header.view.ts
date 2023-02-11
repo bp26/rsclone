@@ -1,4 +1,9 @@
-import { getSafeElement } from '../../../utils/helpers';
+import { getSafeElement, queryHTMLElement } from '../../../utils/helpers';
+import { Element } from '../../../utils/element';
+import { authController } from '../../auth/base/auth.controller';
+import { EmitterEventName, HTMLTag } from '../../../types/enums';
+import { emitter } from '../../../utils/emitter';
+import { IUser } from '../../../types/interfaces';
 
 class HeaderView {
   private root: HTMLElement;
@@ -9,9 +14,8 @@ class HeaderView {
   }
 
   public render(): void {
-    const header = document.createElement('div');
-    header.classList.add('header__wrap');
-    header.innerHTML = `
+    const wrapper = new Element(this.root, HTMLTag.DIV, 'header__wrap');
+    wrapper.node.innerHTML = `
         <div class="block-header-content">
           <div class="block__logo">
             <svg height="30px" width="30px">
@@ -45,26 +49,45 @@ class HeaderView {
               <span>En</span>
             </button>
           </div>
-          <div class="block-autorization">
-            <div class="buttons__autorization">
-              <button class="button-autorization">
-                <span>Sign in</span>
-              </button>
-              <button class="button-autorization">
-                <span>Login</span>
-              </button>
-            </div>
-            <div class="block-profile">
-              <a class="block-profile routing" href='/profile'>
-                <svg height="50px" width="50px">
-                  <use href="#user"></use>
-                </svg>
-              </a>
-            </div>
+          <div class='header-auth'>
+            <button class='header-auth__sign header-auth__button'>Sign in</button>
           </div>
         </div>
     `;
-    this.root.append(header);
+
+    this.bind();
+    this.subscribe();
+  }
+
+  private renderSignedAuth(user: IUser) {
+    const headerAuth = queryHTMLElement('.header-auth');
+    headerAuth.innerHTML = `
+      <div class='header-auth__profile'>
+        <a class="header-auth__profile routing" href='/profile'>
+          <svg height="50px" width="50px">
+            <use href="#user"></use>
+          </svg>
+        </a>
+      </div>
+      <span class='header-auth__welcome'>Welcome, ${user.login}</span>
+      <button class='header-auth__logout header-auth__button'>Logout</button>
+    `;
+
+    this.bindSigned();
+  }
+
+  private bind() {
+    const sign = queryHTMLElement('.header-auth__sign');
+    sign.onclick = () => authController.showModal();
+  }
+
+  private bindSigned() {
+    const logout = queryHTMLElement('.header-auth__logout');
+    logout.onclick = () => authController.logout();
+  }
+
+  private subscribe() {
+    emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.renderSignedAuth.bind(this));
   }
 }
 
