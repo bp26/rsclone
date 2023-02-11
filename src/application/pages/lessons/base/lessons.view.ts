@@ -3,17 +3,14 @@ import { theory } from './../modules/theory';
 import { lessonsBlock } from './../modules/lessonsBlock';
 import { chat } from '../modules/chat';
 import { task } from './../modules/task';
-import { getSafeElement } from '../../../utils/helpers';
-import { EmitterEventName } from '../../../types/enums';
-import { emitter } from '../../../utils/emitter';
+import { queryHTMLElement } from '../../../utils/helpers';
 import sloth from '../../../modules/sloth/sloth';
 
 class LessonsView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.main__root');
-    this.root = getSafeElement(root);
+    this.root = queryHTMLElement('.main__root');
   }
 
   public render(): void {

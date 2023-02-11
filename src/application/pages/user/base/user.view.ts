@@ -1,13 +1,10 @@
-import { getSafeElement } from '../../../utils/helpers';
-import { EmitterEventName } from '../../../types/enums';
-import { emitter } from '../../../utils/emitter';
+import { queryHTMLElement } from '../../../utils/helpers';
 
 class UserView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.main__root');
-    this.root = getSafeElement(root);
+    this.root = queryHTMLElement('.main__root');
   }
 
   public render(): void {
