@@ -4,6 +4,7 @@ import { emitter } from '../utils/emitter';
 import { EmitterEventName } from '../types/enums';
 
 class Model {
+  public isAuthenticated = false;
   private user?: IUser;
 
   constructor() {
@@ -11,8 +12,8 @@ class Model {
   }
 
   public async init(): Promise<void> {
-    const isVerificated = await api.checkVerification();
-    if (isVerificated) {
+    this.isAuthenticated = await api.checkVerification();
+    if (this.isAuthenticated) {
       await this.loadUser();
     }
   }
