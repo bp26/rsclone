@@ -23,6 +23,8 @@ export const enum EmitterEventName {
   AUTH_ERROR = 'AUTH_ERROR',
   AUTH_SUCCESS = 'AUTH_SUCCESS',
   AUTH_LOGOUT = 'AUTH_LOGOUT',
+  GLOBAL_USER_LOADED = 'GLOBAL_USER_LOADED',
+  GLOBAL_USER_ERROR = 'GLOBAL_USER_ERROR',
 }
 
 export const enum StatusCode {
@@ -36,13 +38,25 @@ export const enum StatusCode {
 }
 
 export const enum AuthMode {
-  REGISTER = 'Register',
+  REGISTER = 'Sign up',
   LOGIN = 'Sign in',
 }
 
-export interface Tutorial {
-  selector: string;
-  text: string;
+export const enum AuthSwitchName {
+  ALREADY = 'Already have an account?',
+  NOT = `Don't have an account yet?`,
+}
+
+export const enum AuthErrorType {
+  LOGIN = 'login',
+  PASSWORD = 'password',
+}
+
+export const enum AuthErrorMessage {
+  NO_LOGIN = 'Please enter your login',
+  NO_PASSWORD = 'Please enter your password',
+  SHORT_LOGIN = 'Login should be at least 3 characters long',
+  SHORT_PASSWORD = 'Password should be at least 6 characters long',
 }
 
 export const enum Storage {
