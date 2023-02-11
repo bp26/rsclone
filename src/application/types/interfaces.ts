@@ -7,3 +7,8 @@ export interface Tutorial {
   selector: string;
   text: string;
 }
+
+export interface ResponceError {
+  type: string;
+  message: string;
+}
