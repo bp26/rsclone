@@ -1,5 +1,9 @@
-export const BASE_URL = 'https://bp26-rsclone-backend.onrender.com/';
+export const BASE_URL = 'https://bp26-rsclone-backend.onrender.com';
 export const AUTH_ROUTE = 'auth';
+export const USER_ROUTE = 'user';
 export const AUTH_LOGIN = 'login';
 export const AUTH_REGISTER = 'register';
 export const AUTH_LOGOUT = 'logout';
+export const AUTH_VERIFY = 'verify';
+export const LOGIN_LENGTH = 3;
+export const PASSWORD_LENGTH = 6;
