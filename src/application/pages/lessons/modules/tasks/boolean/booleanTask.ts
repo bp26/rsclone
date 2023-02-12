@@ -1,6 +1,6 @@
-import { Lessons } from '../../../types/interfaces';
-import { getSafeElement } from '../../../utils/helpers';
-import { Colors } from '../../../types/enums';
+import { Lessons } from '../../../../../types/interfaces';
+import { getSafeElement } from '../../../../../utils/helpers';
+import { Colors } from '../../../../../types/enums';
 
 export class TaskBoolean {
   colors: Array<string>;

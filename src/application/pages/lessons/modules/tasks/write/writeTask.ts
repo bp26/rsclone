@@ -1,6 +1,6 @@
-import { getSafeElement } from './../../../utils/helpers';
-import { Lessons } from './../../../types/interfaces';
-import { Colors } from './../../../types/enums';
+import { getSafeElement } from '../../../../../utils/helpers';
+import { Lessons } from '../../../../../types/interfaces';
+import { Colors } from '../../../../../types/enums';
 export class TaskWrite {
   colors: Array<string>;
   id: number;

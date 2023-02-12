@@ -1,4 +1,4 @@
-import { Lessons } from './../../../types/interfaces';
+import { Lessons } from '../../../../../types/interfaces';
 export const lessonsDrag: Lessons[] = [
   {
     id: 1,
