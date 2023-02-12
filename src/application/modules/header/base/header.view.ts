@@ -1,4 +1,4 @@
-import { getSafeElement, queryHTMLElement } from '../../../utils/helpers';
+import { queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
 import { EmitterEventName, HTMLTag } from '../../../types/enums';
@@ -9,8 +9,7 @@ class HeaderView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.header__root');
-    this.root = getSafeElement(root);
+    this.root = queryHTMLElement('.header__root');
   }
 
   public render(): void {
