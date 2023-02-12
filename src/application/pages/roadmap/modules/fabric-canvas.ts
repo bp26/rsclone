@@ -4,99 +4,17 @@ import { DrawSecondaryLineFabricCanvas } from './drawSecondaryLine';
 import { DrawRectContent } from './drawRect';
 import { DrawArcMainLine } from './drawArc';
 import { BABY_SLOTH } from '../../../utils/constants/slothIcons/baby-sloth';
+import { DrawSvgCanvas } from './drawSvg';
+import { DrawPolylineCanvas } from './drawPolyline';
 
 export class FabricCanvas {
   private middleCanvas: number;
   constructor(canvas: HTMLCanvasElement) {
     const fabricCanvas = new fabric.fabric.Canvas(canvas);
     this.middleCanvas = canvas.clientWidth / 2;
-    const polyline = new fabric.fabric.Polyline(
-      [
-        {
-          x: this.middleCanvas - 390,
-          y: 1240,
-        },
-        {
-          x: this.middleCanvas + 150,
-          y: 1240,
-        },
-        {
-          x: this.middleCanvas + 150,
-          y: 1430,
-        },
-        {
-          x: this.middleCanvas - 390,
-          y: 1430,
-        },
-        {
-          x: this.middleCanvas - 390,
-          y: 1240,
-        },
-      ],
-      {
-        fill: '',
-        stroke: 'red',
-        strokeDashArray: [8, 8],
-        strokeWidth: 5,
-        selectable: false,
-        hoverCursor: 'auto',
-      }
-    );
 
-    const polyline1 = new fabric.fabric.Polyline(
-      [
-        {
-          x: this.middleCanvas + 240,
-          y: 1575,
-        },
-        {
-          x: this.middleCanvas + 280,
-          y: 1575,
-        },
-        {
-          x: this.middleCanvas + 280,
-          y: 1530,
-        },
-        {
-          x: this.middleCanvas + 560,
-          y: 1530,
-        },
-        {
-          x: this.middleCanvas + 560,
-          y: 1780,
-        },
-        {
-          x: this.middleCanvas + 280,
-          y: 1780,
-        },
-        {
-          x: this.middleCanvas + 280,
-          y: 1575,
-        },
-      ],
-      {
-        fill: '',
-        stroke: 'green',
-        strokeDashArray: [8, 8],
-        strokeWidth: 5,
-        selectable: false,
-        hoverCursor: 'auto',
-      }
-    );
-
-    fabric.fabric.loadSVGFromString(BABY_SLOTH, function (objects, options) {
-      const obj = fabric.fabric.util.groupSVGElements(objects, options);
-      obj.set({
-        selectable: false,
-        top: 30,
-        left: 630,
-        hoverCursor: 'auto',
-      });
-      obj.scaleToWidth(100);
-      fabricCanvas.add(obj).renderAll();
-    });
-    fabricCanvas.add(polyline);
-    fabricCanvas.add(polyline1);
+    const polylynes = new DrawPolylineCanvas(fabricCanvas, this.middleCanvas);
+    const svgImageIgnor = new DrawSvgCanvas(fabricCanvas, BABY_SLOTH, 30, 630, 100);
     const mainLineIgnor = new DrawMainLineFabricCanvas(fabricCanvas, [this.middleCanvas, 120, this.middleCanvas, 750]);
     const arcLine1 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 40, 495, 300, -8, Math.PI * 40, Math.PI * 60);
     const arcLine2 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 350, 1030, 300, -10, Math.PI - 50, Math.PI * 20);
