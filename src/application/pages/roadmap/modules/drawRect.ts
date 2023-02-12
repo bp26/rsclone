@@ -4,7 +4,7 @@ export class DrawRectContent {
   mainRect: fabric.fabric.Rect;
   mainContentRect: fabric.fabric.Text;
   mainGroup: fabric.fabric.Group;
-  constructor(parent: fabric.fabric.Canvas, left: number, top: number, textContent: string) {
+  constructor(parent: fabric.fabric.Canvas, left: number, top: number, textContent: string, color = '#000') {
     this.mainRect = new fabric.fabric.Rect({
       fill: '#436aa3',
       width: 200,
@@ -13,12 +13,12 @@ export class DrawRectContent {
       originY: 'center',
       shadow: 'rgba(0,0,0,0.8) 0px 8px 22px',
       strokeWidth: 2,
-      stroke: '#000',
+      stroke: color,
       rx: 10,
     });
 
     this.mainContentRect = new fabric.fabric.Text(textContent, {
-      fontSize: 35,
+      fontSize: 30,
       fontWeight: 600,
       originX: 'center',
       originY: 'center',
@@ -45,7 +45,7 @@ export class DrawRectContent {
       originY: 'center',
       shadow: 'rgba(0,0,0,0.8) 0px 12px 22px',
       strokeWidth: 2,
-      stroke: '#000',
+      stroke: color,
       rx: 10,
     });
 
@@ -77,9 +77,9 @@ export class DrawRectContent {
       parent.add(this.mainGroup);
     });
 
-    // hoverGroup.on('mousedown', () => {
-    //   console.log(hoverGroup.item(1).text)
-    // })
+    hoverGroup.on('mousedown', () => {
+      console.log(hoverContentRec.text);
+    });
 
     parent.add(this.mainGroup);
   }

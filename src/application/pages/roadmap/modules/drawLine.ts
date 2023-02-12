@@ -7,9 +7,7 @@ export class DrawMainLineFabricCanvas {
       strokeWidth: 10,
       hoverCursor: 'auto',
       strokeDashArray: [5, 8],
-      lockMovementX: true,
-      lockMovementY: true,
-      hasControls: false,
+      selectable: false,
     });
     parent.add(line);
   }
