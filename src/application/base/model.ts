@@ -12,9 +12,13 @@ class Model {
   }
 
   public async init(): Promise<void> {
-    this.isAuthenticated = await api.checkVerification();
-    if (this.isAuthenticated) {
-      await this.loadUser();
+    try {
+      this.isAuthenticated = await api.checkVerification();
+      if (this.isAuthenticated) {
+        await this.loadUser();
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
