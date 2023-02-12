@@ -32,6 +32,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/fabric": "^4.5.15",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "@webpack-cli/generators": "^3.0.1",
