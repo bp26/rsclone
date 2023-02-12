@@ -1,9 +1,10 @@
 import { queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
-import { EmitterEventName, HTMLTag } from '../../../types/enums';
+import { EmitterEventName, HTMLTag, Lang, Theme } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { IUser } from '../../../types/interfaces';
+import { headerController } from './header.controller';
 
 class HeaderView {
   private root: HTMLElement;
@@ -41,11 +42,11 @@ class HeaderView {
         </div>
         <div class="wrapper-controls">
           <div class="block__toggle-content">
-            <button class="button-toggle">
+            <button class="button-toggle theme-toggle">
               <span>Dark</span>
             </button>
-            <button class="button-toggle button-toggle_en">
-              <span>En</span>
+            <button class="button-toggle lang-toggle">
+              <span>English</span>
             </button>
           </div>
           <div class='header-auth'>
@@ -75,9 +76,24 @@ class HeaderView {
     this.bindSigned();
   }
 
+  private switchLang(lang: Lang) {
+    const langButton = queryHTMLElement('.lang-toggle');
+    langButton.textContent = lang;
+  }
+
+  private switchTheme(theme: Theme) {
+    const themeButton = queryHTMLElement('.theme-toggle');
+    themeButton.textContent = theme;
+  }
+
   private bind() {
     const sign = queryHTMLElement('.header-auth__sign');
+    const theme = queryHTMLElement('.theme-toggle');
+    const lang = queryHTMLElement('.lang-toggle');
+
     sign.onclick = () => authController.showModal();
+    theme.onclick = () => headerController.switchTheme();
+    lang.onclick = () => headerController.switchLang();
   }
 
   private bindSigned() {
@@ -87,6 +103,8 @@ class HeaderView {
 
   private subscribe() {
     emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.renderSignedAuth.bind(this));
+    emitter.on(EmitterEventName.GLOBAL_LANGUAGE, this.switchLang.bind(this));
+    emitter.on(EmitterEventName.GLOBAL_THEME, this.switchTheme.bind(this));
   }
 }
 

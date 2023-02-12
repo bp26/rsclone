@@ -1,4 +1,4 @@
-import { AuthMode, AuthErrorType } from './enums';
+import { AuthMode, AuthErrorType, Lang, Theme } from './enums';
 import { IUser } from './interfaces';
 
 type AuthEvents = {
@@ -10,6 +10,8 @@ type AuthEvents = {
   GLOBAL_USER_LOAD_ERROR: () => void;
   GLOBAL_USER_UPDATE_SUCCESS: () => void;
   GLOBAL_USER_UPDATE_ERROR: () => void;
+  GLOBAL_LANGUAGE: (lang: Lang) => void;
+  GLOBAL_THEME: (theme: Theme) => void;
 };
 
 export type EmitterEvents = AuthEvents;

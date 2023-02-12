@@ -1,11 +1,13 @@
 import { IUser } from '../types/interfaces';
 import { api } from '../api/api';
 import { emitter } from '../utils/emitter';
-import { EmitterEventName } from '../types/enums';
+import { EmitterEventName, Lang, Theme } from '../types/enums';
 
 class Model {
   public isAuthenticated = false;
-  private user?: IUser;
+  public user?: IUser;
+  public lang: Lang = Lang.EN;
+  public theme: Theme = Theme.DARK;
 
   constructor() {
     this.subscribe();
@@ -20,10 +22,6 @@ class Model {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  public getUser(): IUser | undefined {
-    return this.user;
   }
 
   public async loadUser(): Promise<void> {
@@ -43,6 +41,32 @@ class Model {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  public switchLang() {
+    switch (this.lang) {
+      case Lang.EN:
+        this.lang = Lang.RU;
+        break;
+
+      case Lang.RU:
+        this.lang = Lang.EN;
+        break;
+    }
+    emitter.emit(EmitterEventName.GLOBAL_LANGUAGE, this.lang);
+  }
+
+  public switchTheme() {
+    switch (this.theme) {
+      case Theme.DARK:
+        this.theme = Theme.LIGHT;
+        break;
+
+      case Theme.LIGHT:
+        this.theme = Theme.DARK;
+        break;
+    }
+    emitter.emit(EmitterEventName.GLOBAL_THEME, this.theme);
   }
 
   private subscribe() {

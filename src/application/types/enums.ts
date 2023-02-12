@@ -27,6 +27,8 @@ export const enum EmitterEventName {
   GLOBAL_USER_LOAD_ERROR = 'GLOBAL_USER_LOAD_ERROR',
   GLOBAL_USER_UPDATE_SUCCESS = 'GLOBAL_USER_UPDATE_SUCCESS',
   GLOBAL_USER_UPDATE_ERROR = 'GLOBAL_USER_UPDATE_ERROR',
+  GLOBAL_LANGUAGE = 'GLOBAL_LANGUAGE',
+  GLOBAL_THEME = 'GLOBAL_THEME',
 }
 
 export const enum StatusCode {
@@ -64,4 +66,14 @@ export const enum AuthErrorMessage {
 export const enum Storage {
   TUTORIAL = 'tutorial',
   COMPLETE = 'complete',
+}
+
+export const enum Lang {
+  EN = 'English',
+  RU = 'Russian',
+}
+
+export const enum Theme {
+  DARK = 'Dark',
+  LIGHT = 'Light',
 }

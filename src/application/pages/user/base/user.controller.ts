@@ -4,7 +4,7 @@ import { model } from '../../../base/model';
 
 class UserController {
   public init(): void {
-    const user = model.getUser();
+    const user = model.user;
     if (user) {
       userView.render(user);
     }
