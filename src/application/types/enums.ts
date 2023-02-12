@@ -32,3 +32,11 @@ export const enum Storage {
   TUTORIAL = 'tutorial',
   COMPLETE = 'complete',
 }
+
+export enum Colors {
+  WARNING = 'warning',
+  DARK = 'dark',
+  DANGER = 'danger',
+  PRIMARY = 'primary',
+  SUCCESS = 'success',
+}
