@@ -29,13 +29,13 @@ export class TaskBoolean {
   generatorButtons(arr: Array<string>) {
     let buttonsBlockContent = '';
     arr.forEach((el) => {
-      const indexColor = this.getRundomNumberForColor();
+      const indexColor = this.getRandomNumberForColor();
       buttonsBlockContent += `<button data-task-boolean-buttons="${this.id}"  class="btn btn-${this.colors[indexColor]} m-1 btn-controller">${el}</button>`;
     });
     return buttonsBlockContent;
   }
 
-  getRundomNumberForColor() {
+  getRandomNumberForColor() {
     const number = Math.floor(Math.random() * this.colors.length);
     return number;
   }

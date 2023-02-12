@@ -28,13 +28,13 @@ export class TaskWrite {
   generatorButtons(arr: Array<string>) {
     let buttonsBlockContent = '';
     arr.forEach((el) => {
-      const indexColor = this.getRundomNumberForColor();
+      const indexColor = this.getRandomNumberForColor();
       buttonsBlockContent += `<button data-task-buttons="${this.id}"  class="btn-drag btn btn-${this.colors[indexColor]} m-1 btn-controller">${el}</button>`;
     });
     return buttonsBlockContent;
   }
 
-  getRundomNumberForColor() {
+  getRandomNumberForColor() {
     const number = Math.floor(Math.random() * this.colors.length);
     return number;
   }
@@ -162,14 +162,14 @@ export class TaskWrite {
     if (this.startTimer > Number(currentElement.textContent)) {
       return;
     }
-    const intervarID = setInterval(() => {
+    const intervalID = setInterval(() => {
       currentElement.textContent = String(Number(currentElement.textContent) - 1);
       if (currentElement.textContent === '0') {
         document.querySelector(`[data-task-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-btn-timer="${this.id}"]`) as HTMLButtonElement;
         if (currentButton) currentButton.disabled = false;
         currentButton.innerText = 'Check answer';
-        clearInterval(intervarID);
+        clearInterval(intervalID);
       }
     }, 1000);
   }
