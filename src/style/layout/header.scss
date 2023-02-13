@@ -16,6 +16,7 @@
 
 .header__navlink {
   color: $color-base;
+  cursor: pointer;
 
   &:hover {
     color: $hover-color-nav-link;
@@ -33,6 +34,42 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+  }
+}
+
+.header__dropdown {
+  width: 100%;
+
+  @media (min-width) {
+    width: auto;
+  }
+}
+
+.header__dropbtn {
+  user-select: none;
+  width: 100%;
+
+  @media (min-width) {
+    width: auto;
+  }
+}
+
+.header__dropmenu {
+  background-color: $color-base;
+}
+
+.header__dropitem {
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: $hover-color-nav-link;
+    background-color: $background-button-toogle-lang-or-theme;
+  }
+
+  &_chosen {
+    background-color: $background-header-or-footer;
+    color: $color-user-icon;
   }
 }
 

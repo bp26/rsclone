@@ -1,4 +1,4 @@
-import { queryHTMLElement } from '../../../utils/helpers';
+import { getSafeElement, queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
 import { EmitterEventName, HTMLTag, Lang, Theme } from '../../../types/enums';
@@ -32,8 +32,20 @@ class HeaderView {
             <a class='header__navlink nav-link routing' href='/roadmap'>RoadMap</a>
           </nav>
           <div class='header__settings navbar-nav'>
-            <a class='header__button header__lang nav-link'>English</a>
-            <a class='header__button header__theme nav-link'>Dark</a>
+            <div class='header__theme header__dropdown dropdown'>
+              <a class='header__navlink header__dropbtn nav-link dropdown-toggle' data-bs-toggle='dropdown'>Theme</a>
+              <div class='header__dropmenu dropdown-menu'>
+                <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='Dark'>Dark</a>
+                <a class='header__dropitem dropdown-item' data-value='Light'>Light</a>
+              </div>
+            </div>
+            <div class='header__lang header__dropdown dropdown'>
+              <a class='header__navlink header__dropbtn nav-link dropdown-toggle' data-bs-toggle='dropdown'>Language</a>
+              <div class='header__dropmenu dropdown-menu'>
+                <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='English'>English</a>
+                <a class='header__dropitem dropdown-item' data-value='Russian'>Russian</a>
+              </div>
+            </div>
           </div>
           <div class='header__auth navbar-nav align-items-center'>
             <a class='header__button header__sign nav-link'>Sign in</a>
@@ -65,23 +77,71 @@ class HeaderView {
   }
 
   private switchLang(lang: Lang) {
-    const langButton = queryHTMLElement('.header__lang');
-    langButton.textContent = lang;
+    const en = queryHTMLElement(`.header__lang [data-value="${Lang.EN}"]`);
+    const ru = queryHTMLElement(`.header__lang [data-value="${Lang.RU}"]`);
+
+    switch (lang) {
+      case Lang.EN:
+        en.classList.add('header__dropitem_chosen');
+        ru.classList.remove('header__dropitem_chosen');
+        break;
+      case Lang.RU:
+        en.classList.remove('header__dropitem_chosen');
+        ru.classList.add('header__dropitem_chosen');
+        break;
+    }
   }
 
   private switchTheme(theme: Theme) {
-    const themeButton = queryHTMLElement('.header__theme');
-    themeButton.textContent = theme;
+    const dark = queryHTMLElement(`.header__theme [data-value="${Theme.DARK}"]`);
+    const light = queryHTMLElement(`.header__theme [data-value="${Theme.LIGHT}"]`);
+
+    switch (theme) {
+      case Theme.DARK:
+        dark.classList.add('header__dropitem_chosen');
+        light.classList.remove('header__dropitem_chosen');
+        break;
+      case Theme.LIGHT:
+        dark.classList.remove('header__dropitem_chosen');
+        light.classList.add('header__dropitem_chosen');
+        break;
+    }
   }
 
   private bind() {
     const sign = queryHTMLElement('.header__sign');
-    const theme = queryHTMLElement('.header__theme');
     const lang = queryHTMLElement('.header__lang');
+    const theme = queryHTMLElement('.header__theme');
 
     sign.onclick = () => authController.showModal();
-    theme.onclick = () => headerController.switchTheme();
-    lang.onclick = () => headerController.switchLang();
+
+    lang.onclick = (e) => {
+      const target = getSafeElement(e.target);
+      if (target.classList.contains('header__dropitem')) {
+        switch (target.dataset.value) {
+          case Lang.EN:
+            headerController.setLang(Lang.EN);
+            break;
+          case Lang.RU:
+            headerController.setLang(Lang.RU);
+            break;
+        }
+      }
+    };
+
+    theme.onclick = (e) => {
+      const target = getSafeElement(e.target);
+      if (target.classList.contains('header__dropitem')) {
+        switch (target.dataset.value) {
+          case Theme.DARK:
+            headerController.setTheme(Theme.DARK);
+            break;
+          case Theme.LIGHT:
+            headerController.setTheme(Theme.LIGHT);
+            break;
+        }
+      }
+    };
   }
 
   private bindSigned() {
