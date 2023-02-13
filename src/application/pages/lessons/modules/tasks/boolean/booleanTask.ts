@@ -44,15 +44,16 @@ export class TaskBoolean {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-      <div class="card-body">
-        <div class="card-title text-center">${this.title}</div>
-        <div class="card-text text-center">
-        <button class="btn btn-primary init-boolean-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-boolean-${this.id}" aria-expended="false" aria-controls="task-boolean-${this.id}">Show task</button>
-        </div>
-      </div>
+<div class="card-body">
+  <div class="card-title text-center">${this.title}</div>
+    <div class="card-text text-center">
+    <button class="btn btn-primary init-boolean-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-boolean-${this.id}" aria-expended="false" aria-controls="task-boolean-${this.id}">Show task</button>
+  </div>
+</div>
     `;
     const taskBlock = document.createElement('div');
-    taskBlock.innerHTML = `<div class="container collapse" id="task-boolean-${this.id}">
+    taskBlock.innerHTML = `
+<div class="container collapse" id="task-boolean-${this.id}">
   <div class="tasks">
     <h4 class="task__title">${this.title}</h4>
     <p class="task__price">Price: ${this.price} points</p>
@@ -71,15 +72,19 @@ export class TaskBoolean {
   </div>
 </div>
 `;
+
     const root = getSafeElement(document.querySelector(`${this.selector}`));
     root.append(initLesson);
     root.append(taskBlock);
+
     const initButton = getSafeElement(document.querySelector(`.init-boolean-button${this.id}`));
+
     initButton.addEventListener('click', () => {
       this.toggleInitButton(initButton);
     });
+
     const answerButton = document.querySelectorAll(`[data-task-boolean-buttons="${this.id}"]`);
-    // const arr = [this.answer];
+
     answerButton.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const target = e.target as Element;
@@ -90,24 +95,18 @@ export class TaskBoolean {
       });
     });
   }
+
   toggleInitButton = (element: Element) => {
-    if (element.textContent === 'Show task') {
-      element.textContent = 'Hidden task';
-    } else {
-      element.textContent = 'Show task';
-    }
+    element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
   };
+
   resetBorderTextarea() {
     const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
     textarea.style.borderColor = 'black';
   }
+
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-    if (result) {
-      textarea.style.border = '3px solid green';
-      // render modal
-    } else {
-      textarea.style.border = '3px solid red';
-    }
+    result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
   }
 }

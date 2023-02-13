@@ -43,15 +43,16 @@ export class TaskWrite {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-      <div class="card-body">
-        <div class="card-title text-center">${this.title}</div>
-        <div class="card-text text-center">
-        <button class="btn btn-primary init-write-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-write-${this.id}" aria-expended="false" aria-controls="task-write-${this.id}">Show task</button>
-        </div>
-      </div>
+<div class="card-body">
+  <div class="card-title text-center">${this.title}</div>
+    <div class="card-text text-center">
+    <button class="btn btn-primary init-write-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-write-${this.id}" aria-expended="false" aria-controls="task-write-${this.id}">Show task</button>
+  </div>
+</div>
     `;
     const taskBlock = document.createElement('div');
-    taskBlock.innerHTML = `<div class="container collapse" id="task-write-${this.id}">
+    taskBlock.innerHTML = `
+<div class="container collapse" id="task-write-${this.id}">
   <div class="tasks">
     <h4 class="task__title">${this.title}</h4>
     <p class="task__price">Price: ${this.price} points</p>
@@ -106,16 +107,21 @@ export class TaskWrite {
     const root = getSafeElement(document.querySelector(`${this.selector}`));
     root.append(initLesson);
     root.append(taskBlock);
+
     const initButton = getSafeElement(document.querySelector(`.init-write-button${this.id}`));
+
     initButton.addEventListener('click', () => {
       this.toggleInitButton(initButton);
       this.timerForAnswer();
     });
+
     const submit = getSafeElement(document.querySelector(`[data-task-submit="${this.id}"]`));
     const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
+
     textarea.addEventListener('input', () => {
       this.resetBorderTextarea();
     });
+
     submit.addEventListener('click', () => {
       const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
       let textareaContent = textarea.value;
@@ -126,6 +132,7 @@ export class TaskWrite {
     });
 
     const buttonsController = document.querySelectorAll(`[data-task-buttons="${this.id}"]`);
+
     buttonsController.forEach((button) => {
       const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
       button.addEventListener('click', (e) => {
@@ -173,24 +180,18 @@ export class TaskWrite {
       }
     }, 1000);
   }
+
   toggleInitButton = (element: Element) => {
-    if (element.textContent === 'Show task') {
-      element.textContent = 'Hidden task';
-    } else {
-      element.textContent = 'Show task';
-    }
+    element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
   };
+
   resetBorderTextarea() {
     const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
     textarea.style.borderColor = 'black';
   }
+
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-    if (result) {
-      textarea.style.border = '3px solid green';
-      // render modal
-    } else {
-      textarea.style.border = '3px solid red';
-    }
+    result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
   }
 }
