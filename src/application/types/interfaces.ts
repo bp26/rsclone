@@ -1,5 +1,14 @@
-import { EmitterCallback } from './types';
+export interface IUser {
+  login: string;
+  password: string;
+}
 
-export interface EmitterEvents {
-  [key: string]: EmitterCallback[];
+export interface Tutorial {
+  selector: string;
+  text: string;
+}
+
+export interface ResponceError {
+  type: string;
+  message: string;
 }

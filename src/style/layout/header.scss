@@ -45,28 +45,9 @@
   transition: all 0.3s ease;
 }
 
-.block-profile {
-  color: $color-user-icon;
-  &:hover {
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: $hover-color-user-logo;
-  }
-}
-
 .block__toggle-content {
   display: flex;
   gap: 38px;
-}
-
-.block__autorization {
-  display: flex;
-  gap: 30px;
-}
-
-.buttons__autorization {
-  display: flex;
-  gap: 25px;
 }
 
 .nav-item {
@@ -86,6 +67,11 @@
     transition: all 0.3s ease;
     color: $hover-color-nav-link;
   }
+}
+
+.wrapper-controls {
+  display: flex;
+  gap: 50px;
 }
 
 .button-toggle {
@@ -113,33 +99,42 @@
   height: 50px;
 }
 
-.block-autorization {
+.header-auth {
   display: flex;
-  gap: 30px;
-}
-
-.button-autorization {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 206px;
-  border-radius: 15px;
-  background-color: $background-button-autorization;
-  color: $color-base;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
-  transition: all 0.3s ease;
+  gap: 30px;
 
-  &:hover {
-    cursor: pointer;
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 206px;
+    border-radius: 15px;
+    background-color: $background-button-autorization;
+    color: $color-base;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
     transition: all 0.3s ease;
-    background-color: $hover-background-btn-base;
-  }
-}
 
-.wrapper-controls {
-  display: flex;
-  gap: 50px;
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: $hover-background-btn-base;
+    }
+  }
+
+  &__profile {
+    color: $color-user-icon;
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: $hover-color-user-logo;
+    }
+  }
+
+  &__welcome {
+    color: $color-base;
+  }
 }

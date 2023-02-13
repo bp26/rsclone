@@ -8,6 +8,7 @@ import './assets/svg/sloth.svg';
 import router from './application/router/router';
 
 (function () {
-  controller.init();
-  router.locationHandler();
+  controller.init().then(() => {
+    router.locationHandler();
+  });
 })();
