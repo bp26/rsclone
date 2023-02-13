@@ -1,7 +1,7 @@
 class Task {
   render() {
     return `
-<div class="tasks">
+<div class="task">
   <h4 class="task__title">Working with variables</h4>
   <p class="task__price">Price: 2 point</p>
   <p class="">

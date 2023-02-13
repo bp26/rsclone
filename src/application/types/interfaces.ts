@@ -12,3 +12,14 @@ export interface ResponceError {
   type: string;
   message: string;
 }
+
+export interface Lessons {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  buttonsArray: Array<string>;
+  answer: string;
+  answerBlock: () => void;
+  selector: string;
+}

@@ -68,6 +68,14 @@ export const enum Storage {
   COMPLETE = 'complete',
 }
 
+export enum Colors {
+  WARNING = 'warning',
+  DARK = 'dark',
+  DANGER = 'danger',
+  PRIMARY = 'primary',
+  SUCCESS = 'success',
+}
+
 export const enum Lang {
   EN = 'English',
   RU = 'Russian',
