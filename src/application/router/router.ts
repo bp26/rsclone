@@ -1,4 +1,6 @@
 import { controller } from '../base/controller';
+import { model } from '../base/model';
+
 class Router {
   hungRouteListeners = (className: string) => {
     const anchors = document.querySelectorAll(`.${className}`);
@@ -36,7 +38,11 @@ class Router {
         controller.initDocumentationPage();
         break;
       case '/profile':
-        controller.initUserPage();
+        if (model.isAuthenticated) {
+          controller.initUserPage();
+        } else {
+          controller.initHomePage();
+        }
         break;
       case '/roadmap':
         controller.initRoadmapPage();
@@ -45,6 +51,7 @@ class Router {
         alert('404');
     }
   };
+
   getUrl(value: string | undefined) {
     switch (value) {
       case '':

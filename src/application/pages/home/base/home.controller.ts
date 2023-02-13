@@ -2,10 +2,6 @@ import { homeModel } from './home.model';
 import { homeView } from './home.view';
 
 class HomeController {
-  public add(): void {
-    homeModel.add();
-  }
-
   public init(): void {
     homeView.render();
     this.initChilden();

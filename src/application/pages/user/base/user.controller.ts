@@ -1,19 +1,19 @@
 import { userModel } from './user.model';
 import { userView } from './user.view';
+import { model } from '../../../base/model';
 
 class UserController {
-  public add(): void {
-    userModel.add();
-  }
-
   public init(): void {
-    userView.render();
+    const user = model.user;
+    if (user) {
+      userView.render(user);
+    }
+
     this.initChilden();
   }
 
   private initChilden(): void {
-    // chatController.init()
-    // menuController.init()
+    //
   }
 }
 
