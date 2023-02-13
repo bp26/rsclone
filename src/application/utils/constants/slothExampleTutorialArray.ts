@@ -12,7 +12,7 @@ export const exampleTutorial = [
     text: 'тут навигация',
   },
   {
-    selector: '.block-autorization',
+    selector: '.header-auth',
     text: 'тут авторизация',
   },
 ];

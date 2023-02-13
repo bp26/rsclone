@@ -13,7 +13,7 @@ class Chat {
           style="
             height: 50px;
             width: 50px;
-            bottom: 100px;
+            bottom: 150px;
             right: 3rem;
             z-index: 50;
           "

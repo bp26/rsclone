@@ -7,10 +7,13 @@ import { heroIcon } from '../../utils/constants/slothIcons/icons';
 class Sloth {
   tutorial: Tutorial[];
   count: number;
-
+  writerIntervalID: NodeJS.Timer | string;
+  audio: HTMLAudioElement;
   constructor() {
     this.tutorial = exampleTutorial;
     this.count = 0;
+    this.writerIntervalID = '';
+    this.audio = new Audio('https://zvukipro.com/uploads/files/2019-07/1564068710_95186a15d2b9821.mp3');
   }
 
   render() {
@@ -18,11 +21,11 @@ class Sloth {
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
      <div>
-     <p class="sloth__text position-absolute start-50 translate-middle-x bg-primary rounded-4 p-2" style=" z-index:6"></p>
-    </div>
-    <div  class="sloth__img position-absolute" style="z-index: 5;">
+       <p class="sloth__text position-absolute start-50 translate-middle-x bg-primary rounded-4 p-2" style=" z-index:6"></p>
+     </div>
+     <div  class="sloth__img position-absolute" style="z-index: 5;">
       ${heroIcon}
-    </div>
+     </div>
     `;
 
     document.body.append(html);
@@ -61,18 +64,22 @@ class Sloth {
       block.classList.add('show-tutorial-block');
     }
     const textBlock = getSafeElement(document.querySelector('.sloth__text'));
-    textBlock.textContent = text;
     this.writerBot(textBlock, text);
   }
 
-  writerBot = (element: Element, text: string) => {
+  writerBot = (element: HTMLElement, text: string) => {
+    if (this.writerIntervalID !== '') {
+      clearInterval(this.writerIntervalID);
+    }
     let start = 1;
+    this.audio.play();
     const stringLength = text.length;
-    const intervalID = setInterval(() => {
-      element.textContent = text.slice(0, start);
+    this.writerIntervalID = setInterval(() => {
       start++;
+      element.textContent = text.slice(0, start);
       if (start === stringLength) {
-        clearInterval(intervalID);
+        this.audio.pause();
+        clearInterval(this.writerIntervalID);
       }
     }, 50);
   };
@@ -84,6 +91,7 @@ class Sloth {
       this.showSlothTutorial(this.tutorial[this.count]);
       this.hiddenPrev(this.tutorial[this.count - 1].selector);
     } else {
+      clearInterval(this.writerIntervalID);
       localStorage.setItem(Storage.TUTORIAL, Storage.COMPLETE);
       this.hiddenPrev(this.tutorial[this.count - 1].selector);
       this.hiddenSloth();

@@ -11,7 +11,7 @@ export const lessonsBoolean: Lessons[] = [
     answerBlock: () => {
       return ``;
     },
-    selector: 'body',
+    selector: '.lesson-practice',
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const lessonsBoolean: Lessons[] = [
     answerBlock: () => {
       return ``;
     },
-    selector: 'body',
+    selector: '.lesson-practice',
   },
   {
     id: 3,
@@ -35,6 +35,6 @@ export const lessonsBoolean: Lessons[] = [
     answerBlock: () => {
       return ``;
     },
-    selector: 'body',
+    selector: '.lesson-practice',
   },
 ];

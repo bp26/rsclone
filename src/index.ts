@@ -1,6 +1,5 @@
 import { controller } from './application/base/controller';
 import './index.scss';
-import '../node_modules/bootstrap/dist/js/bootstrap.js';
 import './assets/svg/RangBabe.svg';
 import './assets/svg/coin.svg';
 import './assets/svg/Profile.svg';

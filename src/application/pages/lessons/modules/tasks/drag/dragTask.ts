@@ -14,7 +14,7 @@ export class TaskDrag {
   answerBlock: () => void;
   constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons) {
     this.id = id;
-    this.colors = [Colors.WARNING, Colors.DARK, Colors.DANGER, Colors.SUCCESS];
+    this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
     this.description = description;
     this.price = price;
@@ -43,7 +43,7 @@ export class TaskDrag {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-<div class="card-body">
+<div class="card-body bg-dark">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
     <button class="btn btn-primary init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>

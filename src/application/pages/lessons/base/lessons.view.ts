@@ -1,10 +1,73 @@
+import { TaskBoolean } from './../modules/tasks/boolean/booleanTask';
+import { lessonsDrag } from './../modules/tasks/drag/data';
+import { lessonsWrite } from './../modules/tasks/write/data';
+import { TaskDrag } from './../modules/tasks/drag/dragTask';
+import { TaskWrite } from './../modules/tasks/write/writeTask';
+import { theory1, theory2, theory3 } from './../modules/lessons/lessons';
+import { getSafeElement } from './../../../utils/helpers';
 import { leftAndRight } from './../../../utils/constants/arrows/letftAndRightArrows';
-import { theory } from './../modules/theory';
 import { lessonsBlock } from './../modules/lessonsBlock';
 import { chat } from '../modules/chat';
-import { task } from './../modules/task';
 import { queryHTMLElement } from '../../../utils/helpers';
 import sloth from '../../../modules/sloth/sloth';
+import { Collapse } from 'bootstrap';
+import { lessonsBoolean } from '../modules/tasks/boolean/data';
+
+interface TypeTask {
+  Write?: number[];
+  Drag?: number[];
+  Boolean?: number[];
+}
+interface LessonsContent {
+  [key: string]: {
+    theory: string;
+    tasks: TypeTask[];
+  };
+}
+const lessonsContent: LessonsContent = {
+  lesson1: {
+    theory: theory1,
+    tasks: [
+      {
+        Write: [1],
+      },
+      {
+        Drag: [1],
+      },
+      {
+        Boolean: [],
+      },
+    ],
+  },
+  lesson2: {
+    theory: theory2,
+    tasks: [
+      {
+        Write: [],
+      },
+      {
+        Drag: [],
+      },
+      {
+        Boolean: [1, 2, 3],
+      },
+    ],
+  },
+  lesson3: {
+    theory: theory3,
+    tasks: [
+      {
+        Write: [2],
+      },
+      {
+        Drag: [2, 3],
+      },
+      {
+        Boolean: [],
+      },
+    ],
+  },
+};
 
 class LessonsView {
   private root: HTMLElement;
@@ -17,81 +80,20 @@ class LessonsView {
     this.root.innerHTML = '';
     const html = document.createElement('div');
     html.innerHTML = `
-<div class="container-fluid">
-  <button
-    class="btn btn-primary position-absolute d-flex align-items-center justify-content-center rounded-end"
-    style="z-index: 50"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#collapseWidthExample"
-    aria-expanded="false"
-    aria-controls="collapseWidthExample"
-  >
+<div class="container-fluid position-relative">
+    ${lessonsBlock.render()}
+   <button class="position-absolute btn btn-primary lessons-bs" type="button" data-bs-toggle="collapse" data-bs-target="#lessonsBlock" aria-expanded="false" aria-controls="lessonsBlock" style="z-index:3">
     ${leftAndRight}
   </button>
-  <div class="row position-relative vh-100">
-    ${lessonsBlock.render()}
-    <div class="col-md-8 mx-auto">
+  <div>
+    <div class="col-md-12 mx-auto">
+
       <div id="carouselExampleFade" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="content-block p-4">
-              <h3 class="text-center">Variable</h3>
-              <div
-                class="d-flex align-items-center justify-content-center task__video m-auto mb-5 h-md-30"
-              >
-                <iframe
-                  class="w-md-80 h-md-30"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/5V8IeATHr4w"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div class="theory">
-                  ${theory.render()}
-               </div>
-              <div
-                class="content-controller d-flex align-items-center justify-content-end"
-              >
-                <button
-                  class="switch-button btn btn-primary"
-                  type="button"
-                  data-bs-target="#carouselExampleFade"
-                  data-bs-slide="next"
-                >
-                  <span aria-hidden="true">Let's Practice</span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            </div>
+        <div class="carousel-inner content-inner">
+          <div class="text-center mt-5 fs-1">
+              Выберите урок
           </div>
-          <div class="carousel-item">
-            <div class="content-block p-5">
-              <h3>Tasks</h3>
-              <div
-                class="d-flex align-items-center justify-content-center task__video m-auto mb-5"
-              >
-              </div>
-                ${task.render()}
-                <div
-                  class="content-controller d-flex align-items-center justify-content-end"
-                >
-                  <button
-                    class="switch-button btn btn-primary d-block me-auto"
-                    type="button"
-                    data-bs-target="#carouselExampleFade"
-                    data-bs-slide="prev"
-                  >
-                    <span aria-hidden="true">Back to theory</span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -105,6 +107,62 @@ class LessonsView {
 
     this.root.append(html);
     sloth.render();
+    const lessonsButtons = document.querySelectorAll('.lessons-btn');
+    lessonsButtons.forEach((el) => {
+      el.addEventListener('click', () => {
+        const btnBS = getSafeElement(document.querySelector('.js-collapse'));
+        const BS = new Collapse(btnBS);
+        BS.hide();
+        const root = getSafeElement(document.querySelector('.content-inner'));
+        const currentLesson = el.getAttribute('lesson-btn');
+        for (const key in lessonsContent) {
+          if (key === `lesson${currentLesson}`) {
+            const theory = lessonsContent[key].theory;
+            const practice = lessonsContent[key].tasks;
+            const content = `${theory}`;
+            if (currentLesson) root.innerHTML = content;
+            practice.forEach((task) => {
+              console.log(task);
+              if (task['Write']?.length) {
+                this.renderWriteTasks(task.Write);
+              }
+              if (task.Drag?.length) {
+                this.renderDragTasks(task.Drag);
+              }
+
+              if (task.Boolean?.length) {
+                this.renderBooleanTasks(task.Boolean);
+              }
+            });
+          }
+        }
+      });
+    });
+  }
+
+  renderWriteTasks(array: number[]) {
+    array.forEach((elem) => {
+      lessonsWrite.forEach((el, i) => {
+        el.id === elem ? new TaskWrite(lessonsWrite[el.id - 1]).render() : '';
+      });
+    });
+  }
+
+  renderDragTasks(array: number[]) {
+    array.forEach((elem) => {
+      lessonsDrag.forEach((el, i) => {
+        el.id === elem ? new TaskDrag(lessonsDrag[el.id - 1]).render() : '';
+      });
+    });
+  }
+
+  renderBooleanTasks(array: number[]) {
+    array.forEach((elem) => {
+      console.log(elem);
+      lessonsBoolean.forEach((el, i) => {
+        el.id === elem ? new TaskBoolean(lessonsBoolean[el.id - 1]).render() : '';
+      });
+    });
   }
 }
 

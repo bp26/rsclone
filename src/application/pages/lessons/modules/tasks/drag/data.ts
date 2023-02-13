@@ -17,44 +17,38 @@ export const lessonsDrag: Lessons[] = [
   <div>let name;</div>
   `;
     },
-    selector: 'body',
+    selector: '.lesson-practice',
   },
   {
     id: 2,
     title: 'Drag2',
-    description: ` 1. Declare a variables: admin. <br />
-  2. Declare a variable:  name <br />`,
+    description: ` 1. Declare a Function Declaration`,
     price: '2',
-    buttonsArray: ['let ', 'let ', 'admin; ', 'name; '],
+    buttonsArray: ['Function ', 'fn ', '( ', ')', '{', '}'],
     answer: `
-  let admin;
-  let name;
+Function fn() {}
 `,
     answerBlock: () => {
       return `
-  <div>let admin;</div>
-  <div>let name;</div>
+  <div>Function fn() {}</div>
   `;
     },
-    selector: 'body',
+    selector: '.lesson-practice',
   },
   {
     id: 3,
     title: 'Drag3',
-    description: ` 1. Declare a variables: admin. <br />
-  2. Declare a variable:  name <br />`,
+    description: ` 1. Declare a function expression`,
     price: '2',
-    buttonsArray: ['let ', 'let ', 'admin; ', 'name; '],
+    buttonsArray: ['let ', 'fn ', '= ', 'function', '( ', ')', '{', '}'],
     answer: `
-  let admin;
-  let name;
+let fn = function() {}
 `,
     answerBlock: () => {
       return `
-  <div>let admin;</div>
-  <div>let name;</div>
+  <div>let fn = function() {}</div>
   `;
     },
-    selector: 'body',
+    selector: '.lesson-practice',
   },
 ];
