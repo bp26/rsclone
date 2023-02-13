@@ -14,45 +14,32 @@ class HeaderView {
   }
 
   public render(): void {
-    const wrapper = new Element(this.root, HTMLTag.DIV, 'header__wrap');
+    const wrapper = new Element(this.root, HTMLTag.DIV, 'header__wrapper navbar navbar-expand-lg navbar-dark');
     wrapper.node.innerHTML = `
-        <div class="block-header-content">
-          <div class="block__logo">
-            <svg height="30px" width="30px">
-              <use href="#logo"></use>
-            </svg>
-            <h1 class="title-logo">Rush</h1>
-          </div>
-          <nav class="block__navigation">
-            <ul class="nav-item">
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/">Home</a>
-              </li>
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/documentation">Documentation</a>
-              </li>
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/lessons">Lessons</a>
-              </li>
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/roadmap">RoadMap</a>
-              </li>
-            </ul>
+      <div class='header__container container-xxl'>
+        <a class='header__brand navbar-brand d-flex align-items-center routing' role='button' href="/">
+          <div class='header__logo p-1'>RS</div>
+          <h1 class='header__title'>Rush</h1>
+        </a>
+        <button class='header__toggle navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-expanded="false">
+            <div class='navbar-toggler-icon'></div>
+        </button>
+        <div class='header__collapse collapse navbar-collapse justify-content-between align-items-center' id='navbarCollapse'>
+          <nav class='header__nav navbar-nav'>
+            <a class='header__navlink nav-link routing' href='/'>Home</a>
+            <a class='header__navlink nav-link routing' href='/documentation'>Documentation</a>
+            <a class='header__navlink nav-link routing' href='/lessons'>Lessons</a>
+            <a class='header__navlink nav-link routing' href='/roadmap'>RoadMap</a>
           </nav>
-        </div>
-        <div class="wrapper-controls">
-          <div class="block__toggle-content">
-            <button class="button-toggle theme-toggle">
-              <span>Dark</span>
-            </button>
-            <button class="button-toggle lang-toggle">
-              <span>English</span>
-            </button>
+          <div class='header__settings navbar-nav'>
+            <a class='header__button header__lang nav-link'>English</a>
+            <a class='header__button header__theme nav-link'>Dark</a>
           </div>
-          <div class='header-auth'>
-            <button class='header-auth__sign header-auth__button'>Sign in</button>
+          <div class='header__auth navbar-nav align-items-center'>
+            <a class='header__button header__sign nav-link'>Sign in</a>
           </div>
         </div>
+      </div>
     `;
 
     this.bind();
@@ -60,36 +47,37 @@ class HeaderView {
   }
 
   private renderSignedAuth(user: IUser) {
-    const headerAuth = queryHTMLElement('.header-auth');
+    const headerAuth = queryHTMLElement('.header__auth');
     headerAuth.innerHTML = `
-      <div class='header-auth__profile'>
-        <a class="header-auth__profile routing" href='/profile'>
+      <div class='header__profile'>
+        <a class='header__profile-iconlink routing' href='/profile'>
           <svg height="50px" width="50px">
             <use href="#user"></use>
           </svg>
         </a>
+        <a class ='header__profile-textlink nav-link routing' href='/profile'>Profile</a>
       </div>
-      <span class='header-auth__welcome'>Welcome, ${user.login}</span>
-      <button class='header-auth__logout header-auth__button'>Logout</button>
+      <span class='header__welcome'>${user.login}</span>
+      <a class='header__logout header__button nav-link'>Logout</a>
     `;
 
     this.bindSigned();
   }
 
   private switchLang(lang: Lang) {
-    const langButton = queryHTMLElement('.lang-toggle');
+    const langButton = queryHTMLElement('.header__lang');
     langButton.textContent = lang;
   }
 
   private switchTheme(theme: Theme) {
-    const themeButton = queryHTMLElement('.theme-toggle');
+    const themeButton = queryHTMLElement('.header__theme');
     themeButton.textContent = theme;
   }
 
   private bind() {
-    const sign = queryHTMLElement('.header-auth__sign');
-    const theme = queryHTMLElement('.theme-toggle');
-    const lang = queryHTMLElement('.lang-toggle');
+    const sign = queryHTMLElement('.header__sign');
+    const theme = queryHTMLElement('.header__theme');
+    const lang = queryHTMLElement('.header__lang');
 
     sign.onclick = () => authController.showModal();
     theme.onclick = () => headerController.switchTheme();
@@ -97,7 +85,7 @@ class HeaderView {
   }
 
   private bindSigned() {
-    const logout = queryHTMLElement('.header-auth__logout');
+    const logout = queryHTMLElement('.header__logout');
     logout.onclick = () => authController.logout();
   }
 
