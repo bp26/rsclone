@@ -46,9 +46,11 @@ class Sloth {
       block.classList.remove('show-tutorial-block');
     }
   }
+
   changeCount() {
     this.count = this.count + 1;
   }
+
   showSlothTutorial({ selector, text }: Tutorial) {
     if (selector !== '') {
       const block = getSafeElement(document.querySelector(selector));
@@ -58,6 +60,7 @@ class Sloth {
     textBlock.textContent = text;
     this.writerBot(textBlock, text);
   }
+
   writerBot = (element: Element, text: string) => {
     let start = 1;
     const stringLength = text.length;
@@ -91,6 +94,7 @@ class Sloth {
     getSafeElement(document.querySelector('.sloth__text')).classList.add('show-text');
     getSafeElement(document.querySelector('.sloth__img')).classList.add('show-img');
   }
+
   hiddenSloth = () => {
     document.body.style.overflow = '';
     getSafeElement(document.querySelector('.my-modal')).classList.remove('show-modal');

@@ -76,11 +76,15 @@ export class TaskBoolean {
     const root = getSafeElement(document.querySelector(`${this.selector}`));
     root.append(initLesson);
     root.append(taskBlock);
+
     const initButton = getSafeElement(document.querySelector(`.init-boolean-button${this.id}`));
+
     initButton.addEventListener('click', () => {
       this.toggleInitButton(initButton);
     });
+
     const answerButton = document.querySelectorAll(`[data-task-boolean-buttons="${this.id}"]`);
+
     answerButton.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const target = e.target as Element;
@@ -91,13 +95,16 @@ export class TaskBoolean {
       });
     });
   }
+
   toggleInitButton = (element: Element) => {
     element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
   };
+
   resetBorderTextarea() {
     const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
     textarea.style.borderColor = 'black';
   }
+
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
     result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
