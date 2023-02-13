@@ -1,14 +1,18 @@
 import { getSafeElement } from './../../utils/helpers';
-import { Storage, Tutorial } from './../../types/enums';
+import { Storage } from './../../types/enums';
+import { Tutorial } from '../../types/interfaces';
 import { exampleTutorial } from '../../utils/constants/slothExampleTutorialArray';
 import { heroIcon } from '../../utils/constants/slothIcons/icons';
+
 class Sloth {
   tutorial: Tutorial[];
   count: number;
+
   constructor() {
     this.tutorial = exampleTutorial;
     this.count = 0;
   }
+
   render() {
     const html = document.createElement('div');
     html.innerHTML = `
@@ -29,6 +33,7 @@ class Sloth {
       this.initTutorial();
     }
   }
+
   initTutorial() {
     this.count = 0;
     const coverTutorial = document.createElement('div');

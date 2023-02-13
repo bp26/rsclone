@@ -1,10 +1,6 @@
-import { EmitterViewEvents } from '../../../types/enums';
+import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 
-class UserModel {
-  public add(): void {
-    emitter.emit(EmitterViewEvents.HOME_UPDATE);
-  }
-}
+class UserModel {}
 
 export const userModel = new UserModel();

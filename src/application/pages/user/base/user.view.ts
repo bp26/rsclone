@@ -1,17 +1,14 @@
-import { getSafeElement } from '../../../utils/helpers';
-import { EmitterViewEvents } from '../../../types/enums';
-import { emitter } from '../../../utils/emitter';
+import { IUser } from '../../../types/interfaces';
+import { queryHTMLElement } from '../../../utils/helpers';
 
 class UserView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.main__root');
-    this.root = getSafeElement(root);
-    this.subscribe();
+    this.root = queryHTMLElement('.main__root');
   }
 
-  public render(): void {
+  public render(user: IUser): void {
     this.root.innerHTML = '';
     const html = document.createElement('div');
     html.innerHTML = ` <div class="container-fluid">
@@ -19,7 +16,7 @@ class UserView {
           <div class="col-6">
             <div class="user-data d-flex align-items-center flex-column flex-md-row gap-3">
               <img class="d-block" style="min-width:30%;" src="./images/Profile.svg" alt="profile" />
-              <p class="user__name mb-0">User Name</p>
+              <p class="user__name mb-0">${user.login}</p>
             </div>
           </div>
           <div class="col-6 d-flex align-items-center justify-content-end">
@@ -55,10 +52,6 @@ class UserView {
       </div>
 `;
     this.root.append(html);
-  }
-
-  private subscribe() {
-    emitter.subscribe(EmitterViewEvents.HOME_UPDATE, this.render.bind(this));
   }
 }
 
