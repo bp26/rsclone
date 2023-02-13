@@ -8,11 +8,11 @@ export const exampleTutorial = [
     text: 'тут уроки короче',
   },
   {
-    selector: '.block__navigation',
+    selector: '.header__nav',
     text: 'тут навигация',
   },
   {
-    selector: '.block-autorization',
+    selector: '.header__auth',
     text: 'тут авторизация',
   },
 ];
