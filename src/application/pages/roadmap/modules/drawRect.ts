@@ -1,4 +1,5 @@
 import fabric from 'fabric';
+import { roadController } from '../base/road.controller';
 
 export class DrawRectContent {
   mainRect: fabric.fabric.Rect;
@@ -78,7 +79,9 @@ export class DrawRectContent {
     });
 
     hoverGroup.on('mousedown', () => {
-      console.log(hoverContentRec.text);
+      if (hoverContentRec.text) {
+        roadController.clicked(hoverContentRec.text, color);
+      }
     });
 
     parent.add(this.mainGroup);

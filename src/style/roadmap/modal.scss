@@ -1,0 +1,124 @@
+.modal-wrap-click {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 9;
+  background-color: $background-color-modal-wrap;
+  overflow: hidden;
+}
+
+.modal-cont {
+  position: fixed;
+  padding: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $background-color-modal-roadmap;
+  width: 750px;
+  height: auto;
+  z-index: 10;
+  font-family: 'Montserrat-reg';
+  font-weight: 400;
+  font-size: 18px;
+  color: $color-title-home-page;
+  border-radius: 10px;
+  border: 2px solid;
+}
+
+.modal-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.modal-block-title {
+  display: flex;
+  gap: 30px;
+}
+
+.modal-image {
+  @include background-image;
+  background-image: url('../../assets/svg/expert.svg');
+  width: 200px;
+  height: 185px;
+  flex: 1 0 auto;
+}
+
+.modal-wrap-title {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.modal-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-family: 'Montserrat-semi';
+  font-weight: 600;
+  font-size: 38px;
+}
+
+.modal-block-content {
+  padding-left: 30px;
+}
+
+.modal-list-item {
+  display: block;
+}
+
+.modal-list-item__link {
+  text-decoration: none;
+  color: $color-link-modal-roadmap;
+  &:hover {
+    color: $hover-link-modal-roadmap;
+  }
+}
+
+.modal-block-content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 15px;
+}
+
+.modal-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: $background-button-modal-roadmap;
+  border: 1px solid $color-border-modal-roadmap;
+  transition: all 0.3s ease;
+  &:hover {
+    transition: all 0.3s ease;
+    background-color: $hover-button-modal-roadmap;
+  }
+}
+
+.modal-button__span1 {
+  position: absolute;
+  bottom: 50%;
+  transition: all 0.3s ease;
+  transform: rotate(45deg) translate(0.5px, 50%);
+  height: 2.67px;
+  width: 100%;
+  left: 0;
+  background-color: $color-border-modal-roadmap;
+}
+
+.modal-button__span2 {
+  position: absolute;
+  top: 50%;
+  transition: all 0.3s ease;
+  transform: rotate(-45deg) translate(0.5px, -50%);
+  height: 2.67px;
+  left: 0;
+  width: 100%;
+  background-color: $color-border-modal-roadmap;
+}

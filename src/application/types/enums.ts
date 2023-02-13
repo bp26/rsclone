@@ -18,6 +18,7 @@ export const enum HTMLTag {
   TR = 'tr',
   TD = 'td',
   CANVAS = 'canvas',
+  A = 'a',
 }
 
 export const enum EmitterViewEvents {

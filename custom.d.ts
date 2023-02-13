@@ -2,6 +2,6 @@ declare module '*.webp' {
   export const content: string;
 }
 
-declare module '*.svg' {
+declare module '*.json' {
   export const content: string;
 }
