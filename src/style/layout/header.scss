@@ -1,140 +1,132 @@
 .header__root {
-  display: flex;
-  justify-content: center;
-  height: 100px;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
   background-color: $background-header-or-footer;
-  padding: 0 20px;
 }
 
-.header__wrap {
-  max-width: 1800px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.header__logo {
+  background-color: $color-base;
+  border-radius: 50%;
+  font-size: 28px;
+  color: black;
 }
 
-.block-header-content {
-  display: flex;
-  align-items: center;
-  gap: 83px;
-}
-
-.block__logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.title-logo {
+.header__title {
   color: $color-base;
-  font-size: 24px;
+  margin-bottom: 0;
 }
 
-.image {
+.header__navlink {
   color: $color-base;
-  font-size: 16px;
-}
 
-.image_profile {
-  color: $color-base;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.block__toggle-content {
-  display: flex;
-  gap: 38px;
-}
-
-.nav-item {
-  display: flex;
-  gap: 36px;
-}
-
-.nav-list {
-  display: inline-block;
-}
-
-.nav-list__link {
-  color: $color-base;
-  text-decoration: none;
-  transition: all 0.3s ease;
   &:hover {
-    transition: all 0.3s ease;
     color: $hover-color-nav-link;
   }
 }
 
-.wrapper-controls {
-  display: flex;
-  gap: 50px;
-}
+.header__settings {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
 
-.button-toggle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 128px;
-  background-color: $background-button-toogle-lang-or-theme;
-  color: $color-content-btn-toggle-lang-or-theme;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
-  border: none;
-  transition: all 0.3s ease;
-  &:hover {
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: $hover-background-btn-lang;
-  }
-}
-
-.button-toggle_en {
-  width: 50px;
-  height: 50px;
-}
-
-.header-auth {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-
-  &__button {
-    display: flex;
-    justify-content: center;
+  @media (min-width: 992px) {
+    flex-direction: row;
     align-items: center;
-    height: 50px;
-    width: 206px;
-    border-radius: 15px;
-    background-color: $background-button-autorization;
-    color: $color-base;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 29px;
-    transition: all 0.3s ease;
+    justify-content: center;
+    gap: 5px;
+  }
+}
 
-    &:hover {
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background-color: $hover-background-btn-base;
-    }
+.header__button {
+  width: 100%;
+  padding: 8px 0 8px 0;
+
+  color: $color-base;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $hover-color-nav-link;
   }
 
-  &__profile {
-    color: $color-user-icon;
-    &:hover {
-      cursor: pointer;
-      transition: all 0.3s ease;
-      color: $hover-color-user-logo;
-    }
+  &:active {
+    color: $hover-color-nav-link;
   }
 
-  &__welcome {
-    color: $color-base;
+  @media (min-width: 992px) {
+    min-width: 100px;
+    width: auto;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: $background-button-toogle-lang-or-theme;
+    text-align: center;
+
+    &:hover {
+      background-color: $hover-background-btn-lang;
+    }
+
+    &:active {
+      background-color: $hover-background-btn-lang;
+    }
+  }
+}
+
+.header__auth {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.header__sign {
+  min-width: 200px;
+}
+
+.header__profile,
+.header__profile-iconlink,
+.header__profile-textlink {
+  color: $color-user-icon;
+
+  &:hover {
+    color: $hover-color-user-logo;
+  }
+}
+
+.header__profile {
+  width: 100%;
+
+  @media (min-width) {
+    width: auto;
+  }
+}
+
+.header__profile-iconlink {
+  display: none;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+}
+
+.header__profile-textlink {
+  display: block;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.header__welcome {
+  color: $color-base;
+  display: none;
+
+  @media (min-width: 992px) {
+    display: block;
   }
 }
