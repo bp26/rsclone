@@ -9,6 +9,7 @@ class Sloth {
     this.tutorial = exampleTutorial;
     this.count = 0;
   }
+
   render() {
     const html = document.createElement('div');
     html.innerHTML = `
@@ -55,7 +56,19 @@ class Sloth {
     }
     const textBlock = getSafeElement(document.querySelector('.sloth__text'));
     textBlock.textContent = text;
+    this.writerBot(textBlock, text);
   }
+  writerBot = (element: Element, text: string) => {
+    let start = 1;
+    const stringLength = text.length;
+    const intervalID = setInterval(() => {
+      element.textContent = text.slice(0, start);
+      start++;
+      if (start === stringLength) {
+        clearInterval(intervalID);
+      }
+    }, 50);
+  };
 
   startTutorialHandler = () => {
     const cover = getSafeElement(document.querySelector('.cover-tutorial'));

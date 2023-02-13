@@ -43,15 +43,16 @@ export class TaskDrag {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-      <div class="card-body">
-        <div class="card-title text-center">${this.title}</div>
-        <div class="card-text text-center">
-        <button class="btn btn-primary init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
-        </div>
-      </div>
+<div class="card-body">
+  <div class="card-title text-center">${this.title}</div>
+    <div class="card-text text-center">
+    <button class="btn btn-primary init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
+  </div>
+</div>
     `;
     const taskBlock = document.createElement('div');
-    taskBlock.innerHTML = `<div class="container collapse" id="task-drag-${this.id}">
+    taskBlock.innerHTML = `
+<div class="container collapse" id="task-drag-${this.id}">
   <div class="tasks">
     <h4 class="task__title">${this.title}</h4>
     <p class="task__price">Price: ${this.price} points</p>
@@ -105,14 +106,18 @@ export class TaskDrag {
   </div>
 </div>
 `;
+
     const root = getSafeElement(document.querySelector(`${this.selector}`));
     root.append(initLesson);
     root.append(taskBlock);
+
     const initButton = getSafeElement(document.querySelector(`.init-drag-button${this.id}`));
+
     initButton.addEventListener('click', () => {
       this.toggleInitButton(initButton);
       this.timerForAnswer();
     });
+
     const buttonsBlock = getSafeElement(document.querySelector(`[data-drag-buttons-block="${this.id}"]`));
     const buttonsController = document.querySelectorAll(`[data-task-drag-buttons="${this.id}"]`);
     const taskAreaElements = document.querySelectorAll(`.task-drag-area-${this.id}  .box`);
@@ -132,6 +137,7 @@ export class TaskDrag {
     function dragover(e: Event) {
       e.preventDefault();
     }
+
     function drop(e: Event) {
       const target = e.target as Element;
       const activeElement = getSafeElement(document.querySelector('.drag-hidden'));
@@ -140,14 +146,17 @@ export class TaskDrag {
       }
       target.classList.remove('active-border');
     }
+
     function dragenter(e: Event) {
       const target = e.target as Element;
       target.classList.add('active-border');
     }
+
     function dragleave(e: Event) {
       const target = e.target as Element;
       target.classList.remove('active-border');
     }
+
     buttonsController.forEach((button) => {
       button.addEventListener('dragstart', (e) => {
         setTimeout(() => {
@@ -155,6 +164,7 @@ export class TaskDrag {
           target.classList.add('drag-hidden');
         });
       });
+
       button.addEventListener('dragend', (e) => {
         setTimeout(() => {
           const target = e.target as Element;
@@ -167,6 +177,7 @@ export class TaskDrag {
     submit.addEventListener('click', this.submitTask);
 
     const area = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`));
+
     area.addEventListener('dragover', () => {
       area.style.border = 'none';
     });
@@ -190,12 +201,9 @@ export class TaskDrag {
   }
 
   toggleInitButton = (element: Element) => {
-    if (element.textContent === 'Show task') {
-      element.textContent = 'Hidden task';
-    } else {
-      element.textContent = 'Show task';
-    }
+    element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
   };
+
   submitTask = () => {
     let result = '';
     const area = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`));
@@ -212,13 +220,9 @@ export class TaskDrag {
     const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
     taskArea.style.borderColor = 'black';
   }
+
   changeBorderByAnswer(result: boolean) {
     const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
-    if (result) {
-      taskArea.style.border = '3px solid green';
-      // render modal
-    } else {
-      taskArea.style.border = '3px solid red';
-    }
+    result ? (taskArea.style.border = '3px solid green') : (taskArea.style.border = '3px solid red');
   }
 }
