@@ -24,18 +24,19 @@ interface LessonsContent {
     tasks: TypeTask[];
   };
 }
+
 const lessonsContent: LessonsContent = {
   lesson1: {
     theory: theory1,
-    tasks: [{ Write: [1] }, { Drag: [1] }, { Boolean: [] }],
+    tasks: [{ Write: [1] }, { Drag: [1] }],
   },
   lesson2: {
     theory: theory2,
-    tasks: [{ Write: [] }, { Drag: [] }, { Boolean: [1, 2, 3] }],
+    tasks: [{ Boolean: [1, 2, 3] }],
   },
   lesson3: {
     theory: theory3,
-    tasks: [{ Write: [2] }, { Drag: [2, 3] }, { Boolean: [] }],
+    tasks: [{ Write: [2] }, { Drag: [2, 3] }],
   },
 };
 
@@ -86,7 +87,7 @@ class LessonsView {
         const BS = new Collapse(btnBS);
         BS.hide();
         const root = getSafeElement(document.querySelector('.content-inner'));
-        const currentLesson = el.getAttribute('lesson-btn');
+        const currentLesson = el.getAttribute('lesson-btn') as string;
         for (const key in lessonsContent) {
           if (key === `lesson${currentLesson}`) {
             const theory = lessonsContent[key].theory;
@@ -94,16 +95,14 @@ class LessonsView {
             const content = `${theory}`;
             if (currentLesson) root.innerHTML = content;
             practice.forEach((task) => {
-              console.log(task);
-              if (task['Write']?.length) {
-                this.renderWriteTasks(task.Write);
+              if (task.Write?.length) {
+                this.renderWriteTasks(task.Write, currentLesson);
               }
               if (task.Drag?.length) {
-                this.renderDragTasks(task.Drag);
+                this.renderDragTasks(task.Drag, currentLesson);
               }
-
               if (task.Boolean?.length) {
-                this.renderBooleanTasks(task.Boolean);
+                this.renderBooleanTasks(task.Boolean, currentLesson);
               }
             });
           }
@@ -112,27 +111,27 @@ class LessonsView {
     });
   }
 
-  renderWriteTasks(array: number[]) {
+  renderWriteTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
       lessonsWrite.forEach((el, i) => {
-        el.id === elem ? new TaskWrite(lessonsWrite[el.id - 1]).render() : '';
+        el.id === elem ? new TaskWrite(lessonsWrite[el.id - 1], currentLesson).render() : '';
       });
     });
   }
 
-  renderDragTasks(array: number[]) {
+  renderDragTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
       lessonsDrag.forEach((el, i) => {
-        el.id === elem ? new TaskDrag(lessonsDrag[el.id - 1]).render() : '';
+        el.id === elem ? new TaskDrag(lessonsDrag[el.id - 1], currentLesson).render() : '';
       });
     });
   }
 
-  renderBooleanTasks(array: number[]) {
+  renderBooleanTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
       console.log(elem);
       lessonsBoolean.forEach((el, i) => {
-        el.id === elem ? new TaskBoolean(lessonsBoolean[el.id - 1]).render() : '';
+        el.id === elem ? new TaskBoolean(lessonsBoolean[el.id - 1], currentLesson).render() : '';
       });
     });
   }

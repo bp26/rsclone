@@ -1,3 +1,4 @@
+import { lessonsController } from './../../../base/lessons.controller';
 import { Lessons } from '../../../../../types/interfaces';
 import { getSafeElement } from '../../../../../utils/helpers';
 import { Colors } from '../../../../../types/enums';
@@ -97,16 +98,17 @@ export class TaskBoolean {
   }
 
   toggleInitButton = (element: Element) => {
-    element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
+    element.textContent = element.textContent === 'Show task' ? 'Hidden task' : 'Show task';
   };
 
   resetBorderTextarea() {
-    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
+    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`));
     textarea.style.borderColor = 'black';
   }
 
   changeBorderByAnswer(result: boolean) {
-    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-    result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
+    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`));
+    textarea.style.border = result ? '3px solid green' : '3px solid red';
+    // result ? lessonsController.submitTask(this.title, this.price) : '';
   }
 }
