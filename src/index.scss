@@ -73,3 +73,20 @@ $primary: #1b2b37;
     opacity: 1;
   }
 }
+
+.btn-drag {
+  cursor: move;
+}
+
+.drag-hidden {
+  display: none;
+}
+
+.drag-show {
+  display: block;
+}
+
+.active-border {
+  border: 2px solid black;
+  border-radius: 5px;
+}
