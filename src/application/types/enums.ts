@@ -67,11 +67,11 @@ export const enum RoadmapRectName {
   HTTPS = 'HTTPS',
   CORS = 'CORS',
   CSP = 'CSP',
-  GWASP = 'GWASP',
+  OWASP = 'OWASP',
   PACKAGES = 'Packages',
-  NPM = 'npm',
-  YARN = 'yarn',
-  PNPM = 'pnpm',
+  NPM = 'NPM',
+  YARN = 'YARN',
+  PNPM = 'PNPM',
 }
 
 export const enum ColorRect {

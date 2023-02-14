@@ -82,7 +82,7 @@ export class FabricCanvas {
     const httpsRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 100, 1270, RoadmapRectName.HTTPS, ColorRect.WEB_SECURITY);
     const corsRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 100, 1340, RoadmapRectName.CORS, ColorRect.WEB_SECURITY);
     const cspRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 350, 1340, RoadmapRectName.CSP, ColorRect.WEB_SECURITY);
-    const gwaspRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 350, 1270, RoadmapRectName.GWASP, ColorRect.WEB_SECURITY);
+    const gwaspRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 350, 1270, RoadmapRectName.OWASP, ColorRect.WEB_SECURITY);
 
     const webSecurityLineIgnor = new DrawSecondaryLineFabricCanvas(fabricCanvas, [this.middleCanvas + 200, 1325, this.middleCanvas + 150, 1325], ColorRect.WEB_SECURITY);
 
