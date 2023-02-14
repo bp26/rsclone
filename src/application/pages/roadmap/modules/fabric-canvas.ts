@@ -4,6 +4,9 @@ import { DrawSecondaryLineFabricCanvas } from './drawSecondaryLine';
 import { DrawRectContent } from './drawRect';
 import { DrawArcMainLine } from './drawArc';
 import { BABY_SLOTH } from '../../../utils/constants/slothIcons/baby-sloth';
+import { NO_METOR } from '../../../utils/constants/slothIcons/no-metor';
+import { SLOTH_WTF } from '../../../utils/constants/slothIcons/sloth-wtf';
+import { GIT_PROBLEM } from '../../../utils/constants/slothIcons/git-problem';
 import { DrawSvgCanvas } from './drawSvg';
 import { DrawPolylineCanvas } from './drawPolyline';
 import { RoadmapRectName, ColorRect } from '../../../types/enums';
@@ -14,9 +17,14 @@ export class FabricCanvas {
     const fabricCanvas = new fabric.fabric.Canvas(canvas);
     this.middleCanvas = canvas.clientWidth / 2;
 
-    const polylynes = new DrawPolylineCanvas(fabricCanvas, this.middleCanvas);
-    const svgImageIgnor = new DrawSvgCanvas(fabricCanvas, BABY_SLOTH, 30, 630, 100);
     const mainLineIgnor = new DrawMainLineFabricCanvas(fabricCanvas, [this.middleCanvas, 120, this.middleCanvas, 750]);
+    const polylynes = new DrawPolylineCanvas(fabricCanvas, this.middleCanvas);
+
+    const svgImageIgnor = new DrawSvgCanvas(fabricCanvas, BABY_SLOTH, 30, this.middleCanvas - 45, 120);
+    const svgWtfIgnor = new DrawSvgCanvas(fabricCanvas, SLOTH_WTF, 1000, 400, 170);
+    const svgMetorIgnor = new DrawSvgCanvas(fabricCanvas, NO_METOR, 1630, 680, 170);
+    const svgGitIgnor = new DrawSvgCanvas(fabricCanvas, GIT_PROBLEM, 750, this.middleCanvas + 150, 200);
+
     const arcLine1 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 40, 495, 300, -8, Math.PI * 40, Math.PI * 60);
     const arcLine2 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 350, 1030, 300, -10, Math.PI - 50, Math.PI * 20);
     const arcLine3 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 30, 1425, 500, -2, Math.PI + 130, Math.PI - 130);

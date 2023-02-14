@@ -34,6 +34,7 @@ export class DrawRectContent {
       hoverCursor: 'pointer',
       lockMovementX: true,
       lockMovementY: true,
+      selectable: false,
     });
 
     const hoverRect = new fabric.fabric.Rect({
@@ -66,6 +67,7 @@ export class DrawRectContent {
       hoverCursor: 'pointer',
       lockMovementX: true,
       lockMovementY: true,
+      selectable: false,
     });
 
     this.mainGroup.on('mouseover', () => {
