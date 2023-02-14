@@ -27,45 +27,15 @@ interface LessonsContent {
 const lessonsContent: LessonsContent = {
   lesson1: {
     theory: theory1,
-    tasks: [
-      {
-        Write: [1],
-      },
-      {
-        Drag: [1],
-      },
-      {
-        Boolean: [],
-      },
-    ],
+    tasks: [{ Write: [1] }, { Drag: [1] }, { Boolean: [] }],
   },
   lesson2: {
     theory: theory2,
-    tasks: [
-      {
-        Write: [],
-      },
-      {
-        Drag: [],
-      },
-      {
-        Boolean: [1, 2, 3],
-      },
-    ],
+    tasks: [{ Write: [] }, { Drag: [] }, { Boolean: [1, 2, 3] }],
   },
   lesson3: {
     theory: theory3,
-    tasks: [
-      {
-        Write: [2],
-      },
-      {
-        Drag: [2, 3],
-      },
-      {
-        Boolean: [],
-      },
-    ],
+    tasks: [{ Write: [2] }, { Drag: [2, 3] }, { Boolean: [] }],
   },
 };
 
@@ -81,32 +51,34 @@ class LessonsView {
     const html = document.createElement('div');
     html.innerHTML = `
 <div class="container-fluid position-relative">
-    ${lessonsBlock.render()}
-   <button class="position-absolute btn btn-primary lessons-bs" type="button" data-bs-toggle="collapse" data-bs-target="#lessonsBlock" aria-expanded="false" aria-controls="lessonsBlock" style="z-index:3">
+  ${lessonsBlock.render()}
+  <button
+    class="position-absolute btn btn-primary lessons-bs"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#lessonsBlock"
+    aria-expanded="false"
+    aria-controls="lessonsBlock"
+    style="z-index: 3"
+  >
     ${leftAndRight}
   </button>
   <div>
     <div class="col-md-12 mx-auto">
-
       <div id="carouselExampleFade" class="carousel slide">
         <div class="carousel-inner content-inner">
-          <div class="text-center mt-5 fs-1">
-              Выберите урок
-          </div>
-
-          </div>
+          <div class="text-center mt-5 fs-1">Выберите урок</div>
         </div>
       </div>
     </div>
-    <div class="container">
-    ${chat.render()}
-    </div>
   </div>
+  <div class="container">${chat.render()}</div>
 </div>
 `;
 
     this.root.append(html);
     sloth.render();
+
     const lessonsButtons = document.querySelectorAll('.lessons-btn');
     lessonsButtons.forEach((el) => {
       el.addEventListener('click', () => {

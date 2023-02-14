@@ -1,9 +1,3 @@
-import { TaskDrag } from './../tasks/drag/dragTask';
-import { lessonsWrite } from './../tasks/write/data';
-import { TaskWrite } from './../tasks/write/writeTask';
-import { theory } from './../theory';
-import { task } from './../task';
-import { lessonsDrag } from '../tasks/drag/data';
 export const practice = `
  <div class="carousel-item">
             <div class="content-block p-5">

@@ -1,7 +1,7 @@
 import { getSafeElement } from './../../../utils/helpers';
 import { lock } from '../../../utils/constants/lock';
 
-const lessons = [{ lessons: true }, { lessons: false }, { lessons: false }];
+const lessons = [{ lessons: true }, { lessons: true }, { lessons: true }];
 
 class LessonsBlock {
   generatorLessons = (lessons: boolean, index: number) => {

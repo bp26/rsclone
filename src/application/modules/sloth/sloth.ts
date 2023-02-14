@@ -64,13 +64,17 @@ class Sloth {
       block.classList.add('show-tutorial-block');
     }
     const textBlock = getSafeElement(document.querySelector('.sloth__text'));
-    this.writerBot(textBlock, text);
+    textBlock.textContent = text;
+    textBlock.style.width = 'auto';
+    const currentWidth = textBlock.getBoundingClientRect().width;
+    this.writerBot(textBlock, text, currentWidth);
   }
 
-  writerBot = (element: HTMLElement, text: string) => {
+  writerBot = (element: HTMLElement, text: string, width: number) => {
     if (this.writerIntervalID !== '') {
       clearInterval(this.writerIntervalID);
     }
+    element.style.width = width + 'px';
     let start = 1;
     this.audio.play();
     const stringLength = text.length;
