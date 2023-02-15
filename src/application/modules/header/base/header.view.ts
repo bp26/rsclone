@@ -1,4 +1,4 @@
-import { queryHTMLElement } from '../../../utils/helpers';
+import { getSafeElement, queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
 import { EmitterEventName, HTMLTag, Lang, Theme } from '../../../types/enums';
@@ -14,45 +14,44 @@ class HeaderView {
   }
 
   public render(): void {
-    const wrapper = new Element(this.root, HTMLTag.DIV, 'header__wrap');
+    const wrapper = new Element(this.root, HTMLTag.DIV, 'header__wrapper navbar navbar-expand-lg navbar-dark');
     wrapper.node.innerHTML = `
-        <div class="block-header-content">
-          <div class="block__logo">
-            <svg height="30px" width="30px">
-              <use href="#logo"></use>
-            </svg>
-            <h1 class="title-logo">Rush</h1>
-          </div>
-          <nav class="block__navigation">
-            <ul class="nav-item">
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/">Home</a>
-              </li>
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/documentation">Documentation</a>
-              </li>
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/lessons">Lessons</a>
-              </li>
-              <li class="nav-list">
-                <a class="nav-list__link routing" href="/roadmap">RoadMap</a>
-              </li>
-            </ul>
+      <div class='header__container container-xxl'>
+        <a class='header__brand navbar-brand d-flex align-items-center routing' role='button' href="/">
+          <div class='header__logo p-1'>RS</div>
+          <h1 class='header__title'>Rush</h1>
+        </a>
+        <button class='header__toggle navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-expanded="false">
+            <div class='navbar-toggler-icon'></div>
+        </button>
+        <div class='header__collapse collapse navbar-collapse justify-content-between align-items-center' id='navbarCollapse'>
+          <nav class='header__nav navbar-nav'>
+            <a class='header__navlink nav-link routing' href='/'>Home</a>
+            <a class='header__navlink nav-link routing' href='/documentation'>Documentation</a>
+            <a class='header__navlink nav-link routing' href='/lessons'>Lessons</a>
+            <a class='header__navlink nav-link routing' href='/roadmap'>RoadMap</a>
           </nav>
-        </div>
-        <div class="wrapper-controls">
-          <div class="block__toggle-content">
-            <button class="button-toggle theme-toggle">
-              <span>Dark</span>
-            </button>
-            <button class="button-toggle lang-toggle">
-              <span>English</span>
-            </button>
+          <div class='header__settings navbar-nav'>
+            <div class='header__theme header__dropdown dropdown'>
+              <a class='header__navlink header__dropbtn nav-link dropdown-toggle' data-bs-toggle='dropdown'>Theme</a>
+              <div class='header__dropmenu dropdown-menu'>
+                <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='Dark'>Dark</a>
+                <a class='header__dropitem dropdown-item' data-value='Light'>Light</a>
+              </div>
+            </div>
+            <div class='header__lang header__dropdown dropdown'>
+              <a class='header__navlink header__dropbtn nav-link dropdown-toggle' data-bs-toggle='dropdown'>Language</a>
+              <div class='header__dropmenu dropdown-menu'>
+                <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='English'>English</a>
+                <a class='header__dropitem dropdown-item' data-value='Russian'>Russian</a>
+              </div>
+            </div>
           </div>
-          <div class='header-auth'>
-            <button class='header-auth__sign header-auth__button'>Sign in</button>
+          <div class='header__auth navbar-nav align-items-center'>
+            <a class='header__button header__sign nav-link'>Sign in</a>
           </div>
         </div>
+      </div>
     `;
 
     this.bind();
@@ -60,44 +59,93 @@ class HeaderView {
   }
 
   private renderSignedAuth(user: IUser) {
-    const headerAuth = queryHTMLElement('.header-auth');
+    const headerAuth = queryHTMLElement('.header__auth');
     headerAuth.innerHTML = `
-      <div class='header-auth__profile'>
-        <a class="header-auth__profile routing" href='/profile'>
+      <div class='header__profile'>
+        <a class='header__profile-iconlink routing' href='/profile'>
           <svg height="50px" width="50px">
             <use href="#user"></use>
           </svg>
         </a>
+        <a class ='header__profile-textlink nav-link routing' href='/profile'>Profile</a>
       </div>
-      <span class='header-auth__welcome'>Welcome, ${user.login}</span>
-      <button class='header-auth__logout header-auth__button'>Logout</button>
+      <span class='header__welcome'>${user.login}</span>
+      <a class='header__logout header__button nav-link'>Logout</a>
     `;
 
     this.bindSigned();
   }
 
   private switchLang(lang: Lang) {
-    const langButton = queryHTMLElement('.lang-toggle');
-    langButton.textContent = lang;
+    const en = queryHTMLElement(`.header__lang [data-value="${Lang.EN}"]`);
+    const ru = queryHTMLElement(`.header__lang [data-value="${Lang.RU}"]`);
+
+    switch (lang) {
+      case Lang.EN:
+        en.classList.add('header__dropitem_chosen');
+        ru.classList.remove('header__dropitem_chosen');
+        break;
+      case Lang.RU:
+        en.classList.remove('header__dropitem_chosen');
+        ru.classList.add('header__dropitem_chosen');
+        break;
+    }
   }
 
   private switchTheme(theme: Theme) {
-    const themeButton = queryHTMLElement('.theme-toggle');
-    themeButton.textContent = theme;
+    const dark = queryHTMLElement(`.header__theme [data-value="${Theme.DARK}"]`);
+    const light = queryHTMLElement(`.header__theme [data-value="${Theme.LIGHT}"]`);
+
+    switch (theme) {
+      case Theme.DARK:
+        dark.classList.add('header__dropitem_chosen');
+        light.classList.remove('header__dropitem_chosen');
+        break;
+      case Theme.LIGHT:
+        dark.classList.remove('header__dropitem_chosen');
+        light.classList.add('header__dropitem_chosen');
+        break;
+    }
   }
 
   private bind() {
-    const sign = queryHTMLElement('.header-auth__sign');
-    const theme = queryHTMLElement('.theme-toggle');
-    const lang = queryHTMLElement('.lang-toggle');
+    const sign = queryHTMLElement('.header__sign');
+    const lang = queryHTMLElement('.header__lang');
+    const theme = queryHTMLElement('.header__theme');
 
     sign.onclick = () => authController.showModal();
-    theme.onclick = () => headerController.switchTheme();
-    lang.onclick = () => headerController.switchLang();
+
+    lang.onclick = (e) => {
+      const target = getSafeElement(e.target);
+      if (target.classList.contains('header__dropitem')) {
+        switch (target.dataset.value) {
+          case Lang.EN:
+            headerController.setLang(Lang.EN);
+            break;
+          case Lang.RU:
+            headerController.setLang(Lang.RU);
+            break;
+        }
+      }
+    };
+
+    theme.onclick = (e) => {
+      const target = getSafeElement(e.target);
+      if (target.classList.contains('header__dropitem')) {
+        switch (target.dataset.value) {
+          case Theme.DARK:
+            headerController.setTheme(Theme.DARK);
+            break;
+          case Theme.LIGHT:
+            headerController.setTheme(Theme.LIGHT);
+            break;
+        }
+      }
+    };
   }
 
   private bindSigned() {
-    const logout = queryHTMLElement('.header-auth__logout');
+    const logout = queryHTMLElement('.header__logout');
     logout.onclick = () => authController.logout();
   }
 
