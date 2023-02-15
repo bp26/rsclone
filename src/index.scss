@@ -10,6 +10,8 @@ $primary: #1b2b37;
 @import './style/home/home-page.scss';
 @import './style/roadmap/roadmap.scss';
 @import './application/modules/sloth/sloth.scss';
+@import './application/ui/preloader/preloader.scss';
+@import './application/modules/auth/style/auth.scss';
 
 * {
   padding: 0;
@@ -71,4 +73,21 @@ $primary: #1b2b37;
   100% {
     opacity: 1;
   }
+}
+
+.btn-drag {
+  cursor: move;
+}
+
+.drag-hidden {
+  display: none;
+}
+
+.drag-show {
+  display: block;
+}
+
+.active-border {
+  border: 2px solid black;
+  border-radius: 5px;
 }

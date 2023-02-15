@@ -1,15 +1,10 @@
-import { getSafeElement } from '../../../utils/helpers';
-import { EmitterViewEvents } from '../../../types/enums';
-import { emitter } from '../../../utils/emitter';
+import { queryHTMLElement } from '../../../utils/helpers';
 
 class HomeView {
   private root: HTMLElement;
 
   constructor() {
-    const root = document.querySelector('.main__root');
-    this.root = getSafeElement(root);
-
-    this.subscribe();
+    this.root = queryHTMLElement('.main__root');
   }
 
   public render(): void {
@@ -21,7 +16,7 @@ class HomeView {
         <div class="start-content">
           <h2 class="home-title">As long as dreamers keep dreaming, you will code and succeed!</h2>
           <button class="start-button">
-            <span>Get start</span>
+            <span>Get started</span>
           </button>
         </div>
         <div class="sloth-start"></div>
@@ -62,10 +57,6 @@ class HomeView {
       </section>
     `;
     this.root.append(container);
-  }
-
-  private subscribe() {
-    emitter.subscribe(EmitterViewEvents.HOME_UPDATE, this.render.bind(this));
   }
 }
 

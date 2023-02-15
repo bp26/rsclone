@@ -98,7 +98,7 @@ export class FabricCanvas {
     const npmRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 320, 1550, RoadmapRectName.NPM, ColorRect.PACKAGES);
     const yarnRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 320, 1620, RoadmapRectName.YARN, ColorRect.PACKAGES);
     const pnpmRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 320, 1690, RoadmapRectName.PNPM, ColorRect.PACKAGES);
-    const text = new fabric.fabric.Text('to be continued...', {
+    const continued = new fabric.fabric.Text('to be continued...', {
       left: this.middleCanvas - 300,
       top: 1900,
       fontSize: 80,
@@ -107,6 +107,6 @@ export class FabricCanvas {
       selectable: false,
       hoverCursor: 'auto',
     });
-    fabricCanvas.add(text);
+    fabricCanvas.add(continued);
   }
 }
