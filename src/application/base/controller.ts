@@ -7,11 +7,13 @@ import { homeController } from '../pages/home/base/home.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
+import { chatController } from '../modules/chat/base/chat.controller';
 
 class Controller {
   public async init() {
     preloader.init();
 
+    await chatController.init();
     headerController.init();
     footerController.init();
     authController.init();

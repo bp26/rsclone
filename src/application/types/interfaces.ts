@@ -23,3 +23,9 @@ export interface Lessons {
   answerBlock: () => void;
   selector: string;
 }
+
+export interface IMessage {
+  user: string;
+  content: string;
+  time: string;
+}

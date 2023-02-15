@@ -1,7 +1,6 @@
 import { leftAndRight } from './../../../utils/constants/arrows/letftAndRightArrows';
 import { theory } from './../modules/theory';
 import { lessonsBlock } from './../modules/lessonsBlock';
-import { chat } from '../modules/chat';
 import { task } from './../modules/task';
 import { queryHTMLElement } from '../../../utils/helpers';
 import sloth from '../../../modules/sloth/sloth';
@@ -95,9 +94,6 @@ class LessonsView {
           </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-    ${chat.render()}
     </div>
   </div>
 </div>
