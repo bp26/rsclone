@@ -1,5 +1,3 @@
-import { createSVGFontFacesMarkup } from 'fabric/fabric-impl';
-import { RoadmapRectName } from '../../../types/enums';
 import { roadView } from './road.view';
 import { dataRoad } from '../../../utils/constants/dataRoad/contentRoad';
 
