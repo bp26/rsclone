@@ -43,29 +43,13 @@ class Model {
     }
   }
 
-  public switchLang() {
-    switch (this.lang) {
-      case Lang.EN:
-        this.lang = Lang.RU;
-        break;
-
-      case Lang.RU:
-        this.lang = Lang.EN;
-        break;
-    }
+  public setLang(lang: Lang) {
+    this.lang = lang;
     emitter.emit(EmitterEventName.GLOBAL_LANGUAGE, this.lang);
   }
 
-  public switchTheme() {
-    switch (this.theme) {
-      case Theme.DARK:
-        this.theme = Theme.LIGHT;
-        break;
-
-      case Theme.LIGHT:
-        this.theme = Theme.DARK;
-        break;
-    }
+  public setTheme(theme: Theme) {
+    this.theme = theme;
     emitter.emit(EmitterEventName.GLOBAL_THEME, this.theme);
   }
 
