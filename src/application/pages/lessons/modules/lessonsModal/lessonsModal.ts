@@ -6,12 +6,8 @@ import { Modal } from 'bootstrap';
 import { lessonsController } from '../../base/lessons.controller';
 
 class LessonModal {
-  root: HTMLElement;
-  constructor() {
-    this.root = queryHTMLElement('.main__root');
-  }
-  public render(): void {
-    const modal = new Element(this.root, HTMLTag.DIV, 'lessons-modal modal fade data-keyboard="false"');
+  public init(): void {
+    const modal = new Element(document.body, HTMLTag.DIV, 'lessons-modal modal fade data-keyboard="false"');
     modal.node.id = 'lessonsModal';
 
     modal.node.innerHTML = `

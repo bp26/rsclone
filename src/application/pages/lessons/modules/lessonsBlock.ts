@@ -1,5 +1,5 @@
 import { LessonAvalailability } from '../../../types/interfaces';
-import { lock } from '../../../utils/constants/lock';
+import { lock } from '../../../utils/constants/icons/lock';
 
 class LessonsBlock {
   generatorLessons = ({ isOpen, isSolved }: LessonAvalailability, index: number) => {

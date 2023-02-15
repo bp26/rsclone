@@ -1,8 +1,8 @@
-import { getSafeElement } from './../../utils/helpers';
-import { Storage } from './../../types/enums';
-import { Tutorial } from '../../types/interfaces';
-import { exampleTutorial } from '../../utils/constants/slothExampleTutorialArray';
-import { heroIcon } from '../../utils/constants/slothIcons/icons';
+import { getSafeElement } from '../../../../utils/helpers';
+import { Storage } from '../../../../types/enums';
+import { Tutorial } from '../../../../types/interfaces';
+import { exampleTutorial } from '../../../../utils/constants/slothExampleTutorialArray';
+import { heroIcon } from '../../../../utils/constants/icons/slothIcons';
 
 class Sloth {
   tutorial: Tutorial[];

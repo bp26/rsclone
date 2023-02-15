@@ -198,8 +198,10 @@ export class TaskDrag {
       if (currentElement.textContent === '0') {
         document.querySelector(`[data-task-drag-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-drag-btn-timer="${this.id}"]`) as HTMLButtonElement;
-        if (currentButton) currentButton.disabled = false;
-        currentButton.innerText = 'Check answer';
+        if (currentButton) {
+          currentButton.disabled = false;
+          currentButton.textContent = 'Check answer';
+        }
         clearInterval(intervalID);
       }
     }, 1000);

@@ -1,4 +1,4 @@
-import { chatCloud } from '../../../utils/constants/chat/chatIcon';
+import { chatCloud } from '../../../utils/constants/icons/chatIcon';
 
 class Chat {
   render() {

@@ -4,15 +4,14 @@ import { lessonsWrite } from './../modules/tasks/write/data';
 import { TaskDrag } from './../modules/tasks/drag/dragTask';
 import { TaskWrite } from './../modules/tasks/write/writeTask';
 import { getSafeElement } from './../../../utils/helpers';
-import { leftAndRight } from './../../../utils/constants/arrows/letftAndRightArrows';
+import { leftAndRight } from '../../../utils/constants/icons/letftAndRightArrows';
 import { lessonsBlock } from './../modules/lessonsBlock';
 import { chat } from '../modules/chat';
 import { queryHTMLElement } from '../../../utils/helpers';
-import sloth from '../../../modules/sloth/sloth';
+import sloth from '../modules/sloth/sloth';
 import { Collapse } from 'bootstrap';
 import { lessonsBoolean } from '../modules/tasks/boolean/data';
 import { lessonsContent } from '../modules/lessons/lessonsContent';
-import { lessonModal } from '../modules/lessonsModal/lessonsModal';
 import { LessonAvalailability } from '../../../types/interfaces';
 
 class LessonsView {
@@ -43,7 +42,7 @@ class LessonsView {
     <div class="col-md-12 mx-auto">
       <div id="carouselExampleFade" class="carousel slide">
         <div class="carousel-inner content-inner">
-          <div class="text-center mt-5 fs-1">Выберите урок</div>
+          <div class="text-center mt-5 fs-1">Choose a lesson</div>
         </div>
       </div>
     </div>
@@ -53,7 +52,6 @@ class LessonsView {
 `;
 
     this.root.append(html);
-    lessonModal.render();
     sloth.render();
 
     const lessonsButtons = document.querySelectorAll('.lessons-btn');

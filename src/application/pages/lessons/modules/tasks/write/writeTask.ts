@@ -179,8 +179,10 @@ export class TaskWrite {
       if (currentElement.textContent === '0') {
         document.querySelector(`[data-task-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-btn-timer="${this.id}"]`) as HTMLButtonElement;
-        if (currentButton) currentButton.disabled = false;
-        currentButton.innerText = 'Check answer';
+        if (currentButton) {
+          currentButton.disabled = false;
+          currentButton.innerText = 'Check answer';
+        }
         clearInterval(intervalID);
       }
     }, 1000);
