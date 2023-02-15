@@ -1,39 +1,15 @@
 import { model } from './../../../base/model';
 import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
+import { LessonAvalailability, Lessons } from '../../../types/interfaces';
 
-interface Lessons {
-  [key: string]: {
-    coins: number;
-    tasks: Array<string>;
-    isSolved: boolean;
-    isOpen: boolean;
-  };
-}
-interface openLessons {
-  [key: string]: boolean;
-}
-const user = {
-  name: '',
-  password: '',
-  coins: 0,
-  lessons: ['1', '2'],
-};
 class LessonsModel {
-  constructor() {
-    for (const key in this.lessons) {
-      if (user.lessons.includes(key)) {
-        this.lessons[key].isSolved = true;
-        this.lessons[key].isOpen = true;
-        this.lessons[Number(key) + 1].isOpen = true;
-      }
-    }
-  }
+  private updated = false;
 
-  lessons: Lessons = {
+  private lessons: Lessons = {
     '1': {
       coins: 0,
-      tasks: ['Boolean1', 'Boolean2', 'Boolean3'],
+      tasks: ['Working with variables 1', 'Drag1'],
       isSolved: false,
       isOpen: true,
     },
@@ -45,33 +21,49 @@ class LessonsModel {
     },
     '3': {
       coins: 0,
-      tasks: ['Boolean1', 'Boolean2', 'Boolean3'],
+      tasks: ['Working with variables 2', 'Drag2', 'Drag3'],
       isSolved: false,
       isOpen: false,
     },
   };
 
-  init() {
-    const openLessons: openLessons = {};
-    for (const key in this.lessons) {
-      openLessons[key] = this.lessons[key].isOpen;
+  public init(): LessonAvalailability[] {
+    if (!this.updated && model.user) {
+      for (const key in this.lessons) {
+        if (model.user.lessons.includes(key)) {
+          this.lessons[key].isSolved = true;
+          this.lessons[key].isOpen = true;
+          this.lessons[key].tasks = [];
+          if (this.lessons[Number(key) + 1]) {
+            this.lessons[Number(key) + 1].isOpen = true;
+          }
+        }
+      }
+      this.updated = true;
     }
+
+    return Object.keys(this.lessons).map((key) => {
+      return { isOpen: this.lessons[key].isOpen, isSolved: this.lessons[key].isSolved };
+    });
   }
 
-  submitTask(title: string, price: string, currentLessons: string) {
-    const lessons = this.lessons[currentLessons];
-    const index = lessons.tasks.indexOf(title);
+  public submitTask(title: string, price: string, currentLesson: string): void {
+    const lesson = this.lessons[currentLesson];
+    const index = lesson.tasks.indexOf(title);
 
-    if (lessons.tasks.indexOf(title) !== -1) {
-      lessons.tasks.splice(index, 1);
-      lessons.coins += Number(price);
+    if (!lesson.isSolved && lesson.tasks.indexOf(title) !== -1) {
+      lesson.tasks.splice(index, 1);
+      lesson.coins += Number(price);
 
-      if (lessons.tasks.length === 0) {
-        lessons.isSolved = true;
+      if (lesson.tasks.length === 0) {
+        lesson.isSolved = true;
 
-        if (this.lessons[Number(currentLessons) + 1]) {
-          this.lessons[Number(currentLessons) + 1].isOpen = true;
+        if (this.lessons[Number(currentLesson) + 1]) {
+          this.lessons[Number(currentLesson) + 1].isOpen = true;
         }
+
+        emitter.emit(EmitterEventName.LESSONS_SOLVED);
+        model.updateUserOnSolvedLesson(Number(price), currentLesson);
       }
     }
   }

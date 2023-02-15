@@ -1,9 +1,9 @@
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 
-export const lessonsWrite: Lessons[] = [
+export const lessonsWrite: Task[] = [
   {
     id: 1,
-    title: 'Working with variables',
+    title: 'Working with variables 1',
     description: `    1. Declare a variables: admin. <br />
   2. Declare a variable:  name <br />
     3. Assign the value "John" to name.<br />
@@ -31,7 +31,7 @@ alert(admin);
   },
   {
     id: 2,
-    title: 'Working with variables2',
+    title: 'Working with variables 2',
     description: ` 1. Declare a arrow function`,
     price: '2',
     buttonsArray: ['let ', 'fn ', '= ', '( ', ') ', '=> ', '{', '}'],
@@ -47,7 +47,7 @@ let fn = () => {}
   },
   {
     id: 3,
-    title: 'Working with variables3',
+    title: 'Working with variables 3',
     description: ` 1. Declare a variables: admin. <br />
   2. Declare a variable:  name <br />
     3. Assign the value "John" to name.<br />

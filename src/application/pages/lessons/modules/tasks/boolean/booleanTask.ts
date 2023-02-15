@@ -1,5 +1,5 @@
 import { lessonsController } from './../../../base/lessons.controller';
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 import { getSafeElement } from '../../../../../utils/helpers';
 import { Colors } from '../../../../../types/enums';
 
@@ -14,7 +14,9 @@ export class TaskBoolean {
   startTimer: number;
   selector: string;
   answerBlock: () => void;
-  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons) {
+  currentLesson: string;
+
+  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Task, currentLesson: string) {
     this.id = id;
     this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
@@ -25,6 +27,7 @@ export class TaskBoolean {
     this.startTimer = 10;
     this.answerBlock = answerBlock;
     this.selector = selector;
+    this.currentLesson = currentLesson;
   }
 
   generatorButtons(arr: Array<string>) {
@@ -92,7 +95,7 @@ export class TaskBoolean {
         if (typeof this.answer === 'string') {
           this.answer = '' + this.answer;
         }
-        target.textContent === this.answer ? this.changeBorderByAnswer(true) : this.changeBorderByAnswer(false);
+        target.textContent === this.answer ? this.submit(true) : this.submit(false);
       });
     });
   }
@@ -109,6 +112,10 @@ export class TaskBoolean {
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`));
     textarea.style.border = result ? '3px solid green' : '3px solid red';
-    // result ? lessonsController.submitTask(this.title, this.price) : '';
+  }
+
+  submit(result: boolean) {
+    this.changeBorderByAnswer(result);
+    result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }

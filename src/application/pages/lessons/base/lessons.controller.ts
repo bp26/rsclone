@@ -1,14 +1,13 @@
-import { model } from './../../../base/model';
 import { lessonsModel } from './lessons.model';
 import { lessonsView } from './lessons.view';
 
 class LessonsController {
   public init(): void {
-    lessonsView.render();
+    lessonsView.render(lessonsModel.init());
   }
 
-  submitTask(title: string, price: string, currentLessons: string) {
-    lessonsModel.submitTask(title, price, currentLessons);
+  public submitTask(currentLesson: string, title: string, price: string): void {
+    lessonsModel.submitTask(currentLesson, title, price);
   }
 }
 

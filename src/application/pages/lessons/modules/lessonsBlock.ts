@@ -1,21 +1,24 @@
-import { getSafeElement } from './../../../utils/helpers';
+import { LessonAvalailability } from '../../../types/interfaces';
 import { lock } from '../../../utils/constants/lock';
 
-const lessons = [{ lessons: true }, { lessons: false }, { lessons: false }];
-
 class LessonsBlock {
-  generatorLessons = (lessons: boolean, index: number) => {
+  generatorLessons = ({ isOpen, isSolved }: LessonAvalailability, index: number) => {
     const complete = '';
     const notComplete = `<span class="badge">${lock}</span>`;
+    const solved = '(S)';
+    const unsolved = '';
     const html = `
-      <button lesson-btn="${index}" class="btn btn-primary lessons-btn p-2 mb-2 w-75 ${lessons ? complete : 'disabled'}">Lessons ${index} ${lessons ? complete : notComplete}</button>
+      <button lesson-btn="${index}" class="btn btn-primary lessons-btn p-2 mb-2 w-75 ${isOpen ? complete : 'disabled'}">${isSolved ? solved : unsolved} Lessons ${index} ${
+      isOpen ? complete : notComplete
+    }</button>
     `;
     return html;
   };
-  render() {
+
+  render(lessonAvailbility: LessonAvalailability[]) {
     let buttons = '';
-    lessons.forEach((el, i) => {
-      buttons += this.generatorLessons(el.lessons, i + 1);
+    lessonAvailbility.forEach((el, i) => {
+      buttons += this.generatorLessons(el, i + 1);
     });
     const html = `
   <div class="position-absolute top-0 start-0 collapse collapse-horizontal show js-collapse" id="lessonsBlock" style="z-index:2;">

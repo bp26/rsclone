@@ -1,6 +1,8 @@
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 import { getSafeElement } from '../../../../../utils/helpers';
 import { Colors } from '../../../../../types/enums';
+import { lessonsController } from '../../../base/lessons.controller';
+
 export class TaskDrag {
   colors: Array<string>;
   id: number;
@@ -12,7 +14,9 @@ export class TaskDrag {
   startTimer: number;
   selector: string;
   answerBlock: () => void;
-  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons) {
+  currentLesson: string;
+
+  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Task, currentLesson: string) {
     this.id = id;
     this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
@@ -23,6 +27,7 @@ export class TaskDrag {
     this.startTimer = 60;
     this.answerBlock = answerBlock;
     this.selector = selector;
+    this.currentLesson = currentLesson;
   }
 
   generatorButtons(arr: Array<string>) {
@@ -213,7 +218,7 @@ export class TaskDrag {
     });
     result = result.replace(/[\s\n\r]+/g, '');
     const answer = this.answer.replace(/[\s\n\r]+/g, '');
-    answer === result ? this.changeBorderByAnswer(true) : this.changeBorderByAnswer(false);
+    answer === result ? this.submit(true) : this.submit(false);
   };
 
   resetBorderArea() {
@@ -224,5 +229,10 @@ export class TaskDrag {
   changeBorderByAnswer(result: boolean) {
     const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
     result ? (taskArea.style.border = '3px solid green') : (taskArea.style.border = '3px solid red');
+  }
+
+  submit(result: boolean) {
+    this.changeBorderByAnswer(result);
+    result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }

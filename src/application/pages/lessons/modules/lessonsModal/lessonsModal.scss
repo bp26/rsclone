@@ -1,9 +1,12 @@
-.auth__preloader {
-  position: absolute;
+.lessons-modal {
+  color: black;
+}
+
+.lessons-modal__preloader {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.auth__circle {
+.lessons-modal__circle {
   border: 20px solid black;
   border-top: 20px solid white;
-} /*# sourceMappingURL=auth.css.map */
+}

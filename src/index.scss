@@ -8,6 +8,9 @@ $primary: #1b2b37;
 @import './style/font';
 @import './style/layout/layout.scss';
 @import './style/home/home-page.scss';
+@import './application/ui/preloader/preloader.scss';
+@import './application/modules/auth/style/auth.scss';
+@import './application/pages/lessons/modules/lessonsModal/lessonsModal.scss';
 @import './application/modules/sloth/sloth.scss';
 
 * {

@@ -1,6 +1,6 @@
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 
-export const lessonsBoolean: Lessons[] = [
+export const lessonsBoolean: Task[] = [
   {
     id: 1,
     title: 'Boolean1',

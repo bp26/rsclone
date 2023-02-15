@@ -3,7 +3,6 @@ import { lessonsDrag } from './../modules/tasks/drag/data';
 import { lessonsWrite } from './../modules/tasks/write/data';
 import { TaskDrag } from './../modules/tasks/drag/dragTask';
 import { TaskWrite } from './../modules/tasks/write/writeTask';
-import { theory1, theory2, theory3 } from './../modules/lessons/lessons';
 import { getSafeElement } from './../../../utils/helpers';
 import { leftAndRight } from './../../../utils/constants/arrows/letftAndRightArrows';
 import { lessonsBlock } from './../modules/lessonsBlock';
@@ -12,33 +11,9 @@ import { queryHTMLElement } from '../../../utils/helpers';
 import sloth from '../../../modules/sloth/sloth';
 import { Collapse } from 'bootstrap';
 import { lessonsBoolean } from '../modules/tasks/boolean/data';
-
-interface TypeTask {
-  Write?: number[];
-  Drag?: number[];
-  Boolean?: number[];
-}
-interface LessonsContent {
-  [key: string]: {
-    theory: string;
-    tasks: TypeTask[];
-  };
-}
-
-const lessonsContent: LessonsContent = {
-  lesson1: {
-    theory: theory1,
-    tasks: [{ Write: [1] }, { Drag: [1] }],
-  },
-  lesson2: {
-    theory: theory2,
-    tasks: [{ Boolean: [1, 2, 3] }],
-  },
-  lesson3: {
-    theory: theory3,
-    tasks: [{ Write: [2] }, { Drag: [2, 3] }],
-  },
-};
+import { lessonsContent } from '../modules/lessons/lessonsContent';
+import { lessonModal } from '../modules/lessonsModal/lessonsModal';
+import { LessonAvalailability } from '../../../types/interfaces';
 
 class LessonsView {
   private root: HTMLElement;
@@ -47,12 +22,12 @@ class LessonsView {
     this.root = queryHTMLElement('.main__root');
   }
 
-  public render(): void {
+  public render(lessonAvailbility: LessonAvalailability[]): void {
     this.root.innerHTML = '';
     const html = document.createElement('div');
     html.innerHTML = `
 <div class="container-fluid position-relative">
-  ${lessonsBlock.render()}
+  ${lessonsBlock.render(lessonAvailbility)}
   <button
     class="position-absolute btn btn-primary lessons-bs"
     type="button"
@@ -78,6 +53,7 @@ class LessonsView {
 `;
 
     this.root.append(html);
+    lessonModal.render();
     sloth.render();
 
     const lessonsButtons = document.querySelectorAll('.lessons-btn');
@@ -113,7 +89,7 @@ class LessonsView {
 
   renderWriteTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
-      lessonsWrite.forEach((el, i) => {
+      lessonsWrite.forEach((el) => {
         el.id === elem ? new TaskWrite(lessonsWrite[el.id - 1], currentLesson).render() : '';
       });
     });
@@ -121,7 +97,7 @@ class LessonsView {
 
   renderDragTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
-      lessonsDrag.forEach((el, i) => {
+      lessonsDrag.forEach((el) => {
         el.id === elem ? new TaskDrag(lessonsDrag[el.id - 1], currentLesson).render() : '';
       });
     });
@@ -129,8 +105,7 @@ class LessonsView {
 
   renderBooleanTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
-      console.log(elem);
-      lessonsBoolean.forEach((el, i) => {
+      lessonsBoolean.forEach((el) => {
         el.id === elem ? new TaskBoolean(lessonsBoolean[el.id - 1], currentLesson).render() : '';
       });
     });

@@ -1,5 +1,5 @@
-import { Lessons } from '../../../../../types/interfaces';
-export const lessonsDrag: Lessons[] = [
+import { Task } from '../../../../../types/interfaces';
+export const lessonsDrag: Task[] = [
   {
     id: 1,
     title: 'Drag1',

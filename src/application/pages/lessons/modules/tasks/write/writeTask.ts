@@ -1,11 +1,12 @@
 import { lessonsController } from './../../../base/lessons.controller';
 import { getSafeElement } from '../../../../../utils/helpers';
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 import { Colors } from '../../../../../types/enums';
+
 export class TaskWrite {
   colors: Array<string>;
   id: number;
-  currentLessons: string;
+  currentLesson: string;
   title: string;
   description: string;
   price: string;
@@ -14,9 +15,10 @@ export class TaskWrite {
   startTimer: number;
   selector: string;
   answerBlock: () => void;
-  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons, currentLessons: string) {
+
+  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Task, currentLesson: string) {
     this.id = id;
-    this.currentLessons = currentLessons;
+    this.currentLesson = currentLesson;
     this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
     this.description = description;
@@ -131,7 +133,7 @@ export class TaskWrite {
       let answer = this.answer;
       if (textareaContent) textareaContent = textareaContent.replace(/[\s\n\r]+/g, '');
       answer = answer.replace(/[\s\n\r]+/g, '');
-      textareaContent === answer ? this.changeBorderByAnswer(true) : this.changeBorderByAnswer(false);
+      textareaContent === answer ? this.submit(true) : this.submit(false);
     });
 
     const buttonsController = document.querySelectorAll(`[data-task-buttons="${this.id}"]`);
@@ -196,6 +198,10 @@ export class TaskWrite {
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
     result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
-    result ? lessonsController.submitTask(this.title, this.price, this.currentLessons) : '';
+  }
+
+  submit(result: boolean) {
+    this.changeBorderByAnswer(result);
+    result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }
