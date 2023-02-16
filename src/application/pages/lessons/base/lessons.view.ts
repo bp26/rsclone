@@ -1,3 +1,4 @@
+import { exampleTutorial } from './../../../utils/constants/slothExampleTutorialArray';
 import { TaskBoolean } from './../modules/tasks/boolean/booleanTask';
 import { lessonsDrag } from './../modules/tasks/drag/data';
 import { lessonsWrite } from './../modules/tasks/write/data';
@@ -52,7 +53,7 @@ class LessonsView {
 `;
 
     this.root.append(html);
-    sloth.render();
+    sloth.render(exampleTutorial);
 
     const lessonsButtons = document.querySelectorAll('.lessons-btn');
     lessonsButtons.forEach((el) => {

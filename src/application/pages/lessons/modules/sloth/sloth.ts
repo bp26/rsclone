@@ -1,22 +1,19 @@
 import { getSafeElement } from '../../../../utils/helpers';
 import { Storage } from '../../../../types/enums';
 import { Tutorial } from '../../../../types/interfaces';
-import { exampleTutorial } from '../../../../utils/constants/slothExampleTutorialArray';
 import { heroIcon } from '../../../../utils/constants/icons/slothIcons';
 
 class Sloth {
-  tutorial: Tutorial[];
   count: number;
   writerIntervalID: NodeJS.Timer | string;
   audio: HTMLAudioElement;
   constructor() {
-    this.tutorial = exampleTutorial;
     this.count = 0;
     this.writerIntervalID = '';
-    this.audio = new Audio('https://zvukipro.com/uploads/files/2019-07/1564068710_95186a15d2b9821.mp3');
+    this.audio = new Audio('https://zvukipro.com/uploads/files/2019-07/1564068640_cf9b99726102246.mp3');
   }
 
-  render() {
+  render(data: Tutorial[]) {
     const html = document.createElement('div');
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
@@ -33,18 +30,20 @@ class Sloth {
       return;
     } else {
       this.showSloth();
-      this.initTutorial();
+      this.initTutorial(data);
     }
   }
 
-  initTutorial() {
+  initTutorial(data: Tutorial[]) {
     this.count = 0;
     const coverTutorial = document.createElement('div');
     coverTutorial.classList.add('cover-tutorial');
     coverTutorial.style.cssText = 'position:fixed; top:0;bottom:0;left:0;right:0; height:100vh;z-index:150; background-color: rbga(0,0,0,0.6)';
     document.body.append(coverTutorial);
-    this.showSlothTutorial(this.tutorial[this.count]);
-    coverTutorial.addEventListener('click', this.startTutorialHandler);
+    this.showSlothTutorial(data[this.count]);
+    coverTutorial.addEventListener('click', () => {
+      this.startTutorialHandler(data);
+    });
   }
 
   hiddenPrev(selector: string) {
@@ -88,18 +87,20 @@ class Sloth {
     }, 50);
   };
 
-  startTutorialHandler = () => {
+  startTutorialHandler = (data: Tutorial[]) => {
     const cover = getSafeElement(document.querySelector('.cover-tutorial'));
     this.changeCount();
-    if (this.count < this.tutorial.length) {
-      this.showSlothTutorial(this.tutorial[this.count]);
-      this.hiddenPrev(this.tutorial[this.count - 1].selector);
+    if (this.count < data.length) {
+      this.hiddenPrev(data[this.count - 1].selector);
+      this.showSlothTutorial(data[this.count]);
     } else {
       clearInterval(this.writerIntervalID);
       localStorage.setItem(Storage.TUTORIAL, Storage.COMPLETE);
-      this.hiddenPrev(this.tutorial[this.count - 1].selector);
+      this.hiddenPrev(data[this.count - 1].selector);
       this.hiddenSloth();
-      cover.removeEventListener('click', this.startTutorialHandler);
+      cover.removeEventListener('click', () => {
+        this.startTutorialHandler(data);
+      });
       cover.remove();
     }
   };

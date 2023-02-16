@@ -8,11 +8,15 @@ export const exampleTutorial = [
     text: 'Here are the lessons!',
   },
   {
-    selector: '.header__nav',
-    text: 'Here is the navigation!',
+    selector: '.lessons-block',
+    text: 'After completing all the tasks of the lesson, new ones will open.',
   },
   {
-    selector: '.header__auth',
-    text: 'Here is the authentification!',
+    selector: '.lessons-block',
+    text: 'For passing you will receive coins, on which your rank will depend.',
+  },
+  {
+    selector: '',
+    text: 'Good luck!!!',
   },
 ];

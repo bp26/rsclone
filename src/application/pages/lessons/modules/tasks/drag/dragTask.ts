@@ -63,7 +63,7 @@ export class TaskDrag {
     <p class="task__price">Price: ${this.price} points</p>
     <p class="task__description">${this.description}</p>
     <div class="mb-3">
-      <div class="bg-warning w-100 rounded-4 p-2 task-drag-area-${this.id}" data-drag-area="${this.id}" style="min-height:200px">
+      <div class="bg-primary w-100 rounded-4 p-2 task-drag-area-${this.id}" data-drag-area="${this.id}" style="min-height:200px">
       <div class="container">
         <div class="row m-1 gap-2" style="min-height:20px">
             <div class="col bg-light rounded-4  put-area box"></div>
@@ -103,7 +103,7 @@ export class TaskDrag {
         </button>
       </div>
       <div class="collapse" id="collapse-task-drag-${this.id}">
-        <div class="card card-body">
+        <div class="card card-body bg-primary">
           ${this.answerBlock()}
         </div>
       </div>
@@ -190,12 +190,13 @@ export class TaskDrag {
 
   timerForAnswer() {
     const currentElement = getSafeElement(document.querySelector(`[data-task-drag-timer="${this.id}"]`));
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
     if (this.startTimer > Number(currentElement.textContent)) {
       return;
     }
     const intervalID = setInterval(() => {
       currentElement.textContent = String(Number(currentElement.textContent) - 1);
-      if (currentElement.textContent === '0') {
+      if (currentElement.textContent === '0' || textarea.getAttribute('status')) {
         document.querySelector(`[data-task-drag-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-drag-btn-timer="${this.id}"]`) as HTMLButtonElement;
         if (currentButton) {
@@ -235,6 +236,8 @@ export class TaskDrag {
 
   submit(result: boolean) {
     this.changeBorderByAnswer(result);
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
+    textarea.setAttribute('status', `${result ? 'complete' : ''}`);
     result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }
