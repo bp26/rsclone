@@ -32,7 +32,11 @@ class Router {
         controller.initHomePage();
         break;
       case '/lessons':
-        controller.initLessonsPage();
+        if (model.isAuthenticated) {
+          controller.initLessonsPage();
+        } else {
+          controller.initHomePage();
+        }
         break;
       case '/documentation':
         controller.initDocumentationPage();

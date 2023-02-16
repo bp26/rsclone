@@ -1,9 +1,12 @@
+import { lessonsController } from './../../../base/lessons.controller';
 import { getSafeElement } from '../../../../../utils/helpers';
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 import { Colors } from '../../../../../types/enums';
+
 export class TaskWrite {
   colors: Array<string>;
   id: number;
+  currentLesson: string;
   title: string;
   description: string;
   price: string;
@@ -12,9 +15,11 @@ export class TaskWrite {
   startTimer: number;
   selector: string;
   answerBlock: () => void;
-  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons) {
+
+  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Task, currentLesson: string) {
     this.id = id;
-    this.colors = [Colors.WARNING, Colors.DARK, Colors.DANGER, Colors.SUCCESS];
+    this.currentLesson = currentLesson;
+    this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
     this.description = description;
     this.price = price;
@@ -43,7 +48,7 @@ export class TaskWrite {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-<div class="card-body">
+<div class="card-body bg-dark ">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
     <button class="btn btn-primary init-write-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-write-${this.id}" aria-expended="false" aria-controls="task-write-${this.id}">Show task</button>
@@ -128,7 +133,7 @@ export class TaskWrite {
       let answer = this.answer;
       if (textareaContent) textareaContent = textareaContent.replace(/[\s\n\r]+/g, '');
       answer = answer.replace(/[\s\n\r]+/g, '');
-      textareaContent === answer ? this.changeBorderByAnswer(true) : this.changeBorderByAnswer(false);
+      textareaContent === answer ? this.submit(true) : this.submit(false);
     });
 
     const buttonsController = document.querySelectorAll(`[data-task-buttons="${this.id}"]`);
@@ -174,8 +179,10 @@ export class TaskWrite {
       if (currentElement.textContent === '0') {
         document.querySelector(`[data-task-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-btn-timer="${this.id}"]`) as HTMLButtonElement;
-        if (currentButton) currentButton.disabled = false;
-        currentButton.innerText = 'Check answer';
+        if (currentButton) {
+          currentButton.disabled = false;
+          currentButton.innerText = 'Check answer';
+        }
         clearInterval(intervalID);
       }
     }, 1000);
@@ -192,6 +199,11 @@ export class TaskWrite {
 
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-    result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
+    textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
+  }
+
+  submit(result: boolean) {
+    this.changeBorderByAnswer(result);
+    result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }
