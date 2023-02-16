@@ -8,7 +8,6 @@ import { roadController } from '../pages/roadmap/base/road.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
-import { lessonModal } from '../pages/lessons/modules/lessonsModal/lessonsModal';
 
 class Controller {
   public async init() {
@@ -16,7 +15,7 @@ class Controller {
 
     headerController.init();
     footerController.init();
-    this.initModals();
+    authController.init();
     new Sprite();
 
     await model.init();
@@ -41,11 +40,6 @@ class Controller {
 
   public initRoadmapPage(): void {
     roadController.init();
-  }
-
-  public initModals(): void {
-    authController.init();
-    lessonModal.init();
   }
 }
 

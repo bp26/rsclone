@@ -1,4 +1,4 @@
-import { chatCloud } from '../../../utils/constants/icons/chatIcon';
+import { chatCloud } from '../../../utils/constants/chat/chatIcon';
 
 class Chat {
   render() {
@@ -13,7 +13,7 @@ class Chat {
           style="
             height: 50px;
             width: 50px;
-            bottom: 150px;
+            bottom: 100px;
             right: 3rem;
             z-index: 50;
           "

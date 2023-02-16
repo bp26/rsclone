@@ -1,5 +1,5 @@
-import { Task } from '../../../../../types/interfaces';
-export const lessonsDrag: Task[] = [
+import { Lessons } from '../../../../../types/interfaces';
+export const lessonsDrag: Lessons[] = [
   {
     id: 1,
     title: 'Drag1',
@@ -17,38 +17,44 @@ export const lessonsDrag: Task[] = [
   <div>let name;</div>
   `;
     },
-    selector: '.lesson-practice',
+    selector: 'body',
   },
   {
     id: 2,
     title: 'Drag2',
-    description: ` 1. Declare a Function Declaration`,
+    description: ` 1. Declare a variables: admin. <br />
+  2. Declare a variable:  name <br />`,
     price: '2',
-    buttonsArray: ['Function ', 'fn ', '( ', ')', '{', '}'],
+    buttonsArray: ['let ', 'let ', 'admin; ', 'name; '],
     answer: `
-Function fn() {}
+  let admin;
+  let name;
 `,
     answerBlock: () => {
       return `
-  <div>Function fn() {}</div>
+  <div>let admin;</div>
+  <div>let name;</div>
   `;
     },
-    selector: '.lesson-practice',
+    selector: 'body',
   },
   {
     id: 3,
     title: 'Drag3',
-    description: ` 1. Declare a function expression`,
+    description: ` 1. Declare a variables: admin. <br />
+  2. Declare a variable:  name <br />`,
     price: '2',
-    buttonsArray: ['let ', 'fn ', '= ', 'function', '( ', ')', '{', '}'],
+    buttonsArray: ['let ', 'let ', 'admin; ', 'name; '],
     answer: `
-let fn = function() {}
+  let admin;
+  let name;
 `,
     answerBlock: () => {
       return `
-  <div>let fn = function() {}</div>
+  <div>let admin;</div>
+  <div>let name;</div>
   `;
     },
-    selector: '.lesson-practice',
+    selector: 'body',
   },
 ];

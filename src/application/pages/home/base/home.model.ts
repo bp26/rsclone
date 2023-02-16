@@ -1,6 +1,6 @@
 import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 
-class LessonsModel {}
+class HomeModel {}
 
-export const lessonsModel = new LessonsModel();
+export const homeModel = new HomeModel();

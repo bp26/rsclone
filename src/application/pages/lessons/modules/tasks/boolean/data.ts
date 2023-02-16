@@ -1,6 +1,6 @@
-import { Task } from '../../../../../types/interfaces';
+import { Lessons } from '../../../../../types/interfaces';
 
-export const lessonsBoolean: Task[] = [
+export const lessonsBoolean: Lessons[] = [
   {
     id: 1,
     title: 'Boolean1',
@@ -11,7 +11,7 @@ export const lessonsBoolean: Task[] = [
     answerBlock: () => {
       return ``;
     },
-    selector: '.lesson-practice',
+    selector: 'body',
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const lessonsBoolean: Task[] = [
     answerBlock: () => {
       return ``;
     },
-    selector: '.lesson-practice',
+    selector: 'body',
   },
   {
     id: 3,
@@ -35,6 +35,6 @@ export const lessonsBoolean: Task[] = [
     answerBlock: () => {
       return ``;
     },
-    selector: '.lesson-practice',
+    selector: 'body',
   },
 ];

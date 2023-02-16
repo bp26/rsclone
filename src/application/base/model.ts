@@ -43,15 +43,6 @@ class Model {
     }
   }
 
-  public async updateUserOnSolvedLesson(coins: number, lesson: string) {
-    if (this.user) {
-      this.user.coins += coins;
-      this.user.lessons.push(lesson);
-    }
-    await this.updateUser();
-    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS);
-  }
-
   public setLang(lang: Lang) {
     this.lang = lang;
     emitter.emit(EmitterEventName.GLOBAL_LANGUAGE, this.lang);
