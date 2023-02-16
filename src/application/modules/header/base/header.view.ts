@@ -28,7 +28,7 @@ class HeaderView {
           <nav class='header__nav navbar-nav'>
             <a class='header__navlink nav-link routing' href='/'>Home</a>
             <a class='header__navlink nav-link routing' href='/documentation'>Documentation</a>
-            <a class='header__navlink header__navlink_lessons nav-link routing disabled' href='/lessons'>Lessons</a>
+            <a class='header__navlink nav-link routing' href='/lessons'>Lessons</a>
             <a class='header__navlink nav-link routing' href='/roadmap'>RoadMap</a>
           </nav>
           <div class='header__settings navbar-nav'>
@@ -74,12 +74,6 @@ class HeaderView {
     `;
 
     this.bindSigned();
-    this.enableLessonsLink();
-  }
-
-  private enableLessonsLink() {
-    const lessonsLink = queryHTMLElement('.header__navlink_lessons');
-    lessonsLink.classList.remove('disabled');
   }
 
   private switchLang(lang: Lang) {

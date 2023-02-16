@@ -15,7 +15,7 @@ class AuthView {
       <div class='auth__container modal-dialog modal-dialog-centered'>
         <div class='auth__content modal-content'>
 
-          <div class='preloader auth__preloader d-none position-absolute'>
+          <div class='preloader auth__preloader d-none'>
             <div class='preloader__circle auth__circle'></div>
           </div>
 

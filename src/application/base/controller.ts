@@ -4,10 +4,10 @@ import { lessonsController } from './../pages/lessons/base/lessons.controller';
 import { headerController } from '../modules/header/base/header.controller';
 import { footerController } from '../modules/footer/base/footer.controller';
 import { homeController } from '../pages/home/base/home.controller';
+import { roadController } from '../pages/roadmap/base/road.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
-import { lessonModal } from '../pages/lessons/modules/lessonsModal/lessonsModal';
 
 class Controller {
   public async init() {
@@ -15,7 +15,7 @@ class Controller {
 
     headerController.init();
     footerController.init();
-    this.initModals();
+    authController.init();
     new Sprite();
 
     await model.init();
@@ -39,12 +39,7 @@ class Controller {
   }
 
   public initRoadmapPage(): void {
-    //
-  }
-
-  public initModals(): void {
-    authController.init();
-    lessonModal.init();
+    roadController.init();
   }
 }
 

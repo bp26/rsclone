@@ -11,7 +11,7 @@ class Api {
   }
 
   public async updateUser(user: IUser): Promise<void> {
-    await axios.put(`${BASE_URL}/${USER_ROUTE}`, user, {
+    await axios.post(`${BASE_URL}/${USER_ROUTE}`, user, {
       withCredentials: true,
     });
   }

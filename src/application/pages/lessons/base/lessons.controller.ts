@@ -3,11 +3,12 @@ import { lessonsView } from './lessons.view';
 
 class LessonsController {
   public init(): void {
-    lessonsView.render(lessonsModel.init());
+    lessonsView.render();
+    this.initChilden();
   }
 
-  public submitTask(currentLesson: string, title: string, price: string): void {
-    lessonsModel.submitTask(currentLesson, title, price);
+  private initChilden(): void {
+    //
   }
 }
 
