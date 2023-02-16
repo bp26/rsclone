@@ -1,6 +1,8 @@
-import { Lessons } from '../../../../../types/interfaces';
+import { Task } from '../../../../../types/interfaces';
 import { getSafeElement } from '../../../../../utils/helpers';
 import { Colors } from '../../../../../types/enums';
+import { lessonsController } from '../../../base/lessons.controller';
+
 export class TaskDrag {
   colors: Array<string>;
   id: number;
@@ -12,9 +14,11 @@ export class TaskDrag {
   startTimer: number;
   selector: string;
   answerBlock: () => void;
-  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons) {
+  currentLesson: string;
+
+  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Task, currentLesson: string) {
     this.id = id;
-    this.colors = [Colors.WARNING, Colors.DARK, Colors.DANGER, Colors.SUCCESS];
+    this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
     this.description = description;
     this.price = price;
@@ -23,6 +27,7 @@ export class TaskDrag {
     this.startTimer = 60;
     this.answerBlock = answerBlock;
     this.selector = selector;
+    this.currentLesson = currentLesson;
   }
 
   generatorButtons(arr: Array<string>) {
@@ -43,7 +48,7 @@ export class TaskDrag {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-<div class="card-body">
+<div class="card-body bg-dark">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
     <button class="btn btn-primary init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
@@ -106,6 +111,7 @@ export class TaskDrag {
   </div>
 </div>
 `;
+
     const root = getSafeElement(document.querySelector(`${this.selector}`));
     root.append(initLesson);
     root.append(taskBlock);
@@ -176,6 +182,7 @@ export class TaskDrag {
     submit.addEventListener('click', this.submitTask);
 
     const area = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`));
+
     area.addEventListener('dragover', () => {
       area.style.border = 'none';
     });
@@ -191,8 +198,10 @@ export class TaskDrag {
       if (currentElement.textContent === '0') {
         document.querySelector(`[data-task-drag-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-drag-btn-timer="${this.id}"]`) as HTMLButtonElement;
-        if (currentButton) currentButton.disabled = false;
-        currentButton.innerText = 'Check answer';
+        if (currentButton) {
+          currentButton.disabled = false;
+          currentButton.textContent = 'Check answer';
+        }
         clearInterval(intervalID);
       }
     }, 1000);
@@ -211,7 +220,7 @@ export class TaskDrag {
     });
     result = result.replace(/[\s\n\r]+/g, '');
     const answer = this.answer.replace(/[\s\n\r]+/g, '');
-    answer === result ? this.changeBorderByAnswer(true) : this.changeBorderByAnswer(false);
+    answer === result ? this.submit(true) : this.submit(false);
   };
 
   resetBorderArea() {
@@ -221,6 +230,11 @@ export class TaskDrag {
 
   changeBorderByAnswer(result: boolean) {
     const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
-    result ? (taskArea.style.border = '3px solid green') : (taskArea.style.border = '3px solid red');
+    taskArea.style.border = `3px solid ${result ? 'green' : 'red'}`;
+  }
+
+  submit(result: boolean) {
+    this.changeBorderByAnswer(result);
+    result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }
