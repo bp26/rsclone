@@ -1,3 +1,4 @@
+import { quizController } from './../pages/quiz/base/quiz.controller';
 import { Sprite } from '../ui/sprite/sprite';
 import { userController } from './../pages/user/base/user.controller';
 import { lessonsController } from './../pages/lessons/base/lessons.controller';
@@ -40,6 +41,10 @@ class Controller {
 
   public initRoadmapPage(): void {
     //
+  }
+
+  public initQuizPage(): void {
+    quizController.init();
   }
 
   public initModals(): void {

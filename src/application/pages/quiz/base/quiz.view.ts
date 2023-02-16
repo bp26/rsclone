@@ -59,18 +59,17 @@ class QuizView {
     const html = document.createElement('div');
     html.innerHTML = `<h2 class="text-center mt-4">Quiz</h2>
 
-<div class="quiz-task d-flex gap-5 justify-content-between flex-wrap">
+<div class="quiz-task d-flex gap-5 justify-content-center flex-wrap">
 
     <button class="btn btn-secondary quiz-init">Start Quiz</button>
 </div>
 `;
     this.root.append(html);
     const initButton = document.querySelector('.quiz-init');
-    initButton?.addEventListener('click', () => {
-      initButton.remove();
-      tasks.forEach((el) => {
-        new QuizTask(el).render();
-      });
+    initButton?.addEventListener('click', (e) => {
+      const target = e.target as HTMLButtonElement;
+      target.style.display = 'none';
+      new QuizTask(tasks).init();
     });
   }
 }
