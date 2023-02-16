@@ -1,7 +1,7 @@
 import { getSafeElement, queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
-import { EmitterEventName, HTMLTag, Lang, Theme } from '../../../types/enums';
+import { EmitterEventName, HTMLTag, Theme } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { IUser } from '../../../types/interfaces';
 import { headerController } from './header.controller';
@@ -37,13 +37,6 @@ class HeaderView {
               <div class='header__dropmenu dropdown-menu'>
                 <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='Dark'>Dark</a>
                 <a class='header__dropitem dropdown-item' data-value='Light'>Light</a>
-              </div>
-            </div>
-            <div class='header__lang header__dropdown dropdown'>
-              <a class='header__navlink header__dropbtn nav-link dropdown-toggle' data-bs-toggle='dropdown'>Language</a>
-              <div class='header__dropmenu dropdown-menu'>
-                <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='English'>English</a>
-                <a class='header__dropitem dropdown-item' data-value='Russian'>Russian</a>
               </div>
             </div>
           </div>
@@ -82,22 +75,6 @@ class HeaderView {
     lessonsLink.classList.remove('disabled');
   }
 
-  private switchLang(lang: Lang) {
-    const en = queryHTMLElement(`.header__lang [data-value="${Lang.EN}"]`);
-    const ru = queryHTMLElement(`.header__lang [data-value="${Lang.RU}"]`);
-
-    switch (lang) {
-      case Lang.EN:
-        en.classList.add('header__dropitem_chosen');
-        ru.classList.remove('header__dropitem_chosen');
-        break;
-      case Lang.RU:
-        en.classList.remove('header__dropitem_chosen');
-        ru.classList.add('header__dropitem_chosen');
-        break;
-    }
-  }
-
   private switchTheme(theme: Theme) {
     const dark = queryHTMLElement(`.header__theme [data-value="${Theme.DARK}"]`);
     const light = queryHTMLElement(`.header__theme [data-value="${Theme.LIGHT}"]`);
@@ -116,24 +93,9 @@ class HeaderView {
 
   private bind() {
     const sign = queryHTMLElement('.header__sign');
-    const lang = queryHTMLElement('.header__lang');
     const theme = queryHTMLElement('.header__theme');
 
     sign.onclick = () => authController.showModal();
-
-    lang.onclick = (e) => {
-      const target = getSafeElement(e.target);
-      if (target.classList.contains('header__dropitem')) {
-        switch (target.dataset.value) {
-          case Lang.EN:
-            headerController.setLang(Lang.EN);
-            break;
-          case Lang.RU:
-            headerController.setLang(Lang.RU);
-            break;
-        }
-      }
-    };
 
     theme.onclick = (e) => {
       const target = getSafeElement(e.target);
@@ -157,7 +119,6 @@ class HeaderView {
 
   private subscribe() {
     emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.renderSignedAuth.bind(this));
-    emitter.on(EmitterEventName.GLOBAL_LANGUAGE, this.switchLang.bind(this));
     emitter.on(EmitterEventName.GLOBAL_THEME, this.switchTheme.bind(this));
   }
 }
