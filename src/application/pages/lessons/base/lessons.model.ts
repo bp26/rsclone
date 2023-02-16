@@ -2,30 +2,12 @@ import { model } from './../../../base/model';
 import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { LessonAvalailability, Lessons } from '../../../types/interfaces';
+import { lessonsState } from '../modules/lessons/lessonsState';
 
 class LessonsModel {
   private updated = false;
 
-  private lessons: Lessons = {
-    '1': {
-      coins: 0,
-      tasks: ['Working with variables 1', 'Drag1'],
-      isSolved: false,
-      isOpen: true,
-    },
-    '2': {
-      coins: 0,
-      tasks: ['Boolean1', 'Boolean2', 'Boolean3'],
-      isSolved: false,
-      isOpen: false,
-    },
-    '3': {
-      coins: 0,
-      tasks: ['Working with variables 2', 'Drag2', 'Drag3'],
-      isSolved: false,
-      isOpen: false,
-    },
-  };
+  private lessons: Lessons = lessonsState;
 
   public init(): LessonAvalailability[] {
     if (!this.updated && model.user) {
@@ -55,7 +37,7 @@ class LessonsModel {
       lesson.tasks.splice(index, 1);
       lesson.coins += Number(price);
 
-      if (lesson.tasks.length === 0) {
+      if (!lesson.tasks.length) {
         lesson.isSolved = true;
 
         if (this.lessons[Number(currentLesson) + 1]) {

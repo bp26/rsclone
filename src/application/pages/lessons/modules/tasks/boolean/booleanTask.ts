@@ -111,7 +111,7 @@ export class TaskBoolean {
 
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`));
-    textarea.style.border = result ? '3px solid green' : '3px solid red';
+    textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
   }
 
   submit(result: boolean) {

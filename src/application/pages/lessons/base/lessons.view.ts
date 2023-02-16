@@ -88,7 +88,9 @@ class LessonsView {
   renderWriteTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
       lessonsWrite.forEach((el) => {
-        el.id === elem ? new TaskWrite(lessonsWrite[el.id - 1], currentLesson).render() : '';
+        if (el.id === elem) {
+          new TaskWrite(lessonsWrite[el.id - 1], currentLesson).render();
+        }
       });
     });
   }
@@ -96,7 +98,9 @@ class LessonsView {
   renderDragTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
       lessonsDrag.forEach((el) => {
-        el.id === elem ? new TaskDrag(lessonsDrag[el.id - 1], currentLesson).render() : '';
+        if (el.id === elem) {
+          new TaskDrag(lessonsDrag[el.id - 1], currentLesson).render();
+        }
       });
     });
   }
@@ -104,7 +108,9 @@ class LessonsView {
   renderBooleanTasks(array: number[], currentLesson: string) {
     array.forEach((elem) => {
       lessonsBoolean.forEach((el) => {
-        el.id === elem ? new TaskBoolean(lessonsBoolean[el.id - 1], currentLesson).render() : '';
+        if (el.id === elem) {
+          new TaskBoolean(lessonsBoolean[el.id - 1], currentLesson).render();
+        }
       });
     });
   }

@@ -199,7 +199,7 @@ export class TaskWrite {
 
   changeBorderByAnswer(result: boolean) {
     const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-    result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
+    textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
   }
 
   submit(result: boolean) {

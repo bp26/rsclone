@@ -230,7 +230,7 @@ export class TaskDrag {
 
   changeBorderByAnswer(result: boolean) {
     const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
-    result ? (taskArea.style.border = '3px solid green') : (taskArea.style.border = '3px solid red');
+    taskArea.style.border = `3px solid ${result ? 'green' : 'red'}`;
   }
 
   submit(result: boolean) {
