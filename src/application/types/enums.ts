@@ -117,6 +117,10 @@ export const enum ColorRect {
   GIT = 'brown',
   WEB_SECURITY = 'red',
   PACKAGES = 'green',
+  FIRST_STATE_RECT = '#436aa3',
+  STATE_HOVER_RECT = '#4187ee',
+  FIRST_STATE_TEXT = '#bcbec1',
+  STATE_HOVER_TEXT = '#cfe7a1',
 }
 
 export enum Colors {

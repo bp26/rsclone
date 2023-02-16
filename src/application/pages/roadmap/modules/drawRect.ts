@@ -1,4 +1,5 @@
 import fabric from 'fabric';
+import { ColorRect } from '../../../types/enums';
 import { roadController } from '../base/road.controller';
 
 export class DrawRectContent {
@@ -7,12 +8,12 @@ export class DrawRectContent {
   mainGroup: fabric.fabric.Group;
   constructor(parent: fabric.fabric.Canvas, left: number, top: number, textContent: string, color = '#000') {
     this.mainRect = new fabric.fabric.Rect({
-      fill: '#436aa3',
+      fill: ColorRect.FIRST_STATE_RECT,
       width: 200,
       height: 50,
       originX: 'center',
       originY: 'center',
-      shadow: 'rgba(0,0,0,0.8) 0px 8px 22px',
+      shadow: '#333333 0px 8px 22px',
       strokeWidth: 2,
       stroke: color,
       rx: 10,
@@ -23,7 +24,7 @@ export class DrawRectContent {
       fontWeight: 600,
       originX: 'center',
       originY: 'center',
-      fill: '#bcbec1',
+      fill: ColorRect.FIRST_STATE_TEXT,
     });
 
     this.mainGroup = new fabric.fabric.Group([this.mainRect, this.mainContentRect], {
@@ -38,14 +39,14 @@ export class DrawRectContent {
     });
 
     const hoverRect = new fabric.fabric.Rect({
-      fill: '#4187ee',
+      fill: ColorRect.STATE_HOVER_RECT,
       width: 200,
       scaleX: 1.2,
       scaleY: 1.2,
       height: 50,
       originX: 'center',
       originY: 'center',
-      shadow: 'rgba(0,0,0,0.8) 0px 12px 22px',
+      shadow: '#333333 0px 12px 22px',
       strokeWidth: 2,
       stroke: color,
       rx: 10,
@@ -56,7 +57,7 @@ export class DrawRectContent {
       fontWeight: 600,
       originX: 'center',
       originY: 'center',
-      fill: '#cfe7a1',
+      fill: ColorRect.STATE_HOVER_TEXT,
     });
 
     const hoverGroup = new fabric.fabric.Group([hoverRect, hoverContentRec], {
