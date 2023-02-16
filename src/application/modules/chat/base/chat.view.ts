@@ -1,4 +1,4 @@
-import { chatCloud } from '../ui/chatCloud';
+import { chatCloud } from '../../../utils/constants/icons/chatCloud';
 import { queryHTMLElement, queryHTMLTextAreaElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { HTMLTag } from '../../../types/enums';

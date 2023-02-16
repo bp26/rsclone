@@ -1,0 +1,21 @@
+.show-tutorial-block {
+  position: relative;
+  z-index: 150;
+  box-shadow: 0 0 5px 2px white;
+  border-radius: 5px;
+  animation: flash 1s ease infinite;
+}
+
+@keyframes flash {
+  0% {
+    box-shadow: 0 0 5px 2px white;
+  }
+
+  50% {
+    box-shadow: 0 0 10px 5px white;
+  }
+
+  100% {
+    box-shadow: 0 0 5px 2px white;
+  }
+}

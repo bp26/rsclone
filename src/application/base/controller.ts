@@ -7,6 +7,7 @@ import { homeController } from '../pages/home/base/home.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
+import { lessonModal } from '../pages/lessons/modules/lessonsModal/lessonsModal';
 import { chatController } from '../modules/chat/base/chat.controller';
 
 class Controller {
@@ -16,7 +17,7 @@ class Controller {
     await chatController.init();
     headerController.init();
     footerController.init();
-    authController.init();
+    this.initModals();
     new Sprite();
 
     await model.init();
@@ -41,6 +42,11 @@ class Controller {
 
   public initRoadmapPage(): void {
     //
+  }
+
+  public initModals(): void {
+    authController.init();
+    lessonModal.init();
   }
 }
 

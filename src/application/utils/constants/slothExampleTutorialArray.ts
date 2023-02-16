@@ -1,18 +1,18 @@
 export const exampleTutorial = [
   {
     selector: '',
-    text: 'HELLO MY NEW FRIEND!! Nice to meet you. My name is Rush. I will help you for get fundamentals knowladge about JavaScript.',
+    text: 'HELLO MY NEW FRIEND!! Nice to meet you. My name is Rush. I will help you get the fundamental knowledge about JavaScript.',
   },
   {
     selector: '.lessons-block',
-    text: 'тут уроки короче',
+    text: 'Here are the lessons!',
   },
   {
     selector: '.header__nav',
-    text: 'тут навигация',
+    text: 'Here is the navigation!',
   },
   {
     selector: '.header__auth',
-    text: 'тут авторизация',
+    text: 'Here is the authentification!',
   },
 ];
