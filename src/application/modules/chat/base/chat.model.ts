@@ -3,6 +3,7 @@ import { chatApi } from '../api/chat.api';
 import { EmitterEventName } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { model } from '../../../base/model';
+import { chatAudio } from '../audio/chat.audio';
 
 class ChatModel {
   private isOpen = false;
@@ -38,6 +39,7 @@ class ChatModel {
     if (!this.isOpen) {
       this.notifications++;
       emitter.emit(EmitterEventName.CHAT_NOTIFICATIONS_SET, this.notifications);
+      chatAudio.play();
     }
   }
 

@@ -5,3 +5,5 @@ declare module '*.webp' {
 declare module '*.json' {
   export const content: string;
 }
+
+declare module '*.wav';
