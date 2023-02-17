@@ -54,3 +54,11 @@ export interface LessonAvalailability {
 export interface Lessons {
   [key: string]: Lesson;
 }
+
+export interface RoadData {
+  name: string;
+  p1: string;
+  p2: string;
+  name_links: string[];
+  links: string[];
+}
