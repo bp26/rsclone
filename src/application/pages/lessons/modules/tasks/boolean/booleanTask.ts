@@ -1,4 +1,5 @@
-import { Lessons } from '../../../../../types/interfaces';
+import { lessonsController } from './../../../base/lessons.controller';
+import { Task } from '../../../../../types/interfaces';
 import { getSafeElement } from '../../../../../utils/helpers';
 import { Colors } from '../../../../../types/enums';
 
@@ -13,9 +14,11 @@ export class TaskBoolean {
   startTimer: number;
   selector: string;
   answerBlock: () => void;
-  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Lessons) {
+  currentLesson: string;
+
+  constructor({ id, title, description, price, buttonsArray, answer, answerBlock, selector }: Task, currentLesson: string) {
     this.id = id;
-    this.colors = [Colors.WARNING, Colors.DARK, Colors.DANGER, Colors.SUCCESS];
+    this.colors = [Colors.WARNING, Colors.DANGER, Colors.SUCCESS];
     this.title = title;
     this.description = description;
     this.price = price;
@@ -24,6 +27,7 @@ export class TaskBoolean {
     this.startTimer = 10;
     this.answerBlock = answerBlock;
     this.selector = selector;
+    this.currentLesson = currentLesson;
   }
 
   generatorButtons(arr: Array<string>) {
@@ -44,7 +48,7 @@ export class TaskBoolean {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
     initLesson.innerHTML = `
-<div class="card-body">
+<div class="card-body bg-dark">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
     <button class="btn btn-primary init-boolean-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-boolean-${this.id}" aria-expended="false" aria-controls="task-boolean-${this.id}">Show task</button>
@@ -91,22 +95,27 @@ export class TaskBoolean {
         if (typeof this.answer === 'string') {
           this.answer = '' + this.answer;
         }
-        target.textContent === this.answer ? this.changeBorderByAnswer(true) : this.changeBorderByAnswer(false);
+        target.textContent === this.answer ? this.submit(true) : this.submit(false);
       });
     });
   }
 
   toggleInitButton = (element: Element) => {
-    element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
+    element.textContent = element.textContent === 'Show task' ? 'Hidden task' : 'Show task';
   };
 
   resetBorderTextarea() {
-    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
+    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`));
     textarea.style.borderColor = 'black';
   }
 
   changeBorderByAnswer(result: boolean) {
-    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-    result ? (textarea.style.border = '3px solid green') : (textarea.style.border = '3px solid red');
+    const textarea = getSafeElement(document.querySelector(`[data-task-boolean-textarea="${this.id}"]`));
+    textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
+  }
+
+  submit(result: boolean) {
+    this.changeBorderByAnswer(result);
+    result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }
