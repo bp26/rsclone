@@ -3,13 +3,13 @@ import { chatView } from './chat.view';
 
 class ChatController {
   public async init() {
-    const messages = await chatModel.loadMessages();
+    const messages = await chatModel.init();
     chatView.render(messages);
   }
 
-  public send(message: string) {
-    if (message) {
-      console.log(message);
+  public send(content: string) {
+    if (content) {
+      chatModel.sendMessage(content);
     }
   }
 }

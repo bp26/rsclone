@@ -9,3 +9,12 @@
   right: 3rem;
   z-index: 50;
 }
+
+.chat__window {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat__message {
+  overflow-wrap: break-word;
+}

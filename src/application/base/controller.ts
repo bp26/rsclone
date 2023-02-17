@@ -14,13 +14,13 @@ class Controller {
   public async init() {
     preloader.init();
 
-    await chatController.init();
     headerController.init();
     footerController.init();
     this.initModals();
+    await chatController.init();
     new Sprite();
 
-    await model.init();
+    await model.authentificate();
     preloader.hide();
   }
 

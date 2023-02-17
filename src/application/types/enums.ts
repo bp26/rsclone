@@ -22,7 +22,6 @@ export const enum EmitterEventName {
   GLOBAL_USER_LOAD_SUCCESS = 'GLOBAL_USER_LOAD_SUCCESS',
   GLOBAL_USER_LOAD_ERROR = 'GLOBAL_USER_LOAD_ERROR',
   GLOBAL_USER_UPDATE_LESSONS = 'GLOBAL_USER_UPDATE_LESSONS',
-  GLOBAL_LANGUAGE = 'GLOBAL_LANGUAGE',
   GLOBAL_THEME = 'GLOBAL_THEME',
 
   AUTH_SWITCH = 'AUTH_SWITCH',
@@ -31,6 +30,9 @@ export const enum EmitterEventName {
   AUTH_LOGOUT = 'AUTH_LOGOUT',
 
   LESSONS_SOLVED = 'LESSONS_SOLVED',
+
+  CHAT_RECEIVED_MESSAGE = 'CHAT_RECEIVED_MESSAGE',
+  CHAT_RECEIVED_CONNECTION = 'CHAT_RECEIVED_CONNECTION',
 }
 
 export const enum StatusCode {
@@ -78,12 +80,12 @@ export enum Colors {
   SUCCESS = 'success',
 }
 
-export const enum Lang {
-  EN = 'English',
-  RU = 'Russian',
-}
-
 export const enum Theme {
   DARK = 'Dark',
   LIGHT = 'Light',
+}
+
+export const enum MessageType {
+  CONNECTION = 'CONNECTION',
+  MESSAGE = 'MESSAGE',
 }
