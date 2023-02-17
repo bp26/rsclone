@@ -75,3 +75,11 @@ export interface IMessageData {
   type: MessageType;
   data: IMessage;
 }
+
+export interface RoadData {
+  name: string;
+  p1: string;
+  p2: string;
+  name_links: string[];
+  links: string[];
+}

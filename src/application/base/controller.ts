@@ -4,6 +4,7 @@ import { lessonsController } from './../pages/lessons/base/lessons.controller';
 import { headerController } from '../modules/header/base/header.controller';
 import { footerController } from '../modules/footer/base/footer.controller';
 import { homeController } from '../pages/home/base/home.controller';
+import { roadController } from '../pages/roadmap/base/road.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
@@ -41,7 +42,7 @@ class Controller {
   }
 
   public initRoadmapPage(): void {
-    //
+    roadController.init();
   }
 
   public initModals(): void {
