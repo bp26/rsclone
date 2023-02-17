@@ -28,13 +28,14 @@ class ChatApi {
   }
 
   public sendMessage(data: Omit<IMessage, 'time'>): void {
-    if (this.socket) {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.socket.send(
         JSON.stringify({
           type: MessageType.MESSAGE,
           data,
         })
       );
+      emitter.emit(EmitterEventName.CHAT_SENT_MESSAGE);
     }
   }
 

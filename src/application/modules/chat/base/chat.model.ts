@@ -31,7 +31,6 @@ class ChatModel {
         user: model.user.login,
         content,
       });
-    emitter.emit(EmitterEventName.CHAT_SENT_MESSAGE);
   }
 
   public handleReceivedMessage(message: IMessage): void {
