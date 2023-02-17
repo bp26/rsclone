@@ -5,6 +5,8 @@ import { emitter } from '../../../utils/emitter';
 import { model } from '../../../base/model';
 
 class ChatModel {
+  private isOpen = false;
+  private notifications = 0;
   private messages: IMessage[] = [];
 
   public async init(): Promise<IMessage[]> {
@@ -28,14 +30,31 @@ class ChatModel {
         user: model.user.login,
         content,
       });
+    emitter.emit(EmitterEventName.CHAT_SENT_MESSAGE);
   }
 
   public handleReceivedMessage(message: IMessage): void {
     emitter.emit(EmitterEventName.CHAT_RECEIVED_MESSAGE, message);
+    if (!this.isOpen) {
+      this.notifications++;
+      emitter.emit(EmitterEventName.CHAT_NOTIFICATIONS_SET, this.notifications);
+    }
   }
 
   public handleReceivedConnection(notification: INotification): void {
     emitter.emit(EmitterEventName.CHAT_RECEIVED_CONNECTION, notification);
+  }
+
+  public toggleOffcanvasState(setOpen: boolean): void {
+    switch (setOpen) {
+      case true:
+        this.notifications = 0;
+        break;
+      case false:
+        emitter.emit(EmitterEventName.CHAT_NOTIFICATIONS_RESET);
+        break;
+    }
+    this.isOpen = setOpen;
   }
 }
 

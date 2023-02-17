@@ -11,6 +11,7 @@ class HeaderView {
 
   constructor() {
     this.root = queryHTMLElement('.header__root');
+    this.subscribe();
   }
 
   public render(): void {
@@ -48,7 +49,6 @@ class HeaderView {
     `;
 
     this.bind();
-    this.subscribe();
   }
 
   private renderSignedAuth(user: IUser) {

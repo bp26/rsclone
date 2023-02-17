@@ -1,8 +1,8 @@
-export const chatCloud = (color: string): string => `<svg
+export const chatCloud = `<svg
   width="50"
   height="50"
   viewBox="0 0 100 100"
-  fill="${color}"
+  fill=""
   xmlns="http://www.w3.org/2000/svg"
 >
   <path

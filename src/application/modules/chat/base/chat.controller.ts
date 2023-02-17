@@ -7,10 +7,16 @@ class ChatController {
     chatView.render(messages);
   }
 
-  public send(content: string) {
+  public send(content: string): void {
     if (content) {
       chatModel.sendMessage(content);
+    } else {
+      chatView.toggleTextareaError(true);
     }
+  }
+
+  public toggleOffcanvas(setOpen: boolean): void {
+    chatModel.toggleOffcanvasState(setOpen);
   }
 }
 

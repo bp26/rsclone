@@ -1,5 +1,5 @@
-export const BASE_URL = 'http://localhost:3000';
-export const WEBSOCKET_URL = 'ws://localhost:3000';
+export const BASE_URL = 'https://bp26-rsclone-backend.onrender.com';
+export const WEBSOCKET_URL = 'wss://bp26-rsclone-backend.onrender.com';
 export const WEBSOCKET_TIMEOUT = 5000;
 export const AUTH_ROUTE = 'auth';
 export const USER_ROUTE = 'user';

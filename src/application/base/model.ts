@@ -26,6 +26,7 @@ class Model {
   public async loadUser(): Promise<void> {
     try {
       this.user = await api.getUser();
+      this.isAuthenticated = true;
       emitter.emit(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.user);
     } catch (error) {
       emitter.emit(EmitterEventName.GLOBAL_USER_LOAD_ERROR);
