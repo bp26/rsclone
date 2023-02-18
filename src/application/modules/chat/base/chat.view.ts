@@ -18,7 +18,7 @@ class ChatView {
       <button class='chat__open bg-transparent border-0 position-fixed'>${chatCloud}
         <span class="chat__badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger invisible">0</span>
       </button>
-      <div class="chat__container offcanvas offcanvas-end text-light" tabindex="-1" data-bs-scroll="true" data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="chat__container offcanvas offcanvas-end text-light" tabindex="-1" data-bs-scroll="false" data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="chat__header offcanvas-header bg-secondary d-flex flex-column align-items-center">
           <div class="w-100 d-flex justify-content-end">
             <button class="chat__close btn-close btn-close-white text-reset"></button>
