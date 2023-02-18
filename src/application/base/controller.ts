@@ -9,17 +9,19 @@ import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
 import { lessonModal } from '../pages/lessons/modules/lessonsModal/lessonsModal';
+import { chatController } from '../modules/chat/base/chat.controller';
 
 class Controller {
   public async init() {
     preloader.init();
+    await model.authentificate();
 
     headerController.init();
     footerController.init();
     this.initModals();
+    await chatController.init();
     new Sprite();
 
-    await model.init();
     preloader.hide();
   }
 

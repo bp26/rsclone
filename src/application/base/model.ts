@@ -1,19 +1,18 @@
 import { IUser } from '../types/interfaces';
 import { api } from '../api/api';
 import { emitter } from '../utils/emitter';
-import { EmitterEventName, Lang, Theme } from '../types/enums';
+import { EmitterEventName, Theme } from '../types/enums';
 
 class Model {
   public isAuthenticated = false;
   public user?: IUser;
-  public lang: Lang = Lang.EN;
   public theme: Theme = Theme.DARK;
 
   constructor() {
     this.subscribe();
   }
 
-  public async init(): Promise<void> {
+  public async authentificate(): Promise<void> {
     try {
       this.isAuthenticated = await api.checkVerification();
       if (this.isAuthenticated) {
@@ -27,6 +26,7 @@ class Model {
   public async loadUser(): Promise<void> {
     try {
       this.user = await api.getUser();
+      this.isAuthenticated = true;
       emitter.emit(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.user);
     } catch (error) {
       emitter.emit(EmitterEventName.GLOBAL_USER_LOAD_ERROR);
@@ -50,11 +50,6 @@ class Model {
     }
     await this.updateUser();
     emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS);
-  }
-
-  public setLang(lang: Lang) {
-    this.lang = lang;
-    emitter.emit(EmitterEventName.GLOBAL_LANGUAGE, this.lang);
   }
 
   public setTheme(theme: Theme) {

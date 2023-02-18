@@ -6,7 +6,6 @@ import { TaskWrite } from './../modules/tasks/write/writeTask';
 import { getSafeElement } from './../../../utils/helpers';
 import { leftAndRight } from '../../../utils/constants/icons/letftAndRightArrows';
 import { lessonsBlock } from './../modules/lessonsBlock';
-import { chat } from '../modules/chat';
 import { queryHTMLElement } from '../../../utils/helpers';
 import sloth from '../modules/sloth/sloth';
 import { Collapse } from 'bootstrap';
@@ -47,7 +46,6 @@ class LessonsView {
       </div>
     </div>
   </div>
-  <div class="container">${chat.render()}</div>
 </div>
 `;
 
