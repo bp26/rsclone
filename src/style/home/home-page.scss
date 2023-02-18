@@ -21,6 +21,10 @@
     font-size: 22px;
     line-height: 33.17px;
   }
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 24.17px;
+  }
 }
 
 .home-title {
@@ -32,5 +36,9 @@
   font-family: 'Montserrat-bold';
   @media (max-width: 1150px) {
     font-size: 28px;
+    line-height: 28px;
+  }
+  @media (max-width: 480px) {
+    font-size: 20px;
   }
 }
