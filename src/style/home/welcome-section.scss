@@ -3,6 +3,13 @@
   justify-content: space-around;
   align-items: center;
   padding: 46px 12px 10px 12px;
+  @media (max-width: 1150px) {
+    justify-content: space-between;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
 }
 
 .start-content {
@@ -12,6 +19,9 @@
   gap: 47px;
   max-width: 600px;
   width: 100%;
+  @media (max-width: 1150px) {
+    gap: 20px;
+  }
 }
 
 .start-button {
@@ -33,6 +43,12 @@
     transition: all 0.3s ease;
     background-color: $hover-background-btn-base;
   }
+
+  @media (max-width: 1150px) {
+    width: 180px;
+    height: 50px;
+    font-size: 18px;
+  }
 }
 
 .sloth-start {
@@ -40,4 +56,8 @@
   height: 350px;
   @include background-image;
   background-image: url('../../assets/image/png/sloth-start.png');
+  @media (max-width: 1150px) {
+    width: 250px;
+    height: 250px;
+  }
 }
