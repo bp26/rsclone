@@ -1,22 +1,22 @@
 .home__lern {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 112px 0;
+  justify-content: space-around;
+  padding: 10px 12px;
 }
 
 .lern-content {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  max-width: 950px;
+  gap: 40px;
+  max-width: 600px;
   width: 100%;
   text-align: center;
 }
 
 .sloth-lern {
-  width: 680px;
-  height: 360px;
+  width: 440px;
+  height: 230px;
   @include background-image;
   background-image: url('../../assets/image/png/sloth-online.png');
 }

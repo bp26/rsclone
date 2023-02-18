@@ -1,14 +1,13 @@
 .home__traine {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 102px;
-  padding-bottom: 155px;
+  justify-content: space-around;
+  padding: 50px 12px;
 }
 
 .sloth-traine {
-  width: 480px;
-  height: 480px;
+  width: 350px;
+  height: 350px;
   @include background-image;
   background-image: url('../../assets/image/png/sloth-traine.png');
 }
@@ -16,8 +15,8 @@
 .traine-content {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  max-width: 970px;
+  gap: 40px;
+  max-width: 600px;
   width: 100%;
   text-align: center;
 }
