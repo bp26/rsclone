@@ -5,6 +5,7 @@ import { EmitterEventName, HTMLTag, Theme } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { IUser } from '../../../types/interfaces';
 import { headerController } from './header.controller';
+import router from '../../../router/router';
 
 class HeaderView {
   private root: HTMLElement;
@@ -49,18 +50,19 @@ class HeaderView {
     `;
 
     this.bind();
+    router.hungRouteListeners('routing');
   }
 
   private renderSignedAuth(user: IUser) {
     const headerAuth = queryHTMLElement('.header__auth');
     headerAuth.innerHTML = `
       <div class='header__profile'>
-        <a class='header__profile-iconlink routing' href='/profile'>
+        <a class='header__profile-iconlink routing-signed' href='/profile'>
           <svg height="50px" width="50px">
             <use href="#user"></use>
           </svg>
         </a>
-        <a class ='header__profile-textlink nav-link routing' href='/profile'>Profile</a>
+        <a class ='header__profile-textlink nav-link routing-signed' href='/profile'>Profile</a>
       </div>
       <span class='header__welcome'>${user.login}</span>
       <a class='header__logout header__button nav-link'>Logout</a>
@@ -68,6 +70,7 @@ class HeaderView {
 
     this.bindSigned();
     this.enableLessonsLink();
+    router.hungRouteListeners('routing-signed');
   }
 
   private enableLessonsLink() {
