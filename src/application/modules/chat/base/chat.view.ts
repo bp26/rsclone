@@ -142,12 +142,12 @@ class ChatView {
 
     open.onclick = () => {
       this.show();
-      chatController.toggleOffcanvas(true);
+      chatController.toggleChat(true);
     };
 
     close.onclick = () => {
       this.hide();
-      chatController.toggleOffcanvas(false);
+      chatController.toggleChat(false);
       this.toggleTextareaError(false);
     };
 
@@ -161,7 +161,7 @@ class ChatView {
   }
 
   private subscribe(): void {
-    emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, () => this.toggleControls(true));
+    emitter.on(EmitterEventName.CHAT_NOTIFIED, () => this.toggleControls(true));
     emitter.on(EmitterEventName.CHAT_SENT_MESSAGE, () => {
       this.toggleControls(false);
       this.toggleSpinner(true);

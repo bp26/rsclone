@@ -19,4 +19,5 @@ export type EmitterEvents = {
   CHAT_NOTIFICATIONS_SET: (notifications: number) => void;
   CHAT_NOTIFICATIONS_RESET: () => void;
   CHAT_SENT_MESSAGE: () => void;
+  CHAT_NOTIFIED: () => void;
 };

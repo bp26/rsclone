@@ -3,8 +3,9 @@ import { chatView } from './chat.view';
 
 class ChatController {
   public async init() {
-    const messages = await chatModel.init();
+    const messages = await chatModel.loadMessages();
     chatView.render(messages);
+    chatModel.initWebsocket();
   }
 
   public send(content: string): void {
@@ -15,8 +16,8 @@ class ChatController {
     }
   }
 
-  public toggleOffcanvas(setOpen: boolean): void {
-    chatModel.toggleOffcanvasState(setOpen);
+  public toggleChat(setOpen: boolean): void {
+    chatModel.toggleChatState(setOpen);
   }
 }
 

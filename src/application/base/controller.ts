@@ -14,6 +14,7 @@ import { chatController } from '../modules/chat/base/chat.controller';
 class Controller {
   public async init() {
     preloader.init();
+    await model.authentificate();
 
     headerController.init();
     footerController.init();
@@ -21,7 +22,6 @@ class Controller {
     await chatController.init();
     new Sprite();
 
-    await model.authentificate();
     preloader.hide();
   }
 

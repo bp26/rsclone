@@ -5,6 +5,10 @@ import { Theme } from '../../../types/enums';
 class HeaderController {
   public init(): void {
     headerView.render();
+
+    if (model.isAuthenticated && model.user) {
+      headerView.renderSignedAuth(model.user);
+    }
   }
 
   public setTheme(theme: Theme): void {

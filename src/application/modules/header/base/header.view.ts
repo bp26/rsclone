@@ -53,7 +53,7 @@ class HeaderView {
     router.hungRouteListeners('routing');
   }
 
-  private renderSignedAuth(user: IUser) {
+  public renderSignedAuth(user: IUser) {
     const headerAuth = queryHTMLElement('.header__auth');
     headerAuth.innerHTML = `
       <div class='header__profile'>

@@ -9,6 +9,7 @@ import { emitter } from '../../../utils/emitter';
 
 class ChatApi {
   private socket?: WebSocket;
+  private notified = false;
 
   constructor() {
     this.subscribe();
@@ -24,6 +25,7 @@ class ChatApi {
     socket.onmessage = (e) => this.handleReceivedData(JSON.parse(e.data));
     socket.onerror = () => socket.close();
     socket.onclose = () => setTimeout(() => this.initWebsocket.call(this), WEBSOCKET_TIMEOUT);
+    socket.onopen = () => chatModel.notifyServerOnConnection();
     this.socket = socket;
   }
 
@@ -51,8 +53,8 @@ class ChatApi {
     }
   }
 
-  private notifyServerOnConnection(user: IUser): void {
-    if (this.socket) {
+  public notifyServerOnConnection(user: IUser): void {
+    if (this.socket && !this.notified) {
       this.socket.send(
         JSON.stringify({
           type: MessageType.CONNECTION,
@@ -61,6 +63,8 @@ class ChatApi {
           },
         })
       );
+      this.notified = true;
+      emitter.emit(EmitterEventName.CHAT_NOTIFIED);
     }
   }
 

@@ -10,12 +10,11 @@ class ChatModel {
   private notifications = 0;
   private messages: IMessage[] = [];
 
-  public async init(): Promise<IMessage[]> {
+  public async initWebsocket(): Promise<void> {
     chatApi.initWebsocket();
-    return await this.loadMessages();
   }
 
-  private async loadMessages(): Promise<IMessage[]> {
+  public async loadMessages(): Promise<IMessage[]> {
     try {
       this.messages = await chatApi.getMessages();
       return this.messages;
@@ -46,7 +45,7 @@ class ChatModel {
     emitter.emit(EmitterEventName.CHAT_RECEIVED_CONNECTION, notification);
   }
 
-  public toggleOffcanvasState(setOpen: boolean): void {
+  public toggleChatState(setOpen: boolean): void {
     switch (setOpen) {
       case true:
         this.notifications = 0;
@@ -56,6 +55,12 @@ class ChatModel {
         break;
     }
     this.isOpen = setOpen;
+  }
+
+  public notifyServerOnConnection(): void {
+    if (model.isAuthenticated && model.user) {
+      chatApi.notifyServerOnConnection(model.user);
+    }
   }
 }
 
