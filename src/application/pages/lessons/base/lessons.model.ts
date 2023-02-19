@@ -44,7 +44,7 @@ class LessonsModel {
           this.lessons[Number(currentLesson) + 1].isOpen = true;
         }
 
-        emitter.emit(EmitterEventName.LESSONS_SOLVED);
+        emitter.emit(EmitterEventName.LESSONS_SOLVED, lesson.coins);
         model.updateUserOnSolvedLesson(lesson.coins, currentLesson);
       }
     }

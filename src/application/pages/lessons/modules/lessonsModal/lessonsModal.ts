@@ -21,7 +21,7 @@ class LessonModal {
           <div class='lessons-modal__main'>
             <div class='lessons-modal__body modal-body d-flex flex-column justify-content-center align-items-center'>
               <h2 class='lessons-modal__title modal-title'>Congratulations!</h2>
-              <p class='lessons-modal'>You have succesfully completed this lesson!</p>
+              <p class='lessons-modal'>You have succesfully completed this lesson! You got <span class='lessons-modal__coins'>0</span> coins!</p>
               <button class='lessons-modal__confirm btn btn-primary'>Confirm</button>
             </div>
           </div>
@@ -60,6 +60,11 @@ class LessonModal {
     document.body.classList.remove('pe-none');
   }
 
+  private setCoinsCount(coins: number) {
+    const coinsCount = queryHTMLElement('.lessons-modal__coins');
+    coinsCount.textContent = `${coins}`;
+  }
+
   private bind(): void {
     const confirm = queryHTMLElement('.lessons-modal__confirm');
     confirm.onclick = () => {
@@ -69,7 +74,10 @@ class LessonModal {
   }
 
   private subscribe(): void {
-    emitter.on(EmitterEventName.LESSONS_SOLVED, this.showModal.bind(this));
+    emitter.on(EmitterEventName.LESSONS_SOLVED, (coins: number) => {
+      this.setCoinsCount(coins);
+      this.showModal();
+    });
     emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS, this.hidePreloader.bind(this));
   }
 }
