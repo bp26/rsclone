@@ -1,4 +1,4 @@
-import { MessageType } from './enums';
+import { AuthErrorMessage, MessageType } from './enums';
 
 export interface IUser {
   login: string;
@@ -82,4 +82,16 @@ export interface RoadData {
   p2: string;
   name_links: string[];
   links: string[];
+}
+
+export interface IValidation {
+  isValid: boolean;
+  message: AuthErrorMessage;
+}
+
+export interface IFormatedUser {
+  login: string;
+  coins: number;
+  rank: number;
+  progress: number;
 }

@@ -72,6 +72,9 @@ export const enum AuthErrorMessage {
   NO_PASSWORD = 'Please enter your password',
   SHORT_LOGIN = 'Login should be at least 3 characters long',
   SHORT_PASSWORD = 'Password should be at least 6 characters long',
+  LONG_LOGIN = 'Login should be no longer than 15 characters',
+  LONG_PASSWORD = 'Password should be no longer than 20 characters',
+  VALID = 'VALID',
 }
 
 export const enum Storage {

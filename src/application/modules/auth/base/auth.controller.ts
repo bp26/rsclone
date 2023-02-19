@@ -1,5 +1,5 @@
-import { AuthErrorMessage, AuthErrorType } from '../../../types/enums';
-import { LOGIN_LENGTH, PASSWORD_LENGTH } from '../../../utils/constants/constants';
+import { AuthErrorType } from '../../../types/enums';
+import { validateLogin, validatePassword } from '../../../utils/validation';
 import { authModel } from './auth.model';
 import { authView } from './auth.view';
 
@@ -15,23 +15,16 @@ class AuthController {
   public submit(login: string, password: string): void {
     let isValidated = true;
 
-    if (!login || !password) {
+    const loginValidation = validateLogin(login);
+    if (!loginValidation.isValid) {
       isValidated = false;
-    }
-    if (login.length < LOGIN_LENGTH || password.length < PASSWORD_LENGTH) {
-      isValidated = false;
+      authView.showError(AuthErrorType.LOGIN, loginValidation.message);
     }
 
-    if (!login) {
-      authView.showError(AuthErrorType.LOGIN, AuthErrorMessage.NO_LOGIN);
-    } else if (login.length < LOGIN_LENGTH) {
-      authView.showError(AuthErrorType.LOGIN, AuthErrorMessage.SHORT_LOGIN);
-    }
-
-    if (!password) {
-      authView.showError(AuthErrorType.PASSWORD, AuthErrorMessage.NO_PASSWORD);
-    } else if (password.length < PASSWORD_LENGTH) {
-      authView.showError(AuthErrorType.PASSWORD, AuthErrorMessage.SHORT_PASSWORD);
+    const passwordValidation = validatePassword(password);
+    if (!passwordValidation.isValid) {
+      isValidated = false;
+      authView.showError(AuthErrorType.PASSWORD, passwordValidation.message);
     }
 
     if (isValidated) {
