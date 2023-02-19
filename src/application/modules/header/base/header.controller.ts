@@ -1,14 +1,14 @@
 import { headerView } from './header.view';
 import { model } from '../../../base/model';
-import { Lang, Theme } from '../../../types/enums';
+import { Theme } from '../../../types/enums';
 
 class HeaderController {
   public init(): void {
     headerView.render();
-  }
 
-  public setLang(lang: Lang): void {
-    model.setLang(lang);
+    if (model.isAuthenticated && model.user) {
+      headerView.renderSignedAuth(model.user);
+    }
   }
 
   public setTheme(theme: Theme): void {

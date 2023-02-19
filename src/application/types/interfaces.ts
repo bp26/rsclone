@@ -1,6 +1,7 @@
+import { MessageType } from './enums';
+
 export interface IUser {
   login: string;
-  password: string;
   coins: number;
   lessons: string[];
 }
@@ -53,4 +54,32 @@ export interface LessonAvalailability {
 
 export interface Lessons {
   [key: string]: Lesson;
+}
+
+export interface IMessage {
+  user: string;
+  content: string;
+  time: string;
+}
+
+export interface INotification {
+  user: string;
+}
+
+export interface INotificationData {
+  type: MessageType;
+  data: INotification;
+}
+
+export interface IMessageData {
+  type: MessageType;
+  data: IMessage;
+}
+
+export interface RoadData {
+  name: string;
+  p1: string;
+  p2: string;
+  name_links: string[];
+  links: string[];
 }

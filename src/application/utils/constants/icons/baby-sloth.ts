@@ -1,3 +1,4 @@
+export const BABY_SLOTH = `
 <svg width="245" height="239" viewBox="0 0 245 239" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_3_173)">
 <mask id="mask0_3_173" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="245" height="239">
@@ -81,3 +82,4 @@
 </clipPath>
 </defs>
 </svg>
+`;

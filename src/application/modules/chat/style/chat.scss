@@ -1,0 +1,43 @@
+.chat {
+  height: 100%;
+}
+
+.chat__open {
+  height: 50px;
+  width: 50px;
+  bottom: 100px;
+  right: 3rem;
+  z-index: 50;
+}
+
+.chat__open > svg {
+  fill: $color-base;
+}
+
+.chat__window {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+
+    background-color: $color-base;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $chat-window-scroll-thumb;
+    border-radius: 10px;
+  }
+}
+
+.chat__message {
+  overflow-wrap: break-word;
+}
+
+.chat__textarea_invalid {
+  border-color: red;
+}

@@ -9,5 +9,7 @@
     "lib": ["ES2021", "dom"]
   },
   "include": ["./src/"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "files": ["./custom.d.ts"],
+  "typeRoots": ["./custom.d.ts"]
 }

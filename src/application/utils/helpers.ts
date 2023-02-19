@@ -27,3 +27,11 @@ export const queryHTMLInputElement = (query: string, parent: HTMLElement | Docum
   }
   return element;
 };
+
+export const queryHTMLTextAreaElement = (query: string, parent: HTMLElement | Document = document): HTMLTextAreaElement => {
+  const element = parent.querySelector(query);
+  if (!(element instanceof HTMLTextAreaElement)) {
+    throw new Error(`${query} is not an instance of HTMLInputElement`);
+  }
+  return element;
+};

@@ -5,21 +5,24 @@ import { lessonsController } from './../pages/lessons/base/lessons.controller';
 import { headerController } from '../modules/header/base/header.controller';
 import { footerController } from '../modules/footer/base/footer.controller';
 import { homeController } from '../pages/home/base/home.controller';
+import { roadController } from '../pages/roadmap/base/road.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
 import { lessonModal } from '../pages/lessons/modules/lessonsModal/lessonsModal';
+import { chatController } from '../modules/chat/base/chat.controller';
 
 class Controller {
   public async init() {
     preloader.init();
+    await model.authentificate();
 
     headerController.init();
     footerController.init();
     this.initModals();
+    await chatController.init();
     new Sprite();
 
-    await model.init();
     preloader.hide();
   }
 
@@ -40,7 +43,7 @@ class Controller {
   }
 
   public initRoadmapPage(): void {
-    //
+    roadController.init();
   }
 
   public initQuizPage(): void {
