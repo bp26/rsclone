@@ -45,7 +45,7 @@ class LessonsModel {
         }
 
         emitter.emit(EmitterEventName.LESSONS_SOLVED);
-        model.updateUserOnSolvedLesson(Number(price), currentLesson);
+        model.updateUserOnSolvedLesson(lesson.coins, currentLesson);
       }
     }
   }
