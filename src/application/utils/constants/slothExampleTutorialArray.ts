@@ -20,3 +20,10 @@ export const exampleTutorial = [
     text: 'Good luck!!!',
   },
 ];
+
+export const quizTutorial = [
+  {
+    selector: '',
+    text: 'HELLO MY NEW FRIEND!! Nice to meet you. My name is Rush. I will help you get the fundamental knowledge about JavaScript.',
+  },
+];
