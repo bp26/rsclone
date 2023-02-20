@@ -1,19 +1,21 @@
+import { validatePassword } from '../../../utils/validation';
 import { userModel } from './user.model';
 import { userView } from './user.view';
-import { model } from '../../../base/model';
 
 class UserController {
   public init(): void {
-    const user = model.user;
-    if (user) {
-      userView.render(user);
-    }
-
-    this.initChilden();
+    userView.render(userModel.init());
   }
 
-  private initChilden(): void {
-    //
+  public changePassword(password: string) {
+    const validation = validatePassword(password);
+    if (!validation.isValid) {
+      userView.showPasswordError(validation.message);
+    }
+  }
+
+  public changeChatSettings(color: string, notificationsOn: boolean) {
+    console.log(color, notificationsOn);
   }
 }
 
