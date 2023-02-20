@@ -1,4 +1,5 @@
 import { queryHTMLElement } from '../../../utils/helpers';
+import { homeController } from './home.controller';
 
 class HomeView {
   private root: HTMLElement;
@@ -15,7 +16,7 @@ class HomeView {
       <section class="home-start container-xxl">
         <div class="start-content">
           <h2 class="home-title">As long as dreamers keep dreaming, you will code and succeed!</h2>
-          <button class="start-button">
+          <button class="home-start-button">
             <span>Get started</span>
           </button>
         </div>
@@ -56,7 +57,14 @@ class HomeView {
         </div>
       </section>
     `;
+
     this.root.append(container);
+    this.bind();
+  }
+
+  private bind(): void {
+    const start = queryHTMLElement('.home-start-button');
+    start.onclick = () => homeController.start();
   }
 }
 
