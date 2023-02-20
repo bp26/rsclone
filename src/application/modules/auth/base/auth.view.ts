@@ -33,7 +33,7 @@ class AuthView {
                 </div>
                 <div class='auth__password form-group'>
                   <label for='authPassword' class='auth__label form-label'>Password</label>
-                  <input id='authPassword' class='auth__input form-control' type='text' minlength=6 required>
+                  <input id='authPassword' class='auth__input form-control' type='password' minlength=6 required>
                   <span class='auth__error invalid-feedback'></span>
                 </div>
                 <div class='form-group d-flex justify-content-center mt-3'>
