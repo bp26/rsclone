@@ -56,7 +56,7 @@ class LessonsModel {
       model.user.lessons.push(lesson);
     }
     await model.updateUser();
-    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS);
+    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE);
   }
 }
 
