@@ -45,9 +45,18 @@ class LessonsModel {
         }
 
         emitter.emit(EmitterEventName.LESSONS_SOLVED, lesson.coins);
-        model.updateUserOnSolvedLesson(lesson.coins, currentLesson);
+        this.updateUser(lesson.coins, currentLesson);
       }
     }
+  }
+
+  public async updateUser(coins: number, lesson: string) {
+    if (model.user) {
+      model.user.coins += coins;
+      model.user.lessons.push(lesson);
+    }
+    await model.updateUser();
+    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS);
   }
 }
 

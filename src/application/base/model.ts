@@ -36,20 +36,11 @@ class Model {
   public async updateUser() {
     try {
       if (this.user) {
-        await api.updateUser(this.user);
+        this.user = await api.updateUser(this.user);
       }
     } catch (error) {
       console.log(error);
     }
-  }
-
-  public async updateUserOnSolvedLesson(coins: number, lesson: string) {
-    if (this.user) {
-      this.user.coins += coins;
-      this.user.lessons.push(lesson);
-    }
-    await this.updateUser();
-    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS);
   }
 
   public setTheme(theme: Theme) {
