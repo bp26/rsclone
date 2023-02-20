@@ -1,22 +1,44 @@
 .home__check {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 98px 0 92px 0;
+  justify-content: space-around;
+  padding: 50px 12px 20px 12px;
+  @media (max-width: 1150px) {
+    justify-content: space-between;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  @media (max-width: 480px) {
+    padding-top: 20px;
+  }
 }
 
 .sloth-check {
-  width: 600px;
-  height: 460px;
+  width: 360px;
+  height: 280px;
   @include background-image;
+  margin-left: 100px;
   background-image: url('../../assets/image/png/sloth-check.png');
+  @media (max-width: 1150px) {
+    width: 260px;
+    height: 200px;
+    margin-left: 60px;
+  }
+  @media (max-width: 1000px) {
+    margin-left: 0px;
+  }
 }
 
 .check-content {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  max-width: 1030px;
+  gap: 40px;
+  max-width: 600px;
   width: 100%;
   text-align: center;
+  @media (max-width: 1150px) {
+    gap: 20px;
+  }
 }
