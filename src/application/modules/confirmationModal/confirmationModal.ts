@@ -5,7 +5,7 @@ import { emitter } from '../../utils/emitter';
 import { Modal } from 'bootstrap';
 import { lessonsController } from '../../pages/lessons/base/lessons.controller';
 
-class LessonModal {
+class ConfirmationModal {
   public init(): void {
     const modal = new Element(document.body, HTMLTag.DIV, 'confirmation-modal modal fade data-keyboard="false"');
     modal.node.id = 'confirmationModal';
@@ -106,4 +106,4 @@ class LessonModal {
   }
 }
 
-export const lessonModal = new LessonModal();
+export const lessonModal = new ConfirmationModal();
