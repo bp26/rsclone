@@ -1,52 +1,6 @@
 import { QuizTask } from './../modules/quizTask';
-import { queryHTMLElement } from './../../../utils/helpers';
-
-export interface IQuiz {
-  id: number;
-  description: string;
-  answerBlocks: Array<string | number>;
-  answer: string | number;
-}
-
-const tasks: IQuiz[] = [
-  {
-    id: 1,
-    description: "' ' + 1 + 0",
-    answerBlocks: [10, "'10'", 'NaN'],
-    answer: "'10'",
-  },
-  {
-    id: 2,
-    description: 'String (null)',
-    answerBlocks: [0, "'0'", 'string', "'null'"],
-    answer: "'null'",
-  },
-  {
-    id: 3,
-    description: "true + 'test'",
-    answerBlocks: ["'truetest'", 'Error', 'NaN', 'null'],
-    answer: "'truetest'",
-  },
-  {
-    id: 4,
-    description: "undefined + '123'",
-    answerBlocks: ['undefined', "'undefinded123'", 'NaN'],
-    answer: "'undefinded123'",
-  },
-  {
-    id: 5,
-    description: 'String (-12.3)',
-    answerBlocks: ['-12.3', 'NaN', "'-12.3'"],
-    answer: "'-12.3'",
-  },
-  {
-    id: 6,
-    description: "4 + 5 + 'px'",
-    answerBlocks: ['45px', "'9px'", 'NaN'],
-    answer: "'9px'",
-  },
-];
-
+import { getSafeElement, queryHTMLElement } from './../../../utils/helpers';
+import { tasks } from '../modules/quizTasks';
 class QuizView {
   private root: HTMLElement;
 
@@ -57,20 +11,51 @@ class QuizView {
   public render() {
     this.root.innerHTML = '';
     const html = document.createElement('div');
-    html.innerHTML = `<h2 class="text-center mt-4">Quiz</h2>
-
-<div class="quiz-task d-flex gap-5 justify-content-center flex-wrap">
-
-    <button class="btn btn-secondary quiz-init">Start Quiz</button>
+    html.className = 'h-100 quiz-main-block';
+    html.innerHTML = `
+<h2 class="text-center mt-4 quiz__title">Quiz</h2>
+<div class="quiz-task d-flex gap-5 justify-content-center">
+  <button class="btn btn-secondary quiz-init">Start Quiz</button>
 </div>
 `;
     this.root.append(html);
     const initButton = document.querySelector('.quiz-init');
     initButton?.addEventListener('click', (e) => {
-      const target = e.target as HTMLButtonElement;
-      target.style.display = 'none';
-      new QuizTask(tasks).init();
+      this.hideTitleAndButton();
+      this.changeQuizTaskClasses(true);
+      this.initQuiz();
     });
+  }
+  initQuiz() {
+    let count = 3;
+    const element = document.createElement('div');
+    element.className = 'h-100 w-100 d-flex fs-1 align-items-center justify-content-center  position-fixed top-0 start-0 bottom-0 end-0';
+    element.innerHTML = `<div class="text-center inline-block quiz-timer  timer show "> ${String(count)} </div>
+    `;
+    const root = document.querySelector('.quiz-main-block');
+    if (root) root.append(element);
+    const timerCount = getSafeElement(document.querySelector('.quiz-timer'));
+    const quizTimerID = setInterval(() => {
+      count--;
+      timerCount.textContent = String(count);
+      if (count < 1) {
+        clearInterval(quizTimerID);
+        element.remove();
+        new QuizTask(tasks, this.changeQuizTaskClasses).init();
+      }
+    }, 1000);
+  }
+
+  hideTitleAndButton() {
+    const initButton = getSafeElement(document.querySelector('.quiz-init'));
+    const title = getSafeElement(document.querySelector('.quiz__title'));
+    initButton.style.display = 'none';
+    title.style.display = 'none';
+  }
+
+  changeQuizTaskClasses(checked: boolean) {
+    const quizContainer = getSafeElement(document.querySelector('.quiz-main-block'));
+    quizContainer.className = checked ? 'h-100 quiz-main-block d-flex align-items-center justify-content-center' : 'h-100 quiz-main-block';
   }
 }
 

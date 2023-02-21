@@ -51,7 +51,7 @@ class LessonsView {
 `;
 
     this.root.append(html);
-    sloth.render(exampleTutorial);
+    // sloth.render(exampleTutorial);
 
     const lessonsButtons = document.querySelectorAll('.lessons-btn');
     lessonsButtons.forEach((el) => {

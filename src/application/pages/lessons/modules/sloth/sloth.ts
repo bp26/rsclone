@@ -15,6 +15,7 @@ class Sloth {
 
   render(data: Tutorial[]) {
     const html = document.createElement('div');
+    html.classList.add('sloth-block');
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
      <div>
@@ -24,14 +25,10 @@ class Sloth {
       ${heroIcon}
      </div>
     `;
-
-    document.body.append(html);
-    if (localStorage.getItem(Storage.TUTORIAL)) {
-      return;
-    } else {
-      this.showSloth();
-      this.initTutorial(data);
-    }
+    const checkElement = document.querySelector('.sloth-block');
+    if (!checkElement) document.body.append(html);
+    this.showSloth();
+    this.initTutorial(data);
   }
 
   initTutorial(data: Tutorial[]) {
@@ -89,19 +86,21 @@ class Sloth {
 
   startTutorialHandler = (data: Tutorial[]) => {
     const cover = getSafeElement(document.querySelector('.cover-tutorial'));
+    const sloth = getSafeElement(document.querySelector('.sloth-block'));
     this.changeCount();
     if (this.count < data.length) {
       this.hiddenPrev(data[this.count - 1].selector);
       this.showSlothTutorial(data[this.count]);
     } else {
+      this.audio.currentTime = 0;
       clearInterval(this.writerIntervalID);
-      localStorage.setItem(Storage.TUTORIAL, Storage.COMPLETE);
       this.hiddenPrev(data[this.count - 1].selector);
       this.hiddenSloth();
       cover.removeEventListener('click', () => {
         this.startTutorialHandler(data);
       });
       cover.remove();
+      sloth.remove();
     }
   };
 
@@ -113,6 +112,8 @@ class Sloth {
   }
 
   hiddenSloth = () => {
+    this.audio.pause();
+    this.audio.currentTime = 0;
     document.body.style.overflow = '';
     getSafeElement(document.querySelector('.my-modal')).classList.remove('show-modal');
     getSafeElement(document.querySelector('.sloth__text')).classList.remove('show-text');

@@ -1,4 +1,3 @@
-import { quizController } from './application/pages/quiz/base/quiz.controller';
 import { controller } from './application/base/controller';
 import './index.scss';
 import './assets/svg/RangBabe.svg';

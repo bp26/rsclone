@@ -9,6 +9,7 @@ $primary: #1b2b37;
 @import './style/layout/layout.scss';
 @import './style/home/home-page.scss';
 @import './style/roadmap/roadmap.scss';
+@import './style/quiz/quizInit.scss';
 @import './application/pages/lessons/modules/sloth/sloth.scss';
 @import './application/ui/preloader/preloader.scss';
 @import './application/modules/auth/style/auth.scss';
@@ -53,7 +54,7 @@ $primary: #1b2b37;
 
 .sloth__img {
   transition: all 0.5s;
-  left: -100%;
+  opacity: 0;
 }
 
 .sloth__img.show-img {

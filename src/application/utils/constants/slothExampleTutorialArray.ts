@@ -24,6 +24,27 @@ export const exampleTutorial = [
 export const quizTutorial = [
   {
     selector: '',
-    text: 'HELLO MY NEW FRIEND!! Nice to meet you. My name is Rush. I will help you get the fundamental knowledge about JavaScript.',
+    text: 'Welcome to our quiz simulator.',
+  },
+];
+
+export const quizErrorTime = [
+  {
+    selector: '',
+    text: 'Oh! Next time you do it faster.',
+  },
+];
+
+export const quizErrorAnswer = [
+  {
+    selector: '',
+    text: 'Oh! Next time you do it better.',
+  },
+];
+
+export const quizComplete = [
+  {
+    selector: '',
+    text: 'NICE!!!! Good job.',
   },
 ];
