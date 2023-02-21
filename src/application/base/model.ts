@@ -44,6 +44,17 @@ class Model {
     }
   }
 
+  public async updateUserAvatar(avatarData: FormData) {
+    try {
+      if (this.user) {
+        this.user = await api.updateUserAvatar(avatarData);
+        emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.user.avatar.secure_url);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   public setTheme(theme: Theme) {
     this.theme = theme;
     emitter.emit(EmitterEventName.GLOBAL_THEME, this.theme);
