@@ -32,6 +32,7 @@ class HeaderView {
             <a class='header__navlink nav-link routing' href='/documentation'>Documentation</a>
             <a class='header__navlink header__navlink_lessons nav-link routing disabled' href='/lessons'>Lessons</a>
             <a class='header__navlink nav-link routing' href='/roadmap'>RoadMap</a>
+            <a class='header__navlink nav-link routing' href='/quiz'>Quiz</a>
           </nav>
           <div class='header__settings navbar-nav'>
             <div class='header__theme header__dropdown dropdown'>

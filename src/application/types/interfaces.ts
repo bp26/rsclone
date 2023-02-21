@@ -83,3 +83,10 @@ export interface RoadData {
   name_links: string[];
   links: string[];
 }
+
+export interface Quiz {
+  id: number;
+  description: string;
+  answerBlocks: Array<string | number>;
+  answer: string | number;
+}

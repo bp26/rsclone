@@ -21,7 +21,7 @@ class LessonsBlock {
       buttons += this.generatorLessons(el, i + 1);
     });
     const html = `
-  <div class="position-absolute top-0 start-0 collapse collapse-horizontal show js-collapse" id="lessonsBlock" style="z-index:2;">
+  <div class="position-absolute top-0 start-0 collapse collapse-horizontal show js-collapse" id="lessonsBlock" style="z-index:1;">
     <div class="bg-secondary lessons-block card card-body" style="min-width:300px;">
       <div class="d-flex flex-column align-items-center">
             <p class="mt-5 text-center fw-bold">JavaScript Fundamental</p>
