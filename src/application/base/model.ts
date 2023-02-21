@@ -19,7 +19,7 @@ class Model {
         await this.loadUser();
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -40,7 +40,7 @@ class Model {
         emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -51,7 +51,7 @@ class Model {
         emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.user.avatar.secure_url);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

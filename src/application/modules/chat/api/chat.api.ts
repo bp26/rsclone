@@ -16,8 +16,8 @@ class ChatApi {
   }
 
   public async getMessages(): Promise<IMessage[]> {
-    const res = await axios.get(`${BASE_URL}/${CHAT_ROUTE}`);
-    return res.data;
+    const { data } = await axios.get(`${BASE_URL}/${CHAT_ROUTE}`);
+    return data;
   }
 
   public initWebsocket(): void {
