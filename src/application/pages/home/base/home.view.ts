@@ -12,7 +12,7 @@ class HomeView {
     const container = document.createElement('article');
     container.classList.add('home__container');
     container.innerHTML = `
-      <section class="home-start">
+      <section class="home-start container-xxl">
         <div class="start-content">
           <h2 class="home-title">As long as dreamers keep dreaming, you will code and succeed!</h2>
           <button class="start-button">
@@ -21,8 +21,8 @@ class HomeView {
         </div>
         <div class="sloth-start"></div>
       </section>
-      <section class="home__traine">
-        <div class="sloth-traine"></div>
+      <section class="home__traine container-xxl">
+        <div class="sloth-traine img-fluid"></div>
         <div class="traine-content">
           <h2 class="home-title">Training is 80% practical</h2>
           <p class="home-text">
@@ -32,7 +32,7 @@ class HomeView {
           </p>
         </div>
       </section>
-      <section class="home__lern">
+      <section class="home__lern container-xxl">
         <div class="lern-content">
           <h2 class="home-title">Learn JavaScript online anytime</h2>
           <p class="home-text home-text_traine">
@@ -43,7 +43,7 @@ class HomeView {
         </div>
         <div class="sloth-lern"></div>
       </section>
-      <section class="home__check">
+      <section class="home__check container-xxl">
         <div class="sloth-check"></div>
         <div class="check-content">
           <h2 class="home-title">Instant task check</h2>

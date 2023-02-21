@@ -14,16 +14,31 @@
 .home-text {
   color: $color-title-home-page;
   font-weight: 400;
-  font-size: 51px;
-  line-height: 62.17px;
+  font-size: 32px;
+  line-height: 50.17px;
   font-family: 'Montserrat-reg';
+  @media (max-width: 1150px) {
+    font-size: 22px;
+    line-height: 33.17px;
+  }
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 24.17px;
+  }
 }
 
 .home-title {
-  font-size: 64px;
-  line-height: 78px;
+  font-size: 38px;
+  line-height: 40px;
   font-weight: 600;
   color: $color-title-home-page;
   text-align: center;
   font-family: 'Montserrat-bold';
+  @media (max-width: 1150px) {
+    font-size: 28px;
+    line-height: 28px;
+  }
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 }
