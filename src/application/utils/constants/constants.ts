@@ -8,6 +8,7 @@ export const AUTH_LOGIN = 'login';
 export const AUTH_REGISTER = 'register';
 export const AUTH_LOGOUT = 'logout';
 export const AUTH_VERIFY = 'verify';
+export const USER_AVATAR = 'avatar';
 
 export const LOGIN_MIN_LENGTH = 3;
 export const LOGIN_MAX_LENGTH = 15;
