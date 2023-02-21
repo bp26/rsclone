@@ -26,6 +26,18 @@ export const quizTutorial = [
     selector: '',
     text: 'Welcome to our quiz simulator.',
   },
+  {
+    selector: '',
+    text: 'You will be given tasks for which a small amount of time is allotted.',
+  },
+  {
+    selector: '',
+    text: 'You can practice as much as you like.',
+  },
+  {
+    selector: '',
+    text: 'Good luck!!!',
+  },
 ];
 
 export const quizErrorTime = [

@@ -60,6 +60,7 @@ class Sloth {
       block.classList.add('show-tutorial-block');
     }
     const textBlock = getSafeElement(document.querySelector('.sloth__text'));
+    textBlock.style.opacity = '0';
     textBlock.textContent = text;
     textBlock.style.width = 'auto';
     const currentWidth = textBlock.getBoundingClientRect().width;
@@ -71,6 +72,7 @@ class Sloth {
       clearInterval(this.writerIntervalID);
     }
     element.style.width = width + 'px';
+    element.style.opacity = '1';
     let start = 1;
     this.audio.play();
     const stringLength = text.length;
