@@ -8,7 +8,7 @@ import { roadController } from '../pages/roadmap/base/road.controller';
 import { authController } from '../modules/auth/base/auth.controller';
 import { model } from './model';
 import { preloader } from '../ui/preloader/preloader';
-import { lessonModal } from '../pages/lessons/modules/lessonsModal/lessonsModal';
+import { confirmationModal } from '../modules/confirmationModal/confirmationModal';
 import { chatController } from '../modules/chat/base/chat.controller';
 
 class Controller {
@@ -47,7 +47,7 @@ class Controller {
 
   public initModals(): void {
     authController.init();
-    lessonModal.init();
+    confirmationModal.init();
   }
 }
 

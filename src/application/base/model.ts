@@ -37,6 +37,7 @@ class Model {
     try {
       if (this.user) {
         this.user = await api.updateUser(this.user);
+        emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE);
       }
     } catch (error) {
       console.log(error);

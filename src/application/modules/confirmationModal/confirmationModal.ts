@@ -106,4 +106,4 @@ class ConfirmationModal {
   }
 }
 
-export const lessonModal = new ConfirmationModal();
+export const confirmationModal = new ConfirmationModal();

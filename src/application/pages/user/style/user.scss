@@ -48,11 +48,11 @@
   width: 100%;
 
   @media (min-width: 450px) and (max-width: 767px) {
-    width: 330px;
+    width: 300px;
   }
 
   @media (min-width: 900px) {
-    width: 330px;
+    width: 300px;
   }
 }
 
@@ -60,6 +60,7 @@
   background: #14ff00;
 }
 
-.user__chat-settings {
+.user__chat-settings,
+.user__password-settings {
   border: 1px solid white;
 }

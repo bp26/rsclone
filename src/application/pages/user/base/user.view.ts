@@ -2,6 +2,7 @@ import { IFormatedUser } from '../../../types/interfaces';
 import { getSafeInputElement, queryHTMLElement, queryHTMLImageElement, queryHTMLInputElement } from '../../../utils/helpers';
 import { uploadSvg } from '../../../utils/constants/icons/upload';
 import { userController } from './user.controller';
+import { UserPasswordError } from '../../../types/enums';
 
 class UserView {
   private root: HTMLElement;
@@ -32,10 +33,16 @@ class UserView {
             <div>
               <form novalidate='true'>
                 <p>Change password:</p>
-                <div class='form-group d-flex align-items-start gap-3'>
-                  <div>
-                    <input class='user__password-input form-control' placeholder='New password' type='text' required>
-                    <span class='user__password-error invalid-feedback'></span>
+                <div class='user__password-settings d-flex align-items-center gap-3 p-3 rounded'>
+                  <div class='d-flex flex-column gap-3'>
+                    <div class='form-group'>
+                      <input class='user__password-input form-control' placeholder='New password' type='password' required>
+                      <span class='user__password-error invalid-feedback'></span>
+                    </div>
+                    <div class='form-group'>
+                      <input class='user__password-repeatinput form-control' placeholder='Repeat password' type='password' required>
+                      <span class='user__password-repeaterror invalid-feedback'></span>
+                    </div>
                   </div>
                   <button type='submit' class='user__password-submit btn btn-primary'>Submit</button>
                 </div>
@@ -46,12 +53,12 @@ class UserView {
                   <div class='d-flex flex-column gap-3 '>
                     <div class='form-group d-flex align-items-center gap-4'>
                       <span>User color:</span>
-                      <input class='user__color-input' type='color'>
+                      <input class='user__color-input' type='color' value=${user.chat.color} >
                     </div>
                     <div class='form-group d-flex align-items-center gap-3'>
                       <span>Notifications:</span>
                       <div class="form-check form-switch">
-                        <input class="user__notifications-switch form-check-input" type="checkbox">
+                        <input class="user__notifications-switch form-check-input" type="checkbox" ${user.chat.notifications ? 'checked' : ''}>
                       </div>
                     </div>
                   </div>
@@ -82,11 +89,11 @@ class UserView {
             <p>My progress</p>
           </div>
           <div class="col-6 p-0 text-end">
-            <p>${user.progress}%</p>
+            <p>${user.progress}</p>
           </div>
           <div class="row m-0">
             <div class="col-12 py-2 rounded-2 bg-light position-relative">
-              <div class="user__progress-bar py-2 position-absolute translate-middle-y rounded-2 start-0"></div>
+              <div class="user__progress-bar py-2 position-absolute translate-middle-y rounded-2 start-0" style="width: ${user.progress}"></div>
             </div>
           </div>
         </div>
@@ -94,31 +101,41 @@ class UserView {
 `;
 
     this.root.append(html);
-    this.setProgressWidth(user.progress);
     this.bind();
   }
 
-  private setProgressWidth(progressPercent: number) {
-    const progress = queryHTMLElement('.user__progress-bar');
-    progress.style.width = `${progressPercent}%`;
-  }
-
-  public showPasswordError(message: string) {
-    const input = queryHTMLElement('.user__password-input');
+  public showPasswordError(type: UserPasswordError, message: string) {
+    const input = queryHTMLInputElement('.user__password-input');
+    const repeatInput = queryHTMLInputElement('.user__password-repeatinput');
     const error = queryHTMLElement('.user__password-error');
+    const repeatError = queryHTMLElement('.user__password-repeaterror');
 
-    input.classList.add('is-invalid');
-    error.textContent = message;
+    switch (type) {
+      case UserPasswordError.NEW:
+        error.textContent = message;
+        input.classList.add('is-invalid');
+        break;
+      case UserPasswordError.REPEAT:
+        repeatError.textContent = message;
+        repeatInput.classList.add('is-invalid');
+        break;
+    }
   }
 
-  private clearPasswordError() {
-    const password = queryHTMLInputElement('.user__password-input');
-    password.classList.remove('is-invalid');
+  private clearPasswordErrors() {
+    const input = queryHTMLInputElement('.user__password-input');
+    const repeatInput = queryHTMLInputElement('.user__password-repeatinput');
+
+    input.classList.remove('is-invalid');
+    repeatInput.classList.remove('is-invalid');
   }
 
-  private clearPasswordInput() {
+  public clearPasswordInput() {
     const password = queryHTMLInputElement('.user__password-input');
+    const passwordRepeat = queryHTMLInputElement('.user__password-repeatinput');
+
     password.value = '';
+    passwordRepeat.value = '';
   }
 
   private bindUpload() {
@@ -129,9 +146,11 @@ class UserView {
     uploadButton.onclick = () => uploadInput.click();
     uploadInput.onchange = (e) => {
       const files = getSafeInputElement(e.target).files;
-      const filereader = new FileReader();
       if (files) {
-        filereader.readAsDataURL(files[0]);
+        const file = files[0];
+        userController.changeAvatar(file);
+        const filereader = new FileReader();
+        filereader.readAsDataURL(file);
         filereader.onloadend = () => {
           if (typeof filereader.result === 'string') {
             avatar.src = filereader.result;
@@ -143,17 +162,19 @@ class UserView {
 
   private bind() {
     const passwordInput = queryHTMLInputElement('.user__password-input');
+    const passwordRepeatInput = queryHTMLInputElement('.user__password-repeatinput');
     const passwordSubmit = queryHTMLElement('.user__password-submit');
-    const colorInput = queryHTMLInputElement('.user__color-input');
-    const notifications = queryHTMLInputElement('.user__notifications-switch');
-    const chatSubmit = queryHTMLElement('.user__chat-submit');
-
-    passwordInput.oninput = () => this.clearPasswordError();
 
     passwordSubmit.onclick = (e) => {
       e.preventDefault();
-      userController.changePassword(passwordInput.value);
+      userController.changePassword(passwordInput.value, passwordRepeatInput.value);
     };
+    passwordInput.oninput = () => this.clearPasswordErrors();
+    passwordRepeatInput.oninput = () => this.clearPasswordErrors();
+
+    const colorInput = queryHTMLInputElement('.user__color-input');
+    const notifications = queryHTMLInputElement('.user__notifications-switch');
+    const chatSubmit = queryHTMLElement('.user__chat-submit');
 
     chatSubmit.onclick = (e) => {
       e.preventDefault();

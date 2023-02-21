@@ -11,9 +11,10 @@ class Api {
   }
 
   public async updateUser(user: IUser): Promise<IUser> {
-    return await axios.put(`${BASE_URL}/${USER_ROUTE}`, user, {
+    const res = await axios.put(`${BASE_URL}/${USER_ROUTE}`, user, {
       withCredentials: true,
     });
+    return res.data;
   }
 
   public async checkVerification(): Promise<boolean> {
