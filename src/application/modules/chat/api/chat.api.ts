@@ -16,8 +16,8 @@ class ChatApi {
   }
 
   public async getMessages(): Promise<IMessage[]> {
-    const res = await axios.get(`${BASE_URL}/${CHAT_ROUTE}`);
-    return res.data;
+    const { data } = await axios.get(`${BASE_URL}/${CHAT_ROUTE}`);
+    return data;
   }
 
   public initWebsocket(): void {
@@ -29,7 +29,7 @@ class ChatApi {
     this.socket = socket;
   }
 
-  public sendMessage(data: Omit<IMessage, 'time'>): void {
+  public sendMessage(data: Omit<IMessage, 'time' | 'color'>): void {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.socket.send(
         JSON.stringify({
@@ -59,7 +59,7 @@ class ChatApi {
         JSON.stringify({
           type: MessageType.CONNECTION,
           data: {
-            user: user.login,
+            user: user._id,
           },
         })
       );

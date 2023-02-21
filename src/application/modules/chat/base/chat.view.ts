@@ -64,7 +64,7 @@ class ChatView {
     const chatMessage = new Element(chatWindow, HTMLTag.DIV, 'chat__message');
     chatMessage.node.innerHTML = `
       <p class="p-0 mb-0">
-        <span class="text-danger">${message.user}:</span>
+        <span style="color: ${message.color};">${message.user}:</span>
       ${message.content}
       </p>
       <p class="text-end fs-6">${message.time}</p>`;
@@ -73,7 +73,7 @@ class ChatView {
   private renderConnectionNotification(notification: INotification): void {
     const chatWindow = queryHTMLElement('.chat__window');
     const chatNotification = new Element(chatWindow, HTMLTag.DIV, 'chat__notification');
-    chatNotification.node.innerHTML = `<p class="p-0 my-3"> <span class="text-success">${notification.user}</span> has joined!</p>`;
+    chatNotification.node.innerHTML = `<p class="p-0 my-3"> <span style="color: ${notification.color};">${notification.user}</span> has joined!</p>`;
   }
 
   private toggleControls(setOn: boolean): void {

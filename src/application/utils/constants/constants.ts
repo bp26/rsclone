@@ -8,5 +8,11 @@ export const AUTH_LOGIN = 'login';
 export const AUTH_REGISTER = 'register';
 export const AUTH_LOGOUT = 'logout';
 export const AUTH_VERIFY = 'verify';
-export const LOGIN_LENGTH = 3;
-export const PASSWORD_LENGTH = 6;
+export const USER_AVATAR = 'avatar';
+
+export const LOGIN_MIN_LENGTH = 3;
+export const LOGIN_MAX_LENGTH = 15;
+export const PASSWORD_MIN_LENGTH = 6;
+export const PASSWORD_MAX_LENGTH = 20;
+
+export const LESSONS_COUNT = 3;

@@ -35,3 +35,11 @@ export const queryHTMLTextAreaElement = (query: string, parent: HTMLElement | Do
   }
   return element;
 };
+
+export const queryHTMLImageElement = (query: string, parent: HTMLElement | Document = document): HTMLImageElement => {
+  const element = parent.querySelector(query);
+  if (!(element instanceof HTMLImageElement)) {
+    throw new Error(`${query} is not an instance of HTMLImageElement`);
+  }
+  return element;
+};

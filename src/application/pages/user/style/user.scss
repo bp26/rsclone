@@ -1,0 +1,66 @@
+.user__upper-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 0 50px 0;
+
+  @media (min-width: 500px) {
+    padding: 50px;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.user__data {
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.user__settings {
+  align-items: center;
+
+  @media (min-width: 768px) {
+    align-items: flex-end;
+  }
+}
+
+.user__image {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+}
+
+.user__upload-button > svg {
+  &:hover {
+    fill: antiquewhite;
+  }
+}
+
+.user__password-input,
+.user__password-error {
+  width: 100%;
+
+  @media (min-width: 450px) and (max-width: 767px) {
+    width: 300px;
+  }
+
+  @media (min-width: 900px) {
+    width: 300px;
+  }
+}
+
+.user__progress-bar {
+  background: #14ff00;
+}
+
+.user__chat-settings,
+.user__password-settings {
+  border: 1px solid white;
+}

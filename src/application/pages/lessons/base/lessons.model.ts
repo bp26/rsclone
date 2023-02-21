@@ -44,10 +44,19 @@ class LessonsModel {
           this.lessons[Number(currentLesson) + 1].isOpen = true;
         }
 
-        emitter.emit(EmitterEventName.LESSONS_SOLVED);
-        model.updateUserOnSolvedLesson(Number(price), currentLesson);
+        emitter.emit(EmitterEventName.LESSONS_SOLVED, lesson.coins);
+        this.updateUser(lesson.coins, currentLesson);
       }
     }
+  }
+
+  public async updateUser(coins: number, lesson: string) {
+    if (model.user) {
+      model.user.coins += coins;
+      model.user.lessons.push(lesson);
+    }
+    await model.updateUser();
+    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE);
   }
 }
 

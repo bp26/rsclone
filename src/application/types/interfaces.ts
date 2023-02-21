@@ -1,9 +1,23 @@
-import { MessageType } from './enums';
+import { AuthErrorMessage, MessageType } from './enums';
 
 export interface IUser {
+  _id: string;
   login: string;
+  password: string;
   coins: number;
   lessons: string[];
+  chat: IChatSettings;
+  avatar: IAvatar;
+}
+
+interface IAvatar {
+  secure_url: string;
+  public_id: string;
+}
+
+interface IChatSettings {
+  color: string;
+  notifications: boolean;
 }
 
 export interface Tutorial {
@@ -58,12 +72,14 @@ export interface Lessons {
 
 export interface IMessage {
   user: string;
+  color: string;
   content: string;
   time: string;
 }
 
 export interface INotification {
   user: string;
+  color: string;
 }
 
 export interface INotificationData {
@@ -89,4 +105,18 @@ export interface Quiz {
   description: string;
   answerBlocks: Array<string | number>;
   answer: string | number;
+}
+
+export interface IValidation {
+  isValid: boolean;
+  message: AuthErrorMessage;
+}
+
+export interface IFormatedUser {
+  login: string;
+  avatar: string;
+  coins: number;
+  rank: number;
+  progress: string;
+  chat: IChatSettings;
 }

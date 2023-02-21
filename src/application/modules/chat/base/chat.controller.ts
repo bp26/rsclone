@@ -3,6 +3,7 @@ import { chatView } from './chat.view';
 
 class ChatController {
   public async init() {
+    chatModel.initSettings();
     const messages = await chatModel.loadMessages();
     chatView.render(messages);
     chatModel.initWebsocket();

@@ -24,7 +24,8 @@ export const enum HTMLTag {
 export const enum EmitterEventName {
   GLOBAL_USER_LOAD_SUCCESS = 'GLOBAL_USER_LOAD_SUCCESS',
   GLOBAL_USER_LOAD_ERROR = 'GLOBAL_USER_LOAD_ERROR',
-  GLOBAL_USER_UPDATE_LESSONS = 'GLOBAL_USER_UPDATE_LESSONS',
+  GLOBAL_USER_UPDATE = 'GLOBAL_USER_UPDATE',
+  GLOBAL_USER_UPDATE_AVATAR = 'GLOBAL_USER_UPDATE_AVATAR',
   GLOBAL_THEME = 'GLOBAL_THEME',
 
   AUTH_SWITCH = 'AUTH_SWITCH',
@@ -40,6 +41,8 @@ export const enum EmitterEventName {
   CHAT_NOTIFICATIONS_RESET = 'CHAT_NOTIFICATIONS_RESET',
   CHAT_SENT_MESSAGE = 'CHAT_SENT_MESSAGE',
   CHAT_NOTIFIED = 'CHAT_NOTIFIED',
+
+  USER_SETTINGS = 'USER_SETTINGS',
 }
 
 export const enum StatusCode {
@@ -72,6 +75,9 @@ export const enum AuthErrorMessage {
   NO_PASSWORD = 'Please enter your password',
   SHORT_LOGIN = 'Login should be at least 3 characters long',
   SHORT_PASSWORD = 'Password should be at least 6 characters long',
+  LONG_LOGIN = 'Login should be no longer than 15 characters',
+  LONG_PASSWORD = 'Password should be no longer than 20 characters',
+  VALID = 'VALID',
 }
 
 export const enum Storage {
@@ -148,4 +154,14 @@ export const enum Theme {
 export const enum MessageType {
   CONNECTION = 'CONNECTION',
   MESSAGE = 'MESSAGE',
+}
+
+export const enum UserPasswordError {
+  NEW = 'NEW',
+  REPEAT = 'REPEAT',
+}
+
+export const enum ConfirmationModalType {
+  LESSONS = 'LESSONS',
+  USER = 'USER',
 }

@@ -28,11 +28,11 @@ class HeaderView {
         </button>
         <div class='header__collapse collapse navbar-collapse justify-content-between align-items-center' id='navbarCollapse'>
           <nav class='header__nav navbar-nav'>
-            <a class='header__navlink nav-link routing' href='/'>Home</a>
-            <a class='header__navlink nav-link routing' href='/documentation'>Documentation</a>
-            <a class='header__navlink header__navlink_lessons nav-link routing disabled' href='/lessons'>Lessons</a>
-            <a class='header__navlink nav-link routing' href='/roadmap'>RoadMap</a>
-            <a class='header__navlink nav-link routing' href='/quiz'>Quiz</a>
+            <a class='header__navlink nav-link routing' href='/' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Home</a>
+            <a class='header__navlink nav-link routing' href='/documentation' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Documentation</a>
+            <a class='header__navlink header__navlink_lessons nav-link routing disabled' href='/lessons' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Lessons</a>
+            <a class='header__navlink nav-link routing' href='/roadmap' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">RoadMap</a>
+            <a class='header__navlink nav-link routing' href='/quiz' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Quiz</a>
           </nav>
           <div class='header__settings navbar-nav'>
             <div class='header__theme header__dropdown dropdown'>
@@ -58,12 +58,12 @@ class HeaderView {
     const headerAuth = queryHTMLElement('.header__auth');
     headerAuth.innerHTML = `
       <div class='header__profile'>
-        <a class='header__profile-iconlink routing-signed' href='/profile'>
+        <a class='header__profile-iconlink routing-signed' href='/profile' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
           <svg height="50px" width="50px">
             <use href="#user"></use>
           </svg>
         </a>
-        <a class ='header__profile-textlink nav-link routing-signed' href='/profile'>Profile</a>
+        <a class ='header__profile-textlink nav-link routing-signed' href='/profile' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Profile</a>
       </div>
       <span class='header__welcome'>${user.login}</span>
       <a class='header__logout header__button nav-link'>Logout</a>

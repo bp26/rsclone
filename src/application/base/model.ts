@@ -19,7 +19,7 @@ class Model {
         await this.loadUser();
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -36,20 +36,23 @@ class Model {
   public async updateUser() {
     try {
       if (this.user) {
-        await api.updateUser(this.user);
+        this.user = await api.updateUser(this.user);
+        emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
-  public async updateUserOnSolvedLesson(coins: number, lesson: string) {
-    if (this.user) {
-      this.user.coins += coins;
-      this.user.lessons.push(lesson);
+  public async updateUserAvatar(avatarData: FormData) {
+    try {
+      if (this.user) {
+        this.user = await api.updateUserAvatar(avatarData);
+        emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.user.avatar.secure_url);
+      }
+    } catch (error) {
+      console.error(error);
     }
-    await this.updateUser();
-    emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_LESSONS);
   }
 
   public setTheme(theme: Theme) {

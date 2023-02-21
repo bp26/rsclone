@@ -9,10 +9,11 @@ export type EmitterEvents = {
 
   GLOBAL_USER_LOAD_SUCCESS: (user: IUser) => void;
   GLOBAL_USER_LOAD_ERROR: () => void;
-  GLOBAL_USER_UPDATE_LESSONS: () => void;
+  GLOBAL_USER_UPDATE: () => void;
+  GLOBAL_USER_UPDATE_AVATAR: (link: string) => void;
   GLOBAL_THEME: (theme: Theme) => void;
 
-  LESSONS_SOLVED: () => void;
+  LESSONS_SOLVED: (coins: number) => void;
 
   CHAT_RECEIVED_MESSAGE: (message: IMessage) => void;
   CHAT_RECEIVED_CONNECTION: (notification: INotification) => void;
@@ -20,4 +21,6 @@ export type EmitterEvents = {
   CHAT_NOTIFICATIONS_RESET: () => void;
   CHAT_SENT_MESSAGE: () => void;
   CHAT_NOTIFIED: () => void;
+
+  USER_SETTINGS: () => void;
 };
