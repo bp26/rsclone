@@ -43,7 +43,7 @@ class LessonModal {
     const root = queryHTMLElement('.confirmation-modal__main');
     root.innerHTML = `
       <div class='confirmation-modal__body modal-body d-flex flex-column justify-content-center align-items-center'>
-      <p class='confirmation-modal__text'>User setting updated!</p>
+      <p class='confirmation-modal__text'>User settings updated!</p>
         <button class='confirmation-modal__confirm btn btn-primary'>Confirm</button>
       </div>
     `;
