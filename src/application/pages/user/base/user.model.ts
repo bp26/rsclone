@@ -13,6 +13,7 @@ class UserModel {
 
     return {
       login: model.user.login,
+      avatar: model.user.avatar.secure_url,
       coins: model.user.coins,
       rank: model.user.lessons.length,
       progress: `${Math.floor((model.user.lessons.length / LESSONS_COUNT) * 100)}%`,
@@ -27,7 +28,7 @@ class UserModel {
     await this.updateSettings();
   }
 
-  public async changeChatSettings(color: string, notificationsOn: boolean) {
+  public async changeChatSettings(color: string, notificationsOn: boolean): Promise<void> {
     chatModel.setNotifications(notificationsOn);
     if (model.user) {
       model.user.chat = {
@@ -36,6 +37,13 @@ class UserModel {
       };
     }
     await this.updateSettings();
+  }
+
+  public async changeAvatar(avatar: File): Promise<void> {
+    const formData = new FormData();
+    formData.append('avatar', avatar);
+    emitter.emit(EmitterEventName.USER_SETTINGS);
+    await model.updateUserAvatar(formData);
   }
 
   private async updateSettings() {

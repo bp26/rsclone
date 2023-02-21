@@ -8,9 +8,11 @@ class UserController {
     userView.render(userModel.init());
   }
 
-  public changeAvatar(image: File) {}
+  public changeAvatar(avatar: File): void {
+    userModel.changeAvatar(avatar);
+  }
 
-  public changePassword(password: string, repeatPassword: string) {
+  public changePassword(password: string, repeatPassword: string): void {
     let isValid = true;
 
     const validation = validatePassword(password);
@@ -28,7 +30,7 @@ class UserController {
     }
   }
 
-  public changeChatSettings(color: string, notificationsOn: boolean) {
+  public changeChatSettings(color: string, notificationsOn: boolean): void {
     userModel.changeChatSettings(color, notificationsOn);
   }
 }

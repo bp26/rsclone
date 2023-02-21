@@ -10,6 +10,7 @@ export type EmitterEvents = {
   GLOBAL_USER_LOAD_SUCCESS: (user: IUser) => void;
   GLOBAL_USER_LOAD_ERROR: () => void;
   GLOBAL_USER_UPDATE: () => void;
+  GLOBAL_USER_UPDATE_AVATAR: (link: string) => void;
   GLOBAL_THEME: (theme: Theme) => void;
 
   LESSONS_SOLVED: (coins: number) => void;

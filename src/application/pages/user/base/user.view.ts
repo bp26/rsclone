@@ -2,7 +2,8 @@ import { IFormatedUser } from '../../../types/interfaces';
 import { getSafeInputElement, queryHTMLElement, queryHTMLImageElement, queryHTMLInputElement } from '../../../utils/helpers';
 import { uploadSvg } from '../../../utils/constants/icons/upload';
 import { userController } from './user.controller';
-import { UserPasswordError } from '../../../types/enums';
+import { EmitterEventName, UserPasswordError } from '../../../types/enums';
+import { emitter } from '../../../utils/emitter';
 
 class UserView {
   private root: HTMLElement;
@@ -20,10 +21,10 @@ class UserView {
           <div class="user__data col-md-6 col-12">
             <div class="d-flex align-items-center flex-column gap-3">
               <div class="position-relative">
-                <img class="user__image d-block" style="min-width:30%; min-height:200px;" src="./images/Profile.svg" alt="profile" />
+                <img class="user__image d-block" style="min-width:30%; min-height:200px;"  src=${user.avatar ? user.avatar : './images/Profile.svg'} alt="profile" />
                 <span class="user__upload-button position-absolute top-0 start-100 translate-middle badge rounded-pill">${uploadSvg}</span>
                 <form class="d-none" method="post" enctype="multipart/form-data">
-                  <input class="user__upload-input" type="file" accept="image/*">
+                  <input class="user__upload-input" name="avatar" type="file" accept="image/*">
                 </form>
               </div>
               <p class="user__name mb-0">${user.login}</p>
@@ -102,9 +103,15 @@ class UserView {
 
     this.root.append(html);
     this.bind();
+    this.subscribe();
   }
 
-  public showPasswordError(type: UserPasswordError, message: string) {
+  private setAvatar(link: string): void {
+    const avatar = queryHTMLImageElement('.user__image');
+    avatar.src = link;
+  }
+
+  public showPasswordError(type: UserPasswordError, message: string): void {
     const input = queryHTMLInputElement('.user__password-input');
     const repeatInput = queryHTMLInputElement('.user__password-repeatinput');
     const error = queryHTMLElement('.user__password-error');
@@ -122,7 +129,7 @@ class UserView {
     }
   }
 
-  private clearPasswordErrors() {
+  private clearPasswordErrors(): void {
     const input = queryHTMLInputElement('.user__password-input');
     const repeatInput = queryHTMLInputElement('.user__password-repeatinput');
 
@@ -130,7 +137,7 @@ class UserView {
     repeatInput.classList.remove('is-invalid');
   }
 
-  public clearPasswordInput() {
+  public clearPasswordInput(): void {
     const password = queryHTMLInputElement('.user__password-input');
     const passwordRepeat = queryHTMLInputElement('.user__password-repeatinput');
 
@@ -138,10 +145,9 @@ class UserView {
     passwordRepeat.value = '';
   }
 
-  private bindUpload() {
+  private bindUpload(): void {
     const uploadInput = queryHTMLInputElement('.user__upload-input');
     const uploadButton = queryHTMLElement('.user__upload-button');
-    const avatar = queryHTMLImageElement('.user__image');
 
     uploadButton.onclick = () => uploadInput.click();
     uploadInput.onchange = (e) => {
@@ -149,18 +155,11 @@ class UserView {
       if (files) {
         const file = files[0];
         userController.changeAvatar(file);
-        const filereader = new FileReader();
-        filereader.readAsDataURL(file);
-        filereader.onloadend = () => {
-          if (typeof filereader.result === 'string') {
-            avatar.src = filereader.result;
-          }
-        };
       }
     };
   }
 
-  private bind() {
+  private bind(): void {
     const passwordInput = queryHTMLInputElement('.user__password-input');
     const passwordRepeatInput = queryHTMLInputElement('.user__password-repeatinput');
     const passwordSubmit = queryHTMLElement('.user__password-submit');
@@ -182,6 +181,10 @@ class UserView {
     };
 
     this.bindUpload();
+  }
+
+  private subscribe(): void {
+    emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.setAvatar.bind(this));
   }
 }
 

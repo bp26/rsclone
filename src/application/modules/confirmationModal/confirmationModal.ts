@@ -103,6 +103,7 @@ class ConfirmationModal {
       this.showModal();
     });
     emitter.on(EmitterEventName.GLOBAL_USER_UPDATE, this.hidePreloader.bind(this));
+    emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.hidePreloader.bind(this));
   }
 }
 

@@ -11,8 +11,8 @@ export interface IUser {
 }
 
 interface IAvatar {
-  public_url: string;
-  cloudinary_id: string;
+  secure_url: string;
+  public_id: string;
 }
 
 interface IChatSettings {
@@ -107,6 +107,7 @@ export interface IValidation {
 
 export interface IFormatedUser {
   login: string;
+  avatar: string;
   coins: number;
   rank: number;
   progress: string;
