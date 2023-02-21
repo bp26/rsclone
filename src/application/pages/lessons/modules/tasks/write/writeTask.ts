@@ -100,7 +100,7 @@ export class TaskWrite {
         </button>
       </div>
       <div class="collapse" id="collapse-task-${this.id}">
-        <div class="card card-body">
+        <div class="card card-body bg-primary">
           ${this.answerBlock()}
         </div>
       </div>
@@ -170,13 +170,14 @@ export class TaskWrite {
   }
 
   timerForAnswer() {
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
     const currentElement = getSafeElement(document.querySelector(`[data-task-timer="${this.id}"]`));
     if (this.startTimer > Number(currentElement.textContent)) {
       return;
     }
     const intervalID = setInterval(() => {
       currentElement.textContent = String(Number(currentElement.textContent) - 1);
-      if (currentElement.textContent === '0') {
+      if (currentElement.textContent === '0' || textarea.getAttribute('status')) {
         document.querySelector(`[data-task-loader="${this.id}"]`)?.remove();
         const currentButton = document.querySelector(`[data-task-btn-timer="${this.id}"]`) as HTMLButtonElement;
         if (currentButton) {
@@ -193,16 +194,18 @@ export class TaskWrite {
   };
 
   resetBorderTextarea() {
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
     textarea.style.borderColor = 'black';
   }
 
   changeBorderByAnswer(result: boolean) {
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
     textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
   }
 
   submit(result: boolean) {
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
+    textarea.setAttribute('status', `${result ? 'complete' : ''}`);
     this.changeBorderByAnswer(result);
     result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }

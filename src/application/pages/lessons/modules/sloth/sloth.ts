@@ -1,23 +1,21 @@
 import { getSafeElement } from '../../../../utils/helpers';
 import { Storage } from '../../../../types/enums';
 import { Tutorial } from '../../../../types/interfaces';
-import { exampleTutorial } from '../../../../utils/constants/slothExampleTutorialArray';
 import { heroIcon } from '../../../../utils/constants/icons/slothIcons';
 
 class Sloth {
-  tutorial: Tutorial[];
   count: number;
   writerIntervalID: NodeJS.Timer | string;
   audio: HTMLAudioElement;
   constructor() {
-    this.tutorial = exampleTutorial;
     this.count = 0;
     this.writerIntervalID = '';
-    this.audio = new Audio('https://zvukipro.com/uploads/files/2019-07/1564068710_95186a15d2b9821.mp3');
+    this.audio = new Audio('https://zvukipro.com/uploads/files/2019-07/1564068640_cf9b99726102246.mp3');
   }
 
-  render() {
+  render(data: Tutorial[]) {
     const html = document.createElement('div');
+    html.classList.add('sloth-block');
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
      <div>
@@ -27,24 +25,22 @@ class Sloth {
       ${heroIcon}
      </div>
     `;
-
-    document.body.append(html);
-    if (localStorage.getItem(Storage.TUTORIAL)) {
-      return;
-    } else {
-      this.showSloth();
-      this.initTutorial();
-    }
+    const checkElement = document.querySelector('.sloth-block');
+    if (!checkElement) document.body.append(html);
+    this.showSloth();
+    this.initTutorial(data);
   }
 
-  initTutorial() {
+  initTutorial(data: Tutorial[]) {
     this.count = 0;
     const coverTutorial = document.createElement('div');
     coverTutorial.classList.add('cover-tutorial');
     coverTutorial.style.cssText = 'position:fixed; top:0;bottom:0;left:0;right:0; height:100vh;z-index:150; background-color: rbga(0,0,0,0.6)';
     document.body.append(coverTutorial);
-    this.showSlothTutorial(this.tutorial[this.count]);
-    coverTutorial.addEventListener('click', this.startTutorialHandler);
+    this.showSlothTutorial(data[this.count]);
+    coverTutorial.addEventListener('click', () => {
+      this.startTutorialHandler(data);
+    });
   }
 
   hiddenPrev(selector: string) {
@@ -64,6 +60,7 @@ class Sloth {
       block.classList.add('show-tutorial-block');
     }
     const textBlock = getSafeElement(document.querySelector('.sloth__text'));
+    textBlock.style.opacity = '0';
     textBlock.textContent = text;
     textBlock.style.width = 'auto';
     const currentWidth = textBlock.getBoundingClientRect().width;
@@ -75,6 +72,7 @@ class Sloth {
       clearInterval(this.writerIntervalID);
     }
     element.style.width = width + 'px';
+    element.style.opacity = '1';
     let start = 1;
     this.audio.play();
     const stringLength = text.length;
@@ -88,19 +86,23 @@ class Sloth {
     }, 50);
   };
 
-  startTutorialHandler = () => {
+  startTutorialHandler = (data: Tutorial[]) => {
     const cover = getSafeElement(document.querySelector('.cover-tutorial'));
+    const sloth = getSafeElement(document.querySelector('.sloth-block'));
     this.changeCount();
-    if (this.count < this.tutorial.length) {
-      this.showSlothTutorial(this.tutorial[this.count]);
-      this.hiddenPrev(this.tutorial[this.count - 1].selector);
+    if (this.count < data.length) {
+      this.hiddenPrev(data[this.count - 1].selector);
+      this.showSlothTutorial(data[this.count]);
     } else {
+      this.audio.currentTime = 0;
       clearInterval(this.writerIntervalID);
-      localStorage.setItem(Storage.TUTORIAL, Storage.COMPLETE);
-      this.hiddenPrev(this.tutorial[this.count - 1].selector);
+      this.hiddenPrev(data[this.count - 1].selector);
       this.hiddenSloth();
-      cover.removeEventListener('click', this.startTutorialHandler);
+      cover.removeEventListener('click', () => {
+        this.startTutorialHandler(data);
+      });
       cover.remove();
+      sloth.remove();
     }
   };
 
@@ -112,6 +114,8 @@ class Sloth {
   }
 
   hiddenSloth = () => {
+    this.audio.pause();
+    this.audio.currentTime = 0;
     document.body.style.overflow = '';
     getSafeElement(document.querySelector('.my-modal')).classList.remove('show-modal');
     getSafeElement(document.querySelector('.sloth__text')).classList.remove('show-text');

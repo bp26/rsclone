@@ -83,6 +83,7 @@ export const enum AuthErrorMessage {
 export const enum Storage {
   TUTORIAL = 'tutorial',
   COMPLETE = 'complete',
+  QUIZ__TUTORIAL = 'quiz',
 }
 
 export const enum RoadmapRectName {

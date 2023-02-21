@@ -100,6 +100,13 @@ export interface RoadData {
   links: string[];
 }
 
+export interface Quiz {
+  id: number;
+  description: string;
+  answerBlocks: Array<string | number>;
+  answer: string | number;
+}
+
 export interface IValidation {
   isValid: boolean;
   message: AuthErrorMessage;

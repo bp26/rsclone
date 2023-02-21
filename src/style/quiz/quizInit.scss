@@ -1,0 +1,39 @@
+.timer {
+  &.show {
+    animation: startQuiz 1s ease infinite;
+  }
+}
+
+.card {
+  &.danger {
+    animation: flash-border 1s ease infinite;
+  }
+}
+
+@keyframes flash-border {
+  0% {
+    box-shadow: 0 0 5px 2px red;
+  }
+
+  50% {
+    box-shadow: 0 0 10px 5px red;
+  }
+
+  100% {
+    box-shadow: 0 0 5px 2px red;
+  }
+}
+
+@keyframes startQuiz {
+  0% {
+    scale: 0;
+  }
+
+  50% {
+    scale: 1;
+  }
+
+  100% {
+    scale: 0;
+  }
+}

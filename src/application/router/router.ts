@@ -51,6 +51,9 @@ class Router {
       case '/roadmap':
         controller.initRoadmapPage();
         break;
+      case '/quiz':
+        controller.initQuizPage();
+        break;
       default:
         alert('404');
     }
@@ -68,6 +71,8 @@ class Router {
         return '/profile';
       case 'roadmap':
         return '/roadmap';
+      case 'quiz':
+        return '/quiz';
     }
   }
 }
