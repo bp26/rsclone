@@ -21,8 +21,8 @@ class UserView {
           <div class="user__data col-md-6 col-12">
             <div class="d-flex align-items-center flex-column gap-3">
               <div class="position-relative">
-                <img class="user__image d-block" style="min-width:30%; min-height:200px;"  src=${user.avatar ? user.avatar : './images/Profile.svg'} alt="profile" />
-                <span class="user__upload-button position-absolute top-0 start-100 translate-middle badge rounded-pill">${uploadSvg}</span>
+                <img class="user__image d-block" style="min-width:30%;" src=${user.avatar ? user.avatar : './images/Profile.svg'} alt="profile" />
+                <span title="Choose avatar" role="button" class="user__upload-button position-absolute top-0 translate-middle badge rounded-pill">${uploadSvg}</span>
                 <form class="d-none" method="post" enctype="multipart/form-data">
                   <input class="user__upload-input" name="avatar" type="file" accept="image/*">
                 </form>
@@ -50,30 +50,31 @@ class UserView {
               </form>
               <form novalidate='true' class='mt-4'>
                 <p>Chat settings:</p>
-                <div class='user__chat-settings d-flex align-items-center gap-4 rounded p-3'>
+                <div class='user__chat-settings d-flex align-items-center justify-content-between rounded p-3'>
                   <div class='d-flex flex-column gap-3 '>
                     <div class='form-group d-flex align-items-center gap-4'>
                       <span>User color:</span>
-                      <input class='user__color-input' type='color' value=${user.chat.color} >
+                      <input role='button' class='user__color-input' type='color' value=${user.chat.color} >
                     </div>
                     <div class='form-group d-flex align-items-center gap-3'>
                       <span>Notifications:</span>
                       <div class="form-check form-switch">
-                        <input class="user__notifications-switch form-check-input" type="checkbox" ${user.chat.notifications ? 'checked' : ''}>
+                        <input role="button" class="user__notifications-switch form-check-input" type="checkbox" ${user.chat.notifications ? 'checked' : ''}>
                       </div>
                     </div>
                   </div>
-                  <button type='submit' class='user__chat-submit btn btn-primary w-50'>Submit</button>
+                  <button type='submit' class='user__chat-submit btn btn-primary'>Submit</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <hr/>
+
+        <div class="w-100 d-flex justify-content-center"><h5 class="user__separator d-flex w-100">Rank</h5></div>
+
         <div class="row p-5">
           <div class="col-8">
             <div class="user__rank d-inline-flex flex-column align-items-center">
-              <span>Rank:</span>
               <img class="w-75" src="./images/RangBabe.svg" alt="BabeImg" />
             </div>
           </div>
@@ -84,7 +85,9 @@ class UserView {
             </div>
           </div>
         </div>
-        <hr/>
+
+        <div class="w-100 d-flex justify-content-center"><h5 class="user__separator d-flex w-100">Progress</h5></div>
+
         <div class="row p-5 mb-4">
           <div class="col-6 p-0">
             <p>My progress</p>
