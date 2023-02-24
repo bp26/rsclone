@@ -8,10 +8,18 @@
   bottom: 150px;
   right: 3rem;
   z-index: 50;
+
+  &_blocked {
+    pointer-events: none;
+  }
 }
 
 .chat__open > svg {
-  fill: $color-base;
+  fill: white;
+}
+
+.chat__open_blocked > svg {
+  fill: grey;
 }
 
 .chat__window {
