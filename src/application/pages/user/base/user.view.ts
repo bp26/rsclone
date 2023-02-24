@@ -1,9 +1,10 @@
-import { IFormatedUser } from '../../../types/interfaces';
-import { getSafeInputElement, queryHTMLElement, queryHTMLImageElement, queryHTMLInputElement } from '../../../utils/helpers';
+import { IFormatedUser, IUser } from '../../../types/interfaces';
+import { getSafeInputElement, queryHTMLElement, queryHTMLInputElement } from '../../../utils/helpers';
 import { uploadSvg } from '../../../utils/constants/icons/upload';
 import { userController } from './user.controller';
 import { EmitterEventName, UserPasswordError } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
+import { profileSvg } from '../../../utils/constants/icons/profileSvg';
 
 class UserView {
   private root: HTMLElement;
@@ -21,7 +22,7 @@ class UserView {
           <div class="user__data col-md-6 col-12">
             <div class="d-flex align-items-center flex-column gap-3">
               <div class="position-relative">
-                <img class="user__image d-block" style="min-width:30%;" src=${user.avatar ? user.avatar : './images/Profile.svg'} alt="profile" />
+                <div class="user__image-block d-block"></div>
                 <span title="Choose avatar" role="button" class="user__upload-button position-absolute top-0 translate-middle badge rounded-pill">${uploadSvg}</span>
                 <form class="d-none" method="post" enctype="multipart/form-data">
                   <input class="user__upload-input" name="avatar" type="file" accept="image/*">
@@ -105,13 +106,15 @@ class UserView {
 `;
 
     this.root.append(html);
+    this.setUserAvatar(user.avatar);
     this.bind();
     this.subscribe();
   }
 
-  private setAvatar(link: string): void {
-    const avatar = queryHTMLImageElement('.user__image');
-    avatar.src = link;
+  private setUserAvatar(link: string): void {
+    const avatar = queryHTMLElement('.user__image-block');
+    const userIcon = link ? `<img class="user__image" style="min-width:30%;" src=${link} alt="profile" />` : profileSvg;
+    avatar.innerHTML = userIcon;
   }
 
   public showPasswordError(type: UserPasswordError, message: string): void {
@@ -187,7 +190,7 @@ class UserView {
   }
 
   private subscribe(): void {
-    emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.setAvatar.bind(this));
+    emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, (user: IUser) => this.setUserAvatar.call(this, user.avatar.secure_url));
   }
 }
 

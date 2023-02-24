@@ -48,7 +48,7 @@ class Model {
     try {
       if (this.user) {
         this.user = await api.updateUserAvatar(avatarData);
-        emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.user.avatar.secure_url);
+        emitter.emit(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.user);
       }
     } catch (error) {
       console.error(error);
