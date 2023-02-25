@@ -15,7 +15,7 @@ class ChatView {
   render(messages: IMessage[]): void {
     const chat = queryHTMLElement('.chat');
     chat.innerHTML = `
-      <button class='chat__open bg-transparent border-0 position-fixed'>${chatCloud}
+      <button class='chat__open chat__open_blocked bg-transparent border-0 position-fixed'>${chatCloud}
         <span class="chat__badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger invisible">0</span>
       </button>
       <div class="chat__container offcanvas offcanvas-end text-light" tabindex="-1" data-bs-scroll="false" data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -74,6 +74,11 @@ class ChatView {
     const chatWindow = queryHTMLElement('.chat__window');
     const chatNotification = new Element(chatWindow, HTMLTag.DIV, 'chat__notification');
     chatNotification.node.innerHTML = `<p class="p-0 my-3"> <span style="color: ${notification.color};">${notification.user}</span> has joined!</p>`;
+  }
+
+  public activateOpenButton(): void {
+    const open = queryHTMLElement('.chat__open');
+    open.classList.remove('chat__open_blocked');
   }
 
   private toggleControls(setOn: boolean): void {
@@ -161,6 +166,7 @@ class ChatView {
   }
 
   private subscribe(): void {
+    emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.activateOpenButton.bind(this));
     emitter.on(EmitterEventName.CHAT_NOTIFIED, () => this.toggleControls(true));
     emitter.on(EmitterEventName.CHAT_SENT_MESSAGE, () => {
       this.toggleControls(false);

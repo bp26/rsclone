@@ -1,4 +1,4 @@
-import { getSafeElement, queryHTMLElement } from '../../../utils/helpers';
+import { getFirstLetter, getSafeElement, queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
 import { EmitterEventName, HTMLTag, Theme } from '../../../types/enums';
@@ -58,20 +58,23 @@ class HeaderView {
     const headerAuth = queryHTMLElement('.header__auth');
     headerAuth.innerHTML = `
       <div class='header__profile'>
-        <a class='header__profile-iconlink routing-signed' href='/profile' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-          <svg height="50px" width="50px">
-            <use href="#user"></use>
-          </svg>
-        </a>
+        <a class='header__profile-iconlink routing-signed' href='/profile' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"></a>
         <a class ='header__profile-textlink nav-link routing-signed' href='/profile' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Profile</a>
       </div>
-      <span class='header__welcome'>${user.login}</span>
+      <span class='header__login'>${user.login}</span>
       <a class='header__logout header__button nav-link'>Logout</a>
     `;
 
     this.bindSigned();
     this.enableLessonsLink();
+    this.setUserAvatar(user);
     router.hungRouteListeners('routing-signed');
+  }
+
+  private setUserAvatar(user: IUser): void {
+    const userLink = queryHTMLElement('.header__profile-iconlink');
+    const userIcon = `${user.avatar.secure_url ? `<img src=${user.avatar.secure_url} />` : `<span>${getFirstLetter(user.login)}</span>`}`;
+    userLink.innerHTML = userIcon;
   }
 
   private enableLessonsLink() {
@@ -124,6 +127,7 @@ class HeaderView {
   private subscribe() {
     emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.renderSignedAuth.bind(this));
     emitter.on(EmitterEventName.GLOBAL_THEME, this.switchTheme.bind(this));
+    emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.setUserAvatar.bind(this));
   }
 }
 

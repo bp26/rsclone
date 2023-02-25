@@ -20,7 +20,10 @@ class AuthView {
           </div>
 
           <div class='auth__main'>
-            <div class='auth__header modal-header d-flex justify-content-center'>
+            <div class='auth__header modal-header d-flex flex-column align-items-center'>
+              <div class='w-100 d-flex justify-content-end'>
+                <button class='auth__close btn-close' data-bs-dismiss="modal"></button>
+              </div>
               <h2 class='auth__title modal-title'>Sign in</h2>
             </div>
 

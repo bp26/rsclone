@@ -132,6 +132,7 @@
 
   &:hover {
     color: $hover-color-user-logo;
+    border-color: $hover-color-user-logo;
   }
 }
 
@@ -144,11 +145,27 @@
 }
 
 .header__profile-iconlink {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid white;
+
   display: none;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 
   @media (min-width: 992px) {
-    display: block;
+    display: flex;
   }
+}
+
+.header__profile-iconlink > img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
 }
 
 .header__profile-textlink {
@@ -159,9 +176,10 @@
   }
 }
 
-.header__welcome {
+.header__login {
   color: $color-base;
   display: none;
+  user-select: none;
 
   @media (min-width: 992px) {
     display: block;
