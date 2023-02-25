@@ -5,6 +5,7 @@ import { userController } from './user.controller';
 import { EmitterEventName, UserPasswordError } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { profileSvg } from '../../../utils/constants/icons/profileSvg';
+import { userRank } from '../data/userRank';
 
 class UserView {
   private root: HTMLElement;
@@ -75,8 +76,8 @@ class UserView {
 
         <div class="row p-5">
           <div class="col-8">
-            <div class="user__rank d-inline-flex flex-column align-items-center">
-              <img class="w-75" src="./images/RangBabe.svg" alt="BabeImg" />
+            <div class="user__rank w-100 d-inline-flex flex-column align-items-start">
+              ${userRank[user.rank]}
             </div>
           </div>
           <div class="col-4 d-flex align-items-center justify-content-end">

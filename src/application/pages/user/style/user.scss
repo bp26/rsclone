@@ -84,6 +84,15 @@
   height: 27px;
 }
 
+.user__rank > svg {
+  max-width: 250px;
+  width: 100%;
+
+  @media (min-width: 500px) {
+    width: 70%;
+  }
+}
+
 .user__progress-bar {
   background: #14ff00;
 }

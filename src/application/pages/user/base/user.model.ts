@@ -15,7 +15,7 @@ class UserModel {
       login: model.user.login,
       avatar: model.user.avatar.secure_url,
       coins: model.user.coins,
-      rank: model.user.lessons.length,
+      rank: model.user.lessons.length - 1,
       progress: `${Math.floor((model.user.lessons.length / LESSONS_COUNT) * 100)}%`,
       chat: model.user.chat,
     };
