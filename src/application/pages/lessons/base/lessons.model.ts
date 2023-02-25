@@ -44,7 +44,7 @@ class LessonsModel {
           this.lessons[Number(currentLesson) + 1].isOpen = true;
         }
 
-        emitter.emit(EmitterEventName.LESSONS_SOLVED, lesson.coins);
+        emitter.emit(EmitterEventName.LESSONS_SOLVED, lesson.coins, +currentLesson);
         this.updateUser(lesson.coins, currentLesson);
       }
     }

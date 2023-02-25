@@ -7,10 +7,15 @@ import { lessonsView } from './lessons.view';
 class LessonsController {
   public init(): void {
     lessonsView.render(lessonsModel.init());
+
     if (!localStorage.getItem(Storage.TUTORIAL)) {
       sloth.render(exampleTutorial);
       localStorage.setItem(Storage.TUTORIAL, Storage.COMPLETE);
     }
+  }
+
+  public openLesson(lesson: number) {
+    lessonsView.openLesson(`${lesson}`);
   }
 
   public submitTask(currentLesson: string, title: string, price: string): void {

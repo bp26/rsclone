@@ -13,7 +13,7 @@ export type EmitterEvents = {
   GLOBAL_USER_UPDATE_AVATAR: (user: IUser) => void;
   GLOBAL_THEME: (theme: Theme) => void;
 
-  LESSONS_SOLVED: (coins: number) => void;
+  LESSONS_SOLVED: (coins: number, currentLesson: number) => void;
 
   CHAT_RECEIVED_MESSAGE: (message: IMessage) => void;
   CHAT_RECEIVED_CONNECTION: (notification: INotification) => void;
