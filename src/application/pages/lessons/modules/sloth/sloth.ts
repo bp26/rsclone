@@ -1,5 +1,4 @@
 import { getSafeElement } from '../../../../utils/helpers';
-import { Storage } from '../../../../types/enums';
 import { Tutorial } from '../../../../types/interfaces';
 import { heroIcon } from '../../../../utils/constants/icons/slothIcons';
 
@@ -14,12 +13,16 @@ class Sloth {
   }
 
   render(data: Tutorial[]) {
+    const coverTutorial = document.createElement('div');
+    coverTutorial.classList.add('cover-tutorial');
+    coverTutorial.style.cssText = 'position:fixed; top:0;bottom:0;left:0;right:0; height:100vh;z-index:150; background-color: rbga(0,0,0,0.6)';
+    document.body.append(coverTutorial);
     const html = document.createElement('div');
     html.classList.add('sloth-block');
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
      <div class="d-flex flex-column">
-       <p class="sloth__text position-absolute start-50 translate-middle-x bg-primary rounded-4 p-2 d-flex  flex-column" style=" z-index:6"></p>
+       <p class="sloth__text position-absolute start-50 translate-middle-x bg-primary rounded-4 p-2 d-flex  flex-column" style=" z-index:151"></p>
      </div>
      <div  class="sloth__img position-absolute" style="z-index: 5;">
       ${heroIcon}
@@ -33,11 +36,8 @@ class Sloth {
 
   initTutorial(data: Tutorial[]) {
     this.count = 0;
-    const coverTutorial = document.createElement('div');
-    coverTutorial.classList.add('cover-tutorial');
-    coverTutorial.style.cssText = 'position:fixed; top:0;bottom:0;left:0;right:0; height:100vh;z-index:150; background-color: rbga(0,0,0,0.6)';
-    document.body.append(coverTutorial);
-    this.showSlothTutorial(data[this.count]);
+    const coverTutorial = getSafeElement(document.querySelector('.cover-tutorial'));
+    this.showSlothTutorial(data[this.count], data);
     coverTutorial.addEventListener('click', () => {
       this.startTutorialHandler(data);
     });
@@ -49,12 +49,14 @@ class Sloth {
       block.classList.remove('show-tutorial-block');
     }
   }
-  createNextButton() {
+
+  createNextButton(data: Tutorial[]) {
     const nextButton = document.createElement('button');
     nextButton.className = 'btn btn-dark inline-block align-self-end position-relative cursor-pointer click-next inset-0';
     nextButton.style.zIndex = '151';
     nextButton.style.height = '40px';
     nextButton.innerHTML = `Next`;
+    nextButton.addEventListener('click', () => this.startTutorialHandler(data));
     return nextButton;
   }
 
@@ -62,7 +64,7 @@ class Sloth {
     this.count = this.count + 1;
   }
 
-  showSlothTutorial({ selector, text }: Tutorial) {
+  showSlothTutorial({ selector, text }: Tutorial, data: Tutorial[]) {
     if (selector !== '') {
       const block = getSafeElement(document.querySelector(selector));
       block.classList.add('show-tutorial-block');
@@ -73,10 +75,10 @@ class Sloth {
     textBlock.style.width = 'auto';
     textBlock.style.height = 'auto';
     const currentWidth = textBlock.getBoundingClientRect().width;
-    this.writerBot(textBlock, text, currentWidth);
+    this.writerBot(textBlock, text, currentWidth, data);
   }
 
-  writerBot = (element: HTMLElement, text: string, width: number) => {
+  writerBot = (element: HTMLElement, text: string, width: number, data: Tutorial[]) => {
     if (this.writerIntervalID !== '') {
       clearInterval(this.writerIntervalID);
     }
@@ -91,7 +93,8 @@ class Sloth {
       element.textContent = text.slice(0, start);
       if (start === stringLength) {
         this.audio.pause();
-        element.append(this.createNextButton());
+        element.append(this.createNextButton(data));
+
         clearInterval(this.writerIntervalID);
       }
     }, 50);
@@ -103,7 +106,7 @@ class Sloth {
     this.changeCount();
     if (this.count < data.length) {
       this.hiddenPrev(data[this.count - 1].selector);
-      this.showSlothTutorial(data[this.count]);
+      this.showSlothTutorial(data[this.count], data);
     } else {
       this.audio.currentTime = 0;
       clearInterval(this.writerIntervalID);
