@@ -31,7 +31,7 @@ export const lessonsBoolean: Task[] = [
     description: `!!' '`,
     price: '2',
     buttonsArray: ['true', 'false'],
-    answer: 'true',
+    answer: 'false',
     answerBlock: () => {
       return ``;
     },

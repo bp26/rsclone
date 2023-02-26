@@ -1,3 +1,4 @@
+import { getSafeElement } from './../../../utils/helpers';
 import { exampleTutorial } from './../../../utils/constants/slothExampleTutorialArray';
 import { TaskBoolean } from './../modules/tasks/boolean/booleanTask';
 import { lessonsDrag } from './../modules/tasks/drag/data';
