@@ -17,9 +17,9 @@ class RoadView {
     this.wrapFrontMap = new Element(this.root, HTMLTag.DIV, 'front-wrap');
     const titleFrontMapIgnor = new Element(this.wrapFrontMap.node, HTMLTag.H1, 'front-wrap__title', 'Frontend Roadmap');
     const wrapperCanvas = new Element(this.wrapFrontMap.node, HTMLTag.DIV, 'front-wrap__canvas-wrap');
-    const canvas = new Element(wrapperCanvas.node, HTMLTag.CANVAS, '');
-    canvas.node.setAttribute('width', `${wrapperCanvas.node.clientWidth}`);
-    canvas.node.setAttribute('height', `${wrapperCanvas.node.clientHeight}`);
+    const canvas = new Element(wrapperCanvas.node, HTMLTag.CANVAS, 'canvas');
+    canvas.node.setAttribute('width', `1200px`);
+    canvas.node.setAttribute('height', `1974px`);
     if (canvas.node instanceof HTMLCanvasElement) {
       const createFabricIgnor = new FabricCanvas(canvas.node);
     }

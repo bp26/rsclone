@@ -14,7 +14,9 @@ import { RoadmapRectName, ColorRect } from '../../../types/enums';
 export class FabricCanvas {
   private middleCanvas: number;
   constructor(canvas: HTMLCanvasElement) {
-    const fabricCanvas = new fabric.fabric.Canvas(canvas);
+    const fabricCanvas = new fabric.fabric.Canvas(canvas, {
+      allowTouchScrolling: true,
+    });
     this.middleCanvas = canvas.clientWidth / 2;
 
     const mainLineIgnor = new DrawMainLineFabricCanvas(fabricCanvas, [this.middleCanvas, 120, this.middleCanvas, 750]);
