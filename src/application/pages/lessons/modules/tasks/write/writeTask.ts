@@ -114,34 +114,30 @@ export class TaskWrite {
     root.append(taskBlock);
 
     const initButton = getSafeElement(document.querySelector(`.init-write-button${this.id}`));
+    const submit = getSafeElement(document.querySelector(`[data-task-submit="${this.id}"]`));
+    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
+    const buttonsController = document.querySelectorAll(`[data-task-buttons="${this.id}"]`);
 
     initButton.addEventListener('click', () => {
       this.toggleInitButton(initButton);
-      this.timerForAnswer();
+      this.timerForAnswer(textarea);
     });
 
-    const submit = getSafeElement(document.querySelector(`[data-task-submit="${this.id}"]`));
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
-
     textarea.addEventListener('input', () => {
-      this.resetBorderTextarea();
+      this.resetBorderTextarea(textarea);
     });
 
     submit.addEventListener('click', () => {
-      const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
       let textareaContent = textarea.value;
       let answer = this.answer;
       if (textareaContent) textareaContent = textareaContent.replace(/[\s\n\r]+/g, '');
       answer = answer.replace(/[\s\n\r]+/g, '');
-      textareaContent === answer ? this.submit(true) : this.submit(false);
+      textareaContent === answer ? this.submit(true, textarea) : this.submit(false, textarea);
     });
 
-    const buttonsController = document.querySelectorAll(`[data-task-buttons="${this.id}"]`);
-
     buttonsController.forEach((button) => {
-      const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`)) as HTMLTextAreaElement;
       button.addEventListener('click', (e) => {
-        this.resetBorderTextarea();
+        this.resetBorderTextarea(textarea);
         const target = e.target as HTMLTextAreaElement;
         let content = target.textContent;
         if (content === 'space') {
@@ -169,20 +165,20 @@ export class TaskWrite {
     });
   }
 
-  timerForAnswer() {
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
+  timerForAnswer(textarea: HTMLElement) {
     const currentElement = getSafeElement(document.querySelector(`[data-task-timer="${this.id}"]`));
+    const currentButton = getSafeElement(document.querySelector(`[data-task-btn-timer="${this.id}"]`));
+    const timer = getSafeElement(document.querySelector(`[data-task-loader="${this.id}"]`));
     if (this.startTimer > Number(currentElement.textContent)) {
       return;
     }
     const intervalID = setInterval(() => {
       currentElement.textContent = String(Number(currentElement.textContent) - 1);
       if (currentElement.textContent === '0' || textarea.getAttribute('status')) {
-        document.querySelector(`[data-task-loader="${this.id}"]`)?.remove();
-        const currentButton = document.querySelector(`[data-task-btn-timer="${this.id}"]`) as HTMLButtonElement;
-        if (currentButton) {
+        timer.remove();
+        if (currentButton instanceof HTMLButtonElement) {
           currentButton.disabled = false;
-          currentButton.innerText = 'Check answer';
+          currentButton.textContent = 'Check answer';
         }
         clearInterval(intervalID);
       }
@@ -193,20 +189,13 @@ export class TaskWrite {
     element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
   };
 
-  resetBorderTextarea() {
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
+  resetBorderTextarea(textarea: HTMLElement) {
     textarea.style.borderColor = 'black';
   }
 
-  changeBorderByAnswer(result: boolean) {
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
-    textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
-  }
-
-  submit(result: boolean) {
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
+  submit(result: boolean, textarea: HTMLElement) {
     textarea.setAttribute('status', `${result ? 'complete' : ''}`);
-    this.changeBorderByAnswer(result);
+    textarea.style.border = `3px solid ${result ? 'green' : 'red'}`;
     result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }
