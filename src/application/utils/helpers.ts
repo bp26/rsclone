@@ -43,3 +43,5 @@ export const queryHTMLImageElement = (query: string, parent: HTMLElement | Docum
   }
   return element;
 };
+
+export const getFirstLetter = (word: string): string => word[0].toUpperCase();

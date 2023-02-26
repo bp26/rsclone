@@ -26,7 +26,7 @@ class ConfirmationModal {
     this.subscribe();
   }
 
-  private renderLessonsModal(coins: number) {
+  private renderLessonsModal(coins: number, currentLesson: number) {
     const root = queryHTMLElement('.confirmation-modal__main');
     root.innerHTML = `
       <div class='confirmation-modal__body modal-body d-flex flex-column justify-content-center align-items-center'>
@@ -36,7 +36,16 @@ class ConfirmationModal {
       </div>
     `;
 
-    this.bindLessons();
+    this.bindLessons(currentLesson);
+  }
+
+  private bindLessons(currentLesson: number): void {
+    const confirm = queryHTMLElement('.confirmation-modal__confirm');
+    confirm.onclick = () => {
+      this.hideModal();
+      lessonsController.init();
+      lessonsController.openLesson(currentLesson + 1);
+    };
   }
 
   private renderUserModal() {
@@ -49,6 +58,13 @@ class ConfirmationModal {
     `;
 
     this.bindUser();
+  }
+
+  private bindUser(): void {
+    const confirm = queryHTMLElement('.confirmation-modal__confirm');
+    confirm.onclick = () => {
+      this.hideModal();
+    };
   }
 
   private showModal() {
@@ -78,24 +94,9 @@ class ConfirmationModal {
     document.body.classList.remove('pe-none');
   }
 
-  private bindLessons(): void {
-    const confirm = queryHTMLElement('.confirmation-modal__confirm');
-    confirm.onclick = () => {
-      this.hideModal();
-      lessonsController.init();
-    };
-  }
-
-  private bindUser(): void {
-    const confirm = queryHTMLElement('.confirmation-modal__confirm');
-    confirm.onclick = () => {
-      this.hideModal();
-    };
-  }
-
   private subscribe(): void {
-    emitter.on(EmitterEventName.LESSONS_SOLVED, (coins: number) => {
-      this.renderLessonsModal(coins);
+    emitter.on(EmitterEventName.LESSONS_SOLVED, (coins: number, currentLesson: number) => {
+      this.renderLessonsModal(coins, currentLesson);
       this.showModal();
     });
     emitter.on(EmitterEventName.USER_SETTINGS, () => {
