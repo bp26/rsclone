@@ -18,8 +18,8 @@ class Sloth {
     html.classList.add('sloth-block');
     html.innerHTML = `
      <div class="my-modal position-fixed top-0 start-0 bottom-0 end-0 bg-black"></div>
-     <div>
-       <p class="sloth__text position-absolute start-50 translate-middle-x bg-primary rounded-4 p-2" style=" z-index:6"></p>
+     <div class="d-flex flex-column">
+       <p class="sloth__text position-absolute start-50 translate-middle-x bg-primary rounded-4 p-2 d-flex  flex-column" style=" z-index:6"></p>
      </div>
      <div  class="sloth__img position-absolute" style="z-index: 5;">
       ${heroIcon}
@@ -49,6 +49,14 @@ class Sloth {
       block.classList.remove('show-tutorial-block');
     }
   }
+  createNextButton() {
+    const nextButton = document.createElement('button');
+    nextButton.className = 'btn btn-dark inline-block align-self-end position-relative cursor-pointer click-next inset-0';
+    nextButton.style.zIndex = '151';
+    nextButton.style.height = '40px';
+    nextButton.innerHTML = `Next`;
+    return nextButton;
+  }
 
   changeCount() {
     this.count = this.count + 1;
@@ -63,6 +71,7 @@ class Sloth {
     textBlock.style.opacity = '0';
     textBlock.textContent = text;
     textBlock.style.width = 'auto';
+    textBlock.style.height = 'auto';
     const currentWidth = textBlock.getBoundingClientRect().width;
     this.writerBot(textBlock, text, currentWidth);
   }
@@ -72,6 +81,7 @@ class Sloth {
       clearInterval(this.writerIntervalID);
     }
     element.style.width = width + 'px';
+    element.style.height = element.getBoundingClientRect().height + 40 + 'px';
     element.style.opacity = '1';
     let start = 1;
     this.audio.play();
@@ -81,6 +91,7 @@ class Sloth {
       element.textContent = text.slice(0, start);
       if (start === stringLength) {
         this.audio.pause();
+        element.append(this.createNextButton());
         clearInterval(this.writerIntervalID);
       }
     }, 50);
