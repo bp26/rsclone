@@ -16,7 +16,7 @@ class HomeView {
       <section class="home-start container-xxl">
         <div class="start-content">
           <h2 class="home-title">As long as dreamers keep dreaming, you will code and succeed!</h2>
-          <button class="home-start-button">
+          <button class="home-start-button rounded button">
             <span>Get started</span>
           </button>
         </div>
