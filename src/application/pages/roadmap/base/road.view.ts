@@ -17,9 +17,9 @@ class RoadView {
     this.wrapFrontMap = new Element(this.root, HTMLTag.DIV, 'front-wrap');
     const titleFrontMapIgnor = new Element(this.wrapFrontMap.node, HTMLTag.H1, 'front-wrap__title', 'Frontend Roadmap');
     const wrapperCanvas = new Element(this.wrapFrontMap.node, HTMLTag.DIV, 'front-wrap__canvas-wrap');
-    const canvas = new Element(wrapperCanvas.node, HTMLTag.CANVAS, '');
-    canvas.node.setAttribute('width', `${wrapperCanvas.node.clientWidth}`);
-    canvas.node.setAttribute('height', `${wrapperCanvas.node.clientHeight}`);
+    const canvas = new Element(wrapperCanvas.node, HTMLTag.CANVAS, 'canvas');
+    canvas.node.setAttribute('width', `1200px`);
+    canvas.node.setAttribute('height', `1974px`);
     if (canvas.node instanceof HTMLCanvasElement) {
       const createFabricIgnor = new FabricCanvas(canvas.node);
     }
@@ -38,16 +38,16 @@ class RoadView {
       const wrapTitleModal = new Element(blockTitle.node, HTMLTag.DIV, 'modal-wrap-title');
       const blockHeader = new Element(wrapTitleModal.node, HTMLTag.DIV, 'modal-block-header');
 
-      const title = new Element(blockHeader.node, HTMLTag.H2, 'modal-title', data.name);
+      const titleIgnor = new Element(blockHeader.node, HTMLTag.H2, 'modal-title', data.name);
       const buttonClose = new Element(blockHeader.node, HTMLTag.BUTTON, 'modal-button');
-      const buttonCloseSpan1 = new Element(buttonClose.node, HTMLTag.SPAN, 'modal-button__span1');
-      const buttonCloseSpan2 = new Element(buttonClose.node, HTMLTag.SPAN, 'modal-button__span2');
+      const buttonCloseSpan1Ignor = new Element(buttonClose.node, HTMLTag.SPAN, 'modal-button__span1');
+      const buttonCloseSpan2Ignor = new Element(buttonClose.node, HTMLTag.SPAN, 'modal-button__span2');
 
       const blockCont = new Element(wrapTitleModal.node, HTMLTag.DIV, 'modal-block-main-content');
-      const paragraph = new Element(blockCont.node, HTMLTag.P, 'modal-main-content', data.p1);
+      const paragraphIgnor = new Element(blockCont.node, HTMLTag.P, 'modal-main-content', data.p1);
 
       const blockContent = new Element(modalWrap.node, HTMLTag.DIV, 'modal-block-content');
-      const blockContentText = new Element(blockContent.node, HTMLTag.P, 'modal-block-content__text', data.p2);
+      const blockContentTextIgnor = new Element(blockContent.node, HTMLTag.P, 'modal-block-content__text', data.p2);
       const ul = new Element(blockContent.node, HTMLTag.UL, 'modal-block-content__list');
       for (let i = 0; i < data.links.length; i += 1) {
         const li = new Element(ul.node, HTMLTag.LI, 'modal-list-item');

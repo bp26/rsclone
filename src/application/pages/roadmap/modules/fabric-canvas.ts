@@ -14,20 +14,22 @@ import { RoadmapRectName, ColorRect } from '../../../types/enums';
 export class FabricCanvas {
   private middleCanvas: number;
   constructor(canvas: HTMLCanvasElement) {
-    const fabricCanvas = new fabric.fabric.Canvas(canvas);
+    const fabricCanvas = new fabric.fabric.Canvas(canvas, {
+      allowTouchScrolling: true,
+    });
     this.middleCanvas = canvas.clientWidth / 2;
 
     const mainLineIgnor = new DrawMainLineFabricCanvas(fabricCanvas, [this.middleCanvas, 120, this.middleCanvas, 750]);
-    const polylynes = new DrawPolylineCanvas(fabricCanvas, this.middleCanvas);
+    const polylynesIgnor = new DrawPolylineCanvas(fabricCanvas, this.middleCanvas);
 
     const svgImageIgnor = new DrawSvgCanvas(fabricCanvas, BABY_SLOTH, 30, this.middleCanvas - 45, 120);
     const svgWtfIgnor = new DrawSvgCanvas(fabricCanvas, SLOTH_WTF, 1000, 400, 170);
     const svgMetorIgnor = new DrawSvgCanvas(fabricCanvas, NO_METOR, 1630, 680, 170);
     const svgGitIgnor = new DrawSvgCanvas(fabricCanvas, GIT_PROBLEM, 750, this.middleCanvas + 150, 200);
 
-    const arcLine1 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 40, 495, 300, -8, Math.PI * 40, Math.PI * 60);
-    const arcLine2 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 350, 1030, 300, -10, Math.PI - 50, Math.PI * 20);
-    const arcLine3 = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 30, 1425, 500, -2, Math.PI + 130, Math.PI - 130);
+    const arcLine1Ignor = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 40, 495, 300, -8, Math.PI * 40, Math.PI * 60);
+    const arcLine2Ignor = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 350, 1030, 300, -10, Math.PI - 50, Math.PI * 20);
+    const arcLine3Ignor = new DrawArcMainLine(fabricCanvas, this.middleCanvas - 30, 1425, 500, -2, Math.PI + 130, Math.PI - 130);
     const domainLineIgnor = new DrawSecondaryLineFabricCanvas(fabricCanvas, [this.middleCanvas + 100, 175, this.middleCanvas + 275, 55], ColorRect.INTERNET);
     const dnsLineIgnor = new DrawSecondaryLineFabricCanvas(fabricCanvas, [this.middleCanvas + 100, 175, this.middleCanvas + 275, 175], ColorRect.INTERNET);
     const hostingLineIgnor = new DrawSecondaryLineFabricCanvas(fabricCanvas, [this.middleCanvas + 100, 175, this.middleCanvas + 275, 290], ColorRect.INTERNET);
@@ -36,7 +38,7 @@ export class FabricCanvas {
     const browserLineIgnor = new DrawSecondaryLineFabricCanvas(fabricCanvas, [this.middleCanvas - 100, 175, this.middleCanvas - 275, 290], ColorRect.INTERNET);
 
     const internetRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 100, 150, RoadmapRectName.INTERNET, ColorRect.INTERNET);
-    const dnsRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 250, 50, RoadmapRectName.DNS, ColorRect.INTERNET);
+    const dnsRectIgnorIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 250, 50, RoadmapRectName.DNS, ColorRect.INTERNET);
     const domainRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 250, 150, RoadmapRectName.DOMAIN, ColorRect.INTERNET);
     const hostingRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas + 250, 250, RoadmapRectName.HOSTING, ColorRect.INTERNET);
     const networkRectIgnor = new DrawRectContent(fabricCanvas, this.middleCanvas - 450, 50, RoadmapRectName.NETWORK, ColorRect.INTERNET);
@@ -105,7 +107,7 @@ export class FabricCanvas {
       fontWeight: 600,
       fill: '#bcbec1',
       selectable: false,
-      hoverCursor: 'auto',
+      hoverCursor: 'default',
     });
     fabricCanvas.add(continued);
   }

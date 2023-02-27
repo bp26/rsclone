@@ -8,7 +8,7 @@ export class DrawSvgCanvas {
         selectable: false,
         top: top,
         left: left,
-        hoverCursor: 'auto',
+        hoverCursor: 'default',
       });
       obj.scaleToWidth(scale);
       parent.add(obj).renderAll();
