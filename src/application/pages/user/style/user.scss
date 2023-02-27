@@ -1,0 +1,103 @@
+.user {
+  max-width: 900px;
+}
+
+.user__upper-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 0 50px 0;
+
+  @media (min-width: 500px) {
+    padding: 50px;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.user__separator {
+  &::after,
+  &::before {
+    content: '';
+    flex: 1 1;
+    border-bottom: 1px solid white;
+    margin: 10px;
+  }
+}
+
+.user__data {
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.user__image {
+  width: 180px;
+  height: 180px;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+}
+
+.user__upload-button {
+  left: 90%;
+}
+
+.user__upload-button > svg {
+  &:hover {
+    fill: $button-base-background;
+  }
+}
+
+.user__settings {
+  align-items: center;
+
+  @media (min-width: 768px) {
+    align-items: flex-end;
+  }
+}
+
+.user__chat-settings,
+.user__password-settings {
+  border: 1px solid white;
+}
+
+.user__password-input,
+.user__password-error {
+  width: 100%;
+
+  @media (min-width: 450px) and (max-width: 767px) {
+    width: 300px;
+  }
+
+  @media (min-width: 900px) {
+    width: 300px;
+  }
+}
+
+.user__notifications-switch {
+  width: 55px !important;
+  height: 27px;
+
+  &:checked {
+    background-color: $button-base-background;
+  }
+}
+
+.user__rank > svg {
+  max-width: 250px;
+  max-height: 200px;
+  width: 100%;
+
+  @media (min-width: 500px) {
+    width: 70%;
+  }
+}
+
+.user__progress-bar {
+  background: #14ff00;
+}

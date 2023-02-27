@@ -1,0 +1,14 @@
+import fabric from 'fabric';
+
+export class DrawMainLineFabricCanvas {
+  constructor(parent: fabric.fabric.Canvas, aCoords: [number, number, number, number]) {
+    const line = new fabric.fabric.Line(aCoords, {
+      stroke: 'green',
+      strokeWidth: 10,
+      hoverCursor: 'default',
+      strokeDashArray: [5, 8],
+      selectable: false,
+    });
+    parent.add(line);
+  }
+}

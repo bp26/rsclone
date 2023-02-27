@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "noImplicitAny": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "lib": ["ES2021", "dom"]
+  },
+  "include": ["./src/"],
+  "exclude": ["node_modules"],
+  "files": ["./custom.d.ts"],
+  "typeRoots": ["./custom.d.ts"]
+}

@@ -1,0 +1,218 @@
+.modal-wrap-click {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 9;
+  background-color: $background-color-modal-wrap;
+  overflow: hidden;
+}
+
+.modal-cont {
+  position: fixed;
+  padding: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $background-color-modal-roadmap;
+  width: 750px;
+  height: auto;
+  z-index: 10;
+  font-family: 'Montserrat-reg';
+  font-weight: 400;
+  font-size: 18px;
+  color: $color-title-home-page;
+  border-radius: 10px;
+  border: 2px solid;
+
+  @media (max-width: 1000px) {
+    width: 550px;
+    height: 80%;
+  }
+
+  @media (max-width: 700px) {
+    height: 50%;
+  }
+
+  @media (max-width: 630px) {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  @media (max-width: 420px) {
+    max-width: 250px;
+  }
+}
+
+.modal-wrap {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.modal-image {
+  @include background-image;
+  background-image: url('../../assets/svg/expert.svg');
+  width: 200px;
+  height: 185px;
+  flex: 1 0 auto;
+  float: left;
+  margin-right: 30px;
+
+  @media (max-width: 700px) {
+    width: 170px;
+    height: 150px;
+  }
+
+  @media (max-width: 630px) {
+    width: 120px;
+    height: 110px;
+  }
+
+  @media (max-width: 420px) {
+    width: 90px;
+    height: 85px;
+    margin-right: 5px;
+  }
+}
+
+.modal-main-content {
+  @media (max-width: 700px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 14px;
+  }
+}
+
+.modal-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-family: 'Montserrat-semi';
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 38px;
+
+  @media (max-width: 700px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.modal-block-content {
+  padding-left: 30px;
+
+  &__text {
+    @media (max-width: 700px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 630px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 420px) {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 630px) {
+    padding-left: 0;
+  }
+}
+
+.modal-list-item {
+  display: block;
+}
+
+.modal-list-item__link {
+  text-decoration: none;
+  color: $color-link-modal-roadmap;
+
+  &:hover {
+    color: $hover-link-modal-roadmap;
+  }
+
+  @media (max-width: 700px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 12px;
+  }
+}
+
+.modal-block-content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 15px;
+
+  @media (max-width: 420px) {
+    padding-left: 5px;
+  }
+}
+
+.modal-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: $button-base-background;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transition: all 0.3s ease;
+    background-color: $hover-button-modal-roadmap;
+  }
+
+  @media (max-width: 700px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 630px) {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.modal-button__span1 {
+  position: absolute;
+  bottom: 50%;
+  transition: all 0.3s ease;
+  transform: rotate(45deg) translate(0.5px, 50%);
+  height: 2.67px;
+  width: 100%;
+  left: 0;
+  background-color: #000;
+}
+
+.modal-button__span2 {
+  position: absolute;
+  top: 50%;
+  transition: all 0.3s ease;
+  transform: rotate(-45deg) translate(0.5px, -50%);
+  height: 2.67px;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+}

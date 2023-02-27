@@ -1,0 +1,133 @@
+.header__root {
+  background-color: $background-header-or-footer;
+}
+
+.header__logo {
+  background-color: $logo-background;
+  border-radius: 50%;
+  font-size: 28px;
+  color: $logo-color;
+}
+
+.header__title {
+  color: $color-base;
+  margin-bottom: 0;
+}
+
+.header__navlink {
+  color: $link-color;
+  cursor: pointer;
+
+  &:hover {
+    color: $link-color-hover;
+  }
+}
+
+.header__button {
+  width: 100%;
+  padding: 8px 0 8px 0;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  color: $link-color;
+
+  &:hover {
+    color: $link-color-hover;
+  }
+
+  @media (min-width: 992px) {
+    min-width: 100px;
+    width: auto;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+
+    color: $button-base-color;
+    background-color: $button-base-background;
+
+    &:hover {
+      color: $button-base-color-hover;
+      background-color: $button-base-background-hover;
+    }
+  }
+}
+
+.header__auth {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.header__sign {
+  min-width: 200px;
+}
+
+.header__profile,
+.header__profile-iconlink,
+.header__profile-textlink {
+  color: $link-color;
+
+  &:hover {
+    color: $link-color-hover;
+    border-color: $header-user-border;
+  }
+}
+
+.header__profile {
+  width: 100%;
+
+  @media (min-width) {
+    width: auto;
+  }
+}
+
+.header__profile-iconlink {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid white;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+  @media (min-width: 992px) {
+    display: flex;
+  }
+}
+
+.header__profile-iconlink > img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+}
+
+.header__profile-textlink {
+  display: block;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.header__login {
+  color: $color-base;
+  display: none;
+  user-select: none;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+}

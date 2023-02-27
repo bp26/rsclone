@@ -1,0 +1,68 @@
+.home-start {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 46px 12px 10px 12px;
+  @media (max-width: 1150px) {
+    justify-content: space-between;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}
+
+.start-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 47px;
+  max-width: 600px;
+  width: 100%;
+  @media (max-width: 1150px) {
+    gap: 20px;
+  }
+}
+
+.home-start-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 60px;
+  background-color: $background-button-autorization;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 44px;
+  color: $color-button-section-start;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: $hover-background-btn-base;
+  }
+
+  @media (max-width: 1150px) {
+    width: 180px;
+    height: 50px;
+    font-size: 18px;
+  }
+  @media (max-width: 480px) {
+    width: 130px;
+    height: 40px;
+    font-size: 15px;
+  }
+}
+
+.sloth-start {
+  width: 350px;
+  height: 350px;
+  @include background-image;
+  background-image: url('../../assets/image/png/sloth-start.png');
+  @media (max-width: 1150px) {
+    width: 250px;
+    height: 250px;
+  }
+}

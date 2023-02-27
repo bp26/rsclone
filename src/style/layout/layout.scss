@@ -1,0 +1,12 @@
+@import './header.scss';
+@import './main.scss';
+@import './footer.scss';
+
+.wrapper {
+  width: 100%;
+  font-family: 'Montserrat-semi';
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: hidden;
+}

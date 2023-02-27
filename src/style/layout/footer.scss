@@ -1,0 +1,86 @@
+.footer__root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-header-or-footer;
+  flex-shrink: 1;
+  padding: 0 20px;
+  @media (max-width: 768px) {
+    padding-top: 10px;
+  }
+}
+
+.footer__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.githubs-logo {
+  display: flex;
+  align-items: center;
+}
+
+.github-art {
+  color: $color-git-art;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-hover-git-art;
+  }
+}
+
+.github-alex {
+  color: $color-git-alex;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-hover-git-alex;
+  }
+}
+
+.github-menther {
+  color: $color-git-menther;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-hover-git-menther;
+  }
+}
+
+.year-create {
+  font-weight: 600;
+  font-size: 24px;
+  color: $color-base;
+  margin: 0;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+}
+
+.rs-logo {
+  max-width: 210px;
+  width: 100%;
+  text-align: end;
+  &__link {
+    color: $color-base;
+    transition: all 0.3s ease;
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: $color-hover-rs-logo;
+    }
+  }
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-left: 10px;
+  }
+}

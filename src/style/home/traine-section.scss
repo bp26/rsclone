@@ -1,0 +1,44 @@
+.home__traine {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 50px 12px;
+  @media (max-width: 1150px) {
+    justify-content: space-between;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  @media (max-width: 480px) {
+    padding-top: 20px;
+  }
+}
+
+.sloth-traine {
+  width: 350px;
+  height: 350px;
+  margin-left: 120px;
+  @include background-image;
+  background-image: url('../../assets/image/png/sloth-traine.png');
+  @media (max-width: 1150px) {
+    width: 250px;
+    height: 250px;
+    margin-left: 70px;
+  }
+  @media (max-width: 1000px) {
+    margin-left: 0px;
+  }
+}
+
+.traine-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  @media (max-width: 1150px) {
+    gap: 20px;
+  }
+}

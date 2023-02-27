@@ -1,0 +1,36 @@
+.home__lern {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 12px;
+  @media (max-width: 1150px) {
+    justify-content: space-between;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.lern-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  @media (max-width: 1150px) {
+    gap: 20px;
+  }
+}
+
+.sloth-lern {
+  width: 440px;
+  height: 230px;
+  @include background-image;
+  background-image: url('../../assets/image/png/sloth-online.png');
+  @media (max-width: 1150px) {
+    width: 280px;
+    height: 148px;
+  }
+}
