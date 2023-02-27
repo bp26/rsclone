@@ -52,7 +52,7 @@ export class TaskDrag {
 <div class="card-body bg-dark rounded-4">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
-    <button class="btn btn-primary init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
+    <button class="btn btn-primary button init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
   </div>
 </div>
     `;

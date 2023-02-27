@@ -26,7 +26,7 @@ export class QuizTask {
   getAnswers() {
     let answerBlocks = '';
     this.tasks[this.currentTask].answerBlocks.forEach((el) => {
-      answerBlocks += `<button quiz-button="${this.tasks[this.currentTask].id}" class="btn btn-secondary m-2">${el}</button>`;
+      answerBlocks += `<button quiz-button="${this.tasks[this.currentTask].id}" class="btn btn-secondary button m-2">${el}</button>`;
     });
     return answerBlocks;
   }

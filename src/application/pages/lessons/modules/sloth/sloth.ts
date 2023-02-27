@@ -52,7 +52,7 @@ class Sloth {
 
   createNextButton(data: Tutorial[]) {
     const nextButton = document.createElement('button');
-    nextButton.className = 'btn btn-dark inline-block align-self-end position-relative cursor-pointer click-next inset-0';
+    nextButton.className = 'btn btn-dark button inline-block align-self-end position-relative cursor-pointer click-next inset-0';
     nextButton.style.zIndex = '151';
     nextButton.style.height = '40px';
     nextButton.innerHTML = `Next`;

@@ -28,7 +28,7 @@ class LessonsView {
 <div class="container-fluid position-relative">
   ${lessonsBlock.render(lessonAvailbility)}
       <button
-    class="position-sticky btn btn-primary lessons-bs align-self-flex-start"
+    class="position-sticky btn btn-primary button lessons-bs align-self-flex-start"
     type="button"
     data-bs-toggle="collapse"
     data-bs-target="#lessonsBlock"

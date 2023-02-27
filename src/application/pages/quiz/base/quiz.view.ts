@@ -16,7 +16,7 @@ class QuizView {
     html.innerHTML = `
 <h2 class="text-center mt-4 quiz__title m-2">Quiz</h2>
 <div class="quiz-task d-flex gap-5 justify-content-center mb-5 mt-5">
-  <button class="btn btn-secondary quiz-init m">Start Quiz</button>
+  <button class="btn btn-secondary button quiz-init m">Start Quiz</button>
 </div>
 <div class="content-wrapper">
   <div class="quiz__content-block  d-flex align-items-center justify-content-between p-5 gap-5">

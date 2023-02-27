@@ -12,7 +12,7 @@ export const practice = `
                   class="content-controller d-flex align-items-center justify-content-end"
                 >
                   <button
-                    class="switch-button btn btn-primary d-block me-auto"
+                    class="switch-button btn btn-primary button d-block me-auto"
                     type="button"
                     data-bs-target="#carouselExampleFade"
                     data-bs-slide="prev"
@@ -186,7 +186,7 @@ alert($ + _); // 3
       class="content-controller d-flex align-items-center justify-content-end"
     >
       <button
-        class="switch-button btn btn-primary"
+        class="switch-button btn btn-primary button"
         type="button"
         data-bs-target="#carouselExampleFade"
         data-bs-slide="next"
@@ -293,7 +293,7 @@ alert( "not a number" / 2 - 1 ); // NaN
       class="content-controller d-flex align-items-center justify-content-end"
     >
       <button
-        class="switch-button btn btn-primary"
+        class="switch-button btn btn-primary button"
         type="button"
         data-bs-target="#carouselExampleFade"
         data-bs-slide="next"
@@ -371,7 +371,7 @@ showMessage();
                 class="content-controller d-flex align-items-center justify-content-end"
               >
                 <button
-                  class="switch-button btn btn-primary"
+                  class="switch-button btn btn-primary button"
                   type="button"
                   data-bs-target="#carouselExampleFade"
                   data-bs-slide="next"
