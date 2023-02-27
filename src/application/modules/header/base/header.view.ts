@@ -1,10 +1,9 @@
-import { getFirstLetter, getSafeElement, queryHTMLElement } from '../../../utils/helpers';
+import { getFirstLetter, queryHTMLElement } from '../../../utils/helpers';
 import { Element } from '../../../utils/element';
 import { authController } from '../../auth/base/auth.controller';
-import { EmitterEventName, HTMLTag, Theme } from '../../../types/enums';
+import { EmitterEventName, HTMLTag } from '../../../types/enums';
 import { emitter } from '../../../utils/emitter';
 import { IUser } from '../../../types/interfaces';
-import { headerController } from './header.controller';
 import router from '../../../router/router';
 
 class HeaderView {
@@ -34,15 +33,6 @@ class HeaderView {
             <a class='header__navlink nav-link routing' href='/roadmap' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">RoadMap</a>
             <a class='header__navlink nav-link routing' href='/quiz' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Quiz</a>
           </nav>
-          <div class='header__settings navbar-nav'>
-            <div class='header__theme header__dropdown dropdown'>
-              <a class='header__navlink header__dropbtn nav-link dropdown-toggle' data-bs-toggle='dropdown'>Theme</a>
-              <div class='header__dropmenu dropdown-menu'>
-                <a class='header__dropitem dropdown-item header__dropitem_chosen' data-value='Dark'>Dark</a>
-                <a class='header__dropitem dropdown-item' data-value='Light'>Light</a>
-              </div>
-            </div>
-          </div>
           <div class='header__auth navbar-nav align-items-center'>
             <a class='header__button header__sign nav-link'>Sign in</a>
           </div>
@@ -82,41 +72,9 @@ class HeaderView {
     lessonsLink.classList.remove('disabled');
   }
 
-  private switchTheme(theme: Theme) {
-    const dark = queryHTMLElement(`.header__theme [data-value="${Theme.DARK}"]`);
-    const light = queryHTMLElement(`.header__theme [data-value="${Theme.LIGHT}"]`);
-
-    switch (theme) {
-      case Theme.DARK:
-        dark.classList.add('header__dropitem_chosen');
-        light.classList.remove('header__dropitem_chosen');
-        break;
-      case Theme.LIGHT:
-        dark.classList.remove('header__dropitem_chosen');
-        light.classList.add('header__dropitem_chosen');
-        break;
-    }
-  }
-
   private bind() {
     const sign = queryHTMLElement('.header__sign');
-    const theme = queryHTMLElement('.header__theme');
-
     sign.onclick = () => authController.showModal();
-
-    theme.onclick = (e) => {
-      const target = getSafeElement(e.target);
-      if (target.classList.contains('header__dropitem')) {
-        switch (target.dataset.value) {
-          case Theme.DARK:
-            headerController.setTheme(Theme.DARK);
-            break;
-          case Theme.LIGHT:
-            headerController.setTheme(Theme.LIGHT);
-            break;
-        }
-      }
-    };
   }
 
   private bindSigned() {
@@ -126,7 +84,6 @@ class HeaderView {
 
   private subscribe() {
     emitter.on(EmitterEventName.GLOBAL_USER_LOAD_SUCCESS, this.renderSignedAuth.bind(this));
-    emitter.on(EmitterEventName.GLOBAL_THEME, this.switchTheme.bind(this));
     emitter.on(EmitterEventName.GLOBAL_USER_UPDATE_AVATAR, this.setUserAvatar.bind(this));
   }
 }
