@@ -34,7 +34,7 @@ class HeaderView {
             <a class='header__navlink nav-link routing' href='/quiz' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Quiz</a>
           </nav>
           <div class='header__auth navbar-nav align-items-center'>
-            <a class='header__button header__sign nav-link button'>Sign in</a>
+            <a class='header__button header__sign nav-link'>Sign in</a>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ class HeaderView {
         <a class ='header__profile-textlink nav-link routing-signed' href='/profile' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Profile</a>
       </div>
       <span class='header__login'>${user.login}</span>
-      <a class='header__logout header__button nav-link button'>Logout</a>
+      <a class='header__logout header__button nav-link'>Logout</a>
     `;
 
     this.bindSigned();

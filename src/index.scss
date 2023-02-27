@@ -78,3 +78,13 @@ $primary: #1b2b37;
   border: 2px solid black;
   border-radius: 5px;
 }
+
+.button {
+  color: $button-base-color;
+  background-color: $button-base-background;
+
+  &:hover {
+    color: $button-base-color-hover;
+    background-color: $button-base-background-hover;
+  }
+}

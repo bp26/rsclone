@@ -3,10 +3,10 @@
 }
 
 .header__logo {
-  background-color: $color-base;
+  background-color: $logo-background;
   border-radius: 50%;
   font-size: 28px;
-  color: black;
+  color: $logo-color;
 }
 
 .header__title {
@@ -15,61 +15,11 @@
 }
 
 .header__navlink {
-  color: $color-base;
+  color: $link-color;
   cursor: pointer;
 
   &:hover {
-    color: $hover-color-nav-link;
-  }
-}
-
-.header__settings {
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0;
-
-  @media (min-width: 992px) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-  }
-}
-
-.header__dropdown {
-  width: 100%;
-
-  @media (min-width) {
-    width: auto;
-  }
-}
-
-.header__dropbtn {
-  user-select: none;
-  width: 100%;
-
-  @media (min-width) {
-    width: auto;
-  }
-}
-
-.header__dropmenu {
-  background-color: $color-base;
-}
-
-.header__dropitem {
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    color: $hover-color-nav-link;
-    background-color: $background-button-toogle-lang-or-theme;
-  }
-
-  &_chosen {
-    background-color: $background-header-or-footer;
-    color: $color-user-icon;
+    color: $link-color-hover;
   }
 }
 
@@ -77,16 +27,13 @@
   width: 100%;
   padding: 8px 0 8px 0;
 
-  color: $color-base;
   text-decoration: none;
   cursor: pointer;
 
-  &:hover {
-    color: $hover-color-nav-link;
-  }
+  color: $link-color;
 
-  &:active {
-    color: $hover-color-nav-link;
+  &:hover {
+    color: $link-color-hover;
   }
 
   @media (min-width: 992px) {
@@ -95,15 +42,14 @@
     padding: 8px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: $background-button-toogle-lang-or-theme;
     text-align: center;
 
-    &:hover {
-      background-color: $hover-background-btn-lang;
-    }
+    color: $button-base-color;
+    background-color: $button-base-background;
 
-    &:active {
-      background-color: $hover-background-btn-lang;
+    &:hover {
+      color: $button-base-color-hover;
+      background-color: $button-base-background-hover;
     }
   }
 }
@@ -128,11 +74,11 @@
 .header__profile,
 .header__profile-iconlink,
 .header__profile-textlink {
-  color: $color-user-icon;
+  color: $link-color;
 
   &:hover {
-    color: $hover-color-user-logo;
-    border-color: $hover-color-user-logo;
+    color: $link-color-hover;
+    border-color: $header-user-border;
   }
 }
 

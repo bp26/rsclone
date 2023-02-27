@@ -49,7 +49,7 @@
 
 .user__upload-button > svg {
   &:hover {
-    fill: antiquewhite;
+    fill: $button-base-background;
   }
 }
 
@@ -82,6 +82,10 @@
 .user__notifications-switch {
   width: 55px !important;
   height: 27px;
+
+  &:checked {
+    background-color: $button-base-background;
+  }
 }
 
 .user__rank > svg {
