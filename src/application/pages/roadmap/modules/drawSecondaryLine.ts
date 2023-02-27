@@ -5,7 +5,7 @@ export class DrawSecondaryLineFabricCanvas {
     const line = new fabric.fabric.Line(aCoords, {
       stroke: color,
       strokeWidth: 5,
-      hoverCursor: 'auto',
+      hoverCursor: 'default',
       strokeDashArray: [8, 8],
       lockMovementX: true,
       lockMovementY: true,

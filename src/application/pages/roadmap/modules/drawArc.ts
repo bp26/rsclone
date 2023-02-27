@@ -15,7 +15,7 @@ export class DrawArcMainLine {
       fill: '',
       lockMovementX: true,
       lockMovementY: true,
-      hoverCursor: 'auto',
+      hoverCursor: 'default',
       hasControls: false,
       selectable: false,
     });

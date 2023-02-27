@@ -31,7 +31,7 @@ export class DrawPolylineCanvas {
         strokeDashArray: [8, 8],
         strokeWidth: 5,
         selectable: false,
-        hoverCursor: 'auto',
+        hoverCursor: 'default',
       }
     );
 
