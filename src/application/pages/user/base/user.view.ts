@@ -47,7 +47,7 @@ class UserView {
                       <span class='user__password-repeaterror invalid-feedback'></span>
                     </div>
                   </div>
-                  <button type='submit' class='user__password-submit btn btn-primary'>Submit</button>
+                  <button type='submit' class='user__password-submit btn btn-primary button'>Submit</button>
                 </div>
               </form>
               <form novalidate='true' class='mt-4'>
@@ -65,7 +65,7 @@ class UserView {
                       </div>
                     </div>
                   </div>
-                  <button type='submit' class='user__chat-submit btn btn-primary'>Submit</button>
+                  <button type='submit' class='user__chat-submit btn btn-primary button'>Submit</button>
                 </div>
               </form>
             </div>

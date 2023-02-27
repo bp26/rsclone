@@ -1,12 +1,11 @@
 import { IUser } from '../types/interfaces';
 import { api } from '../api/api';
 import { emitter } from '../utils/emitter';
-import { EmitterEventName, Theme } from '../types/enums';
+import { EmitterEventName } from '../types/enums';
 
 class Model {
   public isAuthenticated = false;
   public user?: IUser;
-  public theme: Theme = Theme.DARK;
 
   constructor() {
     this.subscribe();
@@ -53,11 +52,6 @@ class Model {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  public setTheme(theme: Theme) {
-    this.theme = theme;
-    emitter.emit(EmitterEventName.GLOBAL_THEME, this.theme);
   }
 
   private subscribe() {

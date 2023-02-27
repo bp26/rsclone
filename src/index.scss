@@ -82,3 +82,13 @@ $primary: #1b2b37;
 .click-next {
   pointer-events: all;
 }
+
+.button {
+  color: $button-base-color;
+  background-color: $button-base-background;
+
+  &:hover {
+    color: $button-base-color-hover;
+    background-color: $button-base-background-hover;
+  }
+}

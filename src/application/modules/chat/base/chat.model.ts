@@ -41,7 +41,7 @@ class ChatModel {
 
   public handleReceivedMessage(message: IMessage): void {
     emitter.emit(EmitterEventName.CHAT_RECEIVED_MESSAGE, message);
-    if (!this.isOpen && this.notifyOn) {
+    if (!this.isOpen && this.notifyOn && model.isAuthenticated) {
       this.notifications++;
       emitter.emit(EmitterEventName.CHAT_NOTIFICATIONS_SET, this.notifications);
       chatAudio.play();

@@ -30,7 +30,7 @@ class ChatView {
           <form class="chat__form align-content-end">
             <textarea disabled class="chat__textarea bg-dark w-100 rounded-4 text-light p-1" style="height: 100px; resize:none"></textarea>
             <div>
-              <button class="chat__send btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center gap-2 disabled">
+              <button class="chat__send btn btn-lg btn-primary button w-100 d-flex align-items-center justify-content-center gap-2 disabled">
                 <span class="chat__spinner spinner-grow spinner-grow-md d-none"></span>
                 <span class="">Send</span>
               </button>
@@ -163,6 +163,14 @@ class ChatView {
     };
 
     textarea.oninput = () => this.toggleTextareaError(false);
+
+    textarea.onkeydown = (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        chatController.send(textarea.value);
+        textarea.value = '';
+      }
+    };
   }
 
   private subscribe(): void {
