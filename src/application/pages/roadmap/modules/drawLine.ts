@@ -5,7 +5,7 @@ export class DrawMainLineFabricCanvas {
     const line = new fabric.fabric.Line(aCoords, {
       stroke: 'green',
       strokeWidth: 10,
-      hoverCursor: 'auto',
+      hoverCursor: 'default',
       strokeDashArray: [5, 8],
       selectable: false,
     });

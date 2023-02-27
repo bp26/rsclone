@@ -25,17 +25,29 @@
   color: $color-title-home-page;
   border-radius: 10px;
   border: 2px solid;
+
+  @media (max-width: 1000px) {
+    width: 550px;
+    height: 80%;
+  }
+
+  @media (max-width: 700px) {
+    height: 50%;
+  }
+
+  @media (max-width: 630px) {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  @media (max-width: 420px) {
+    max-width: 250px;
+  }
 }
 
 .modal-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.modal-block-title {
-  display: flex;
-  gap: 30px;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .modal-image {
@@ -44,13 +56,33 @@
   width: 200px;
   height: 185px;
   flex: 1 0 auto;
+  float: left;
+  margin-right: 30px;
+  @media (max-width: 700px) {
+    width: 170px;
+    height: 150px;
+  }
+
+  @media (max-width: 630px) {
+    width: 120px;
+    height: 110px;
+  }
+
+  @media (max-width: 420px) {
+    width: 90px;
+    height: 85px;
+    margin-right: 5px;
+  }
 }
 
-.modal-wrap-title {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 15px;
+.modal-main-content {
+  @media (max-width: 700px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 14px;
+  }
 }
 
 .modal-block-header {
@@ -63,10 +95,41 @@
   font-family: 'Montserrat-semi';
   font-weight: 600;
   font-size: 38px;
+  line-height: 38px;
+
+  @media (max-width: 700px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
 
 .modal-block-content {
   padding-left: 30px;
+  &__text {
+    @media (max-width: 700px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 630px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 420px) {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 630px) {
+    padding-left: 0;
+  }
 }
 
 .modal-list-item {
@@ -79,6 +142,18 @@
   &:hover {
     color: $hover-link-modal-roadmap;
   }
+
+  @media (max-width: 700px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 12px;
+  }
 }
 
 .modal-block-content__list {
@@ -86,6 +161,10 @@
   flex-direction: column;
   gap: 5px;
   padding-left: 15px;
+
+  @media (max-width: 420px) {
+    padding-left: 5px;
+  }
 }
 
 .modal-button {
@@ -98,6 +177,16 @@
   &:hover {
     transition: all 0.3s ease;
     background-color: $hover-button-modal-roadmap;
+  }
+
+  @media (max-width: 700px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 630px) {
+    width: 25px;
+    height: 25px;
   }
 }
 
