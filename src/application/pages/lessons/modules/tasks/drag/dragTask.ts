@@ -118,14 +118,17 @@ export class TaskDrag {
 
     const initButton = getSafeElement(document.querySelector(`.init-drag-button${this.id}`));
 
-    initButton.addEventListener('click', () => {
-      this.toggleInitButton(initButton);
-      this.timerForAnswer();
-    });
-
     const buttonsBlock = getSafeElement(document.querySelector(`[data-drag-buttons-block="${this.id}"]`));
     const buttonsController = document.querySelectorAll(`[data-task-drag-buttons="${this.id}"]`);
     const taskAreaElements = document.querySelectorAll(`.task-drag-area-${this.id}  .box`);
+    const taskArea = getSafeElement(document.querySelector(`.task-drag-area-${this.id}`));
+    const area = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`));
+    const submit = getSafeElement(document.querySelector(`[data-task-drag-submit="${this.id}"]`));
+
+    initButton.addEventListener('click', () => {
+      this.toggleInitButton(initButton);
+      this.timerForAnswer(taskArea);
+    });
 
     buttonsBlock.addEventListener('dragover', dragover);
     buttonsBlock.addEventListener('drop', drop);
@@ -178,28 +181,29 @@ export class TaskDrag {
       });
     });
 
-    const submit = getSafeElement(document.querySelector(`[data-task-drag-submit="${this.id}"]`));
-    submit.addEventListener('click', this.submitTask);
+    const clickInSubmitButton = () => {
+      this.submitTask(taskArea, area);
+    };
 
-    const area = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`));
+    submit.addEventListener('click', clickInSubmitButton);
 
     area.addEventListener('dragover', () => {
       area.style.border = 'none';
     });
   }
 
-  timerForAnswer() {
+  timerForAnswer(textarea: HTMLElement) {
     const currentElement = getSafeElement(document.querySelector(`[data-task-drag-timer="${this.id}"]`));
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
+    const currentButton = getSafeElement(document.querySelector(`[data-task-drag-btn-timer="${this.id}"]`));
+    const timer = getSafeElement(document.querySelector(`[data-task-drag-loader="${this.id}"]`));
     if (this.startTimer > Number(currentElement.textContent)) {
       return;
     }
     const intervalID = setInterval(() => {
       currentElement.textContent = String(Number(currentElement.textContent) - 1);
       if (currentElement.textContent === '0' || textarea.getAttribute('status')) {
-        document.querySelector(`[data-task-drag-loader="${this.id}"]`)?.remove();
-        const currentButton = document.querySelector(`[data-task-drag-btn-timer="${this.id}"]`) as HTMLButtonElement;
-        if (currentButton) {
+        timer.remove();
+        if (currentButton instanceof HTMLButtonElement) {
           currentButton.disabled = false;
           currentButton.textContent = 'Check answer';
         }
@@ -212,32 +216,20 @@ export class TaskDrag {
     element.textContent === 'Show task' ? (element.textContent = 'Hidden task') : (element.textContent = 'Show task');
   };
 
-  submitTask = () => {
+  submitTask = (taskArea: HTMLElement, area: HTMLElement) => {
     let result = '';
-    const area = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`));
     const areaContent = area.querySelectorAll('button');
     areaContent.forEach((elem) => {
       result += elem.textContent;
     });
     result = result.replace(/[\s\n\r]+/g, '');
     const answer = this.answer.replace(/[\s\n\r]+/g, '');
-    answer === result ? this.submit(true) : this.submit(false);
+    answer === result ? this.submit(true, taskArea) : this.submit(false, taskArea);
   };
 
-  resetBorderArea() {
-    const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
-    taskArea.style.borderColor = 'black';
-  }
-
-  changeBorderByAnswer(result: boolean) {
-    const taskArea = getSafeElement(document.querySelector(`[data-drag-area="${this.id}"]`)) as HTMLDivElement;
+  submit(result: boolean, taskArea: HTMLElement) {
+    taskArea.setAttribute('status', `${result ? 'complete' : ''}`);
     taskArea.style.border = `3px solid ${result ? 'green' : 'red'}`;
-  }
-
-  submit(result: boolean) {
-    this.changeBorderByAnswer(result);
-    const textarea = getSafeElement(document.querySelector(`[data-task-textarea="${this.id}"]`));
-    textarea.setAttribute('status', `${result ? 'complete' : ''}`);
     result ? lessonsController.submitTask(this.title, this.price, this.currentLesson) : '';
   }
 }

@@ -4,11 +4,9 @@ import { lessonsDrag } from './../modules/tasks/drag/data';
 import { lessonsWrite } from './../modules/tasks/write/data';
 import { TaskDrag } from './../modules/tasks/drag/dragTask';
 import { TaskWrite } from './../modules/tasks/write/writeTask';
-import { getSafeElement } from './../../../utils/helpers';
 import { leftAndRight } from '../../../utils/constants/icons/letftAndRightArrows';
 import { lessonsBlock } from './../modules/lessonsBlock';
 import { queryHTMLElement } from '../../../utils/helpers';
-import sloth from '../modules/sloth/sloth';
 import { Collapse } from 'bootstrap';
 import { lessonsBoolean } from '../modules/tasks/boolean/data';
 import { lessonsContent } from '../modules/lessons/lessonsContent';
@@ -51,37 +49,48 @@ class LessonsView {
 `;
 
     this.root.append(html);
-    // sloth.render(exampleTutorial);
+    this.bind();
+  }
 
+  bind() {
     const lessonsButtons = document.querySelectorAll('.lessons-btn');
     lessonsButtons.forEach((el) => {
       el.addEventListener('click', () => {
-        const btnBS = getSafeElement(document.querySelector('.js-collapse'));
-        const BS = new Collapse(btnBS);
-        BS.hide();
-        const root = getSafeElement(document.querySelector('.content-inner'));
         const currentLesson = el.getAttribute('lesson-btn') as string;
-        for (const key in lessonsContent) {
-          if (key === `lesson${currentLesson}`) {
-            const theory = lessonsContent[key].theory;
-            const practice = lessonsContent[key].tasks;
-            const content = `${theory}`;
-            if (currentLesson) root.innerHTML = content;
-            practice.forEach((task) => {
-              if (task.Write?.length) {
-                this.renderWriteTasks(task.Write, currentLesson);
-              }
-              if (task.Drag?.length) {
-                this.renderDragTasks(task.Drag, currentLesson);
-              }
-              if (task.Boolean?.length) {
-                this.renderBooleanTasks(task.Boolean, currentLesson);
-              }
-            });
-          }
-        }
+        this.openLesson(currentLesson);
       });
     });
+  }
+
+  openLesson(lesson: string) {
+    const root = queryHTMLElement('.content-inner');
+    const key = `lesson${lesson}`;
+
+    if (key in lessonsContent) {
+      const theory = lessonsContent[key].theory;
+      root.innerHTML = theory;
+
+      const practice = lessonsContent[key].tasks;
+      practice.forEach((task) => {
+        if (task.Write?.length) {
+          this.renderWriteTasks(task.Write, lesson);
+        }
+        if (task.Drag?.length) {
+          this.renderDragTasks(task.Drag, lesson);
+        }
+        if (task.Boolean?.length) {
+          this.renderBooleanTasks(task.Boolean, lesson);
+        }
+      });
+
+      this.collapse();
+    }
+  }
+
+  collapse() {
+    const btnBS = queryHTMLElement('.js-collapse');
+    const BS = new Collapse(btnBS);
+    BS.hide();
   }
 
   renderWriteTasks(array: number[], currentLesson: string) {
