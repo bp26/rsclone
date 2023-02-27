@@ -16,7 +16,7 @@ class HomeView {
       <section class="home-start container-xxl">
         <div class="start-content">
           <h2 class="home-title">As long as dreamers keep dreaming, you will code and succeed!</h2>
-          <button class="home-start-button rounded button">
+          <button class="home-start-button rounded-4 button">
             <span>Get started</span>
           </button>
         </div>
@@ -28,7 +28,7 @@ class HomeView {
           <h2 class="home-title">Training is 80% practical</h2>
           <p class="home-text">
             There are many good books on the Internet, but you won't become a programmer
-            by reading books. To become a programmer, you need to program a lot. JSRush is an online JavaScript
+            by reading books. To become a programmer, you need to program a lot. RSRush is an online JavaScript
             programming course that is 80% hands-on. Exactly what you need to become a JavaScript programmer.
           </p>
         </div>
@@ -51,7 +51,7 @@ class HomeView {
           <p class="home-text">
             Do you know the situation when you submitted a task/work for verification,
             and you had to wait a week for the results, because inspector busy? This is
-            the case in most face-to-face courses. In JSRush, you get the results of checking
+            the case in most face-to-face courses. In RSRush, you get the results of checking
             a task in less than a second after clicking the "Check" button.
           </p>
         </div>

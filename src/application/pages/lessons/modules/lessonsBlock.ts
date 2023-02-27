@@ -9,7 +9,7 @@ class LessonsBlock {
     const solved = `<span class="badge">${checkmark}</span>`;
     const unsolved = '';
     const html = `
-      <button lesson-btn="${index}" class="btn btn-primary lessons-btn p-2 mb-2 w-75 ${isOpen ? unlocked : 'disabled'}"> Lesson ${index} ${isOpen ? unlocked : locked}${
+      <button lesson-btn="${index}" class="btn btn-primary button lessons-btn p-2 mb-2 w-75 ${isOpen ? unlocked : 'disabled'}"> Lesson ${index} ${isOpen ? unlocked : locked}${
       isSolved ? solved : unsolved
     } </button>
     `;

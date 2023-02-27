@@ -47,11 +47,12 @@ export class TaskWrite {
   render() {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
+    initLesson.classList.add('rounded-4');
     initLesson.innerHTML = `
-<div class="card-body bg-dark ">
+<div class="card-body bg-dark rounded-4">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
-    <button class="btn btn-primary init-write-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-write-${this.id}" aria-expended="false" aria-controls="task-write-${this.id}">Show task</button>
+    <button class="btn btn-primary button init-write-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-write-${this.id}" aria-expended="false" aria-controls="task-write-${this.id}">Show task</button>
   </div>
 </div>
     `;

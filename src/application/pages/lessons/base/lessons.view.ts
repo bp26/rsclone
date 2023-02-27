@@ -1,3 +1,4 @@
+import { getSafeElement } from './../../../utils/helpers';
 import { exampleTutorial } from './../../../utils/constants/slothExampleTutorialArray';
 import { TaskBoolean } from './../modules/tasks/boolean/booleanTask';
 import { lessonsDrag } from './../modules/tasks/drag/data';
@@ -23,16 +24,17 @@ class LessonsView {
     this.root.innerHTML = '';
     const html = document.createElement('div');
     html.innerHTML = `
+
 <div class="container-fluid position-relative">
   ${lessonsBlock.render(lessonAvailbility)}
-  <button
-    class="position-absolute btn btn-primary lessons-bs"
+      <button
+    class="position-sticky btn btn-primary button lessons-bs align-self-flex-start"
     type="button"
     data-bs-toggle="collapse"
     data-bs-target="#lessonsBlock"
     aria-expanded="false"
     aria-controls="lessonsBlock"
-    style="z-index: 3"
+    style="z-index:3"
   >
     ${leftAndRight}
   </button>

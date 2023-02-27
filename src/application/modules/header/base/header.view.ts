@@ -28,7 +28,6 @@ class HeaderView {
         <div class='header__collapse collapse navbar-collapse justify-content-between align-items-center' id='navbarCollapse'>
           <nav class='header__nav navbar-nav'>
             <a class='header__navlink nav-link routing' href='/' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Home</a>
-            <a class='header__navlink nav-link routing' href='/documentation' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Documentation</a>
             <a class='header__navlink header__navlink_lessons nav-link routing disabled' href='/lessons' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Lessons</a>
             <a class='header__navlink nav-link routing' href='/roadmap' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">RoadMap</a>
             <a class='header__navlink nav-link routing' href='/quiz' data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Quiz</a>

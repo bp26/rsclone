@@ -26,17 +26,17 @@ export class QuizTask {
   getAnswers() {
     let answerBlocks = '';
     this.tasks[this.currentTask].answerBlocks.forEach((el) => {
-      answerBlocks += `<button quiz-button="${this.tasks[this.currentTask].id}" class="btn btn-secondary m-2">${el}</button>`;
+      answerBlocks += `<button quiz-button="${this.tasks[this.currentTask].id}" class="btn btn-secondary button m-2">${el}</button>`;
     });
     return answerBlocks;
   }
 
   generatorTasks() {
     const html = document.createElement('div');
-    html.className = 'card bg-dark text-center  d-flex align-items-center justify-content-center inline-block';
+    html.className = 'card bg-dark text-center  d-flex align-items-center justify-content-center inline-block p-4';
     html.innerHTML = `
       <div class="quiz-timer">${this.time}</div>
-        <div class="card-body">
+        <div class="card-body p-2">
           <p class="bg-secondary rounded-2">${this.tasks[this.currentTask].description}</p>
         <div>${this.getAnswers()}</div>
       </div>
@@ -115,6 +115,8 @@ export class QuizTask {
   showTitleAndButton() {
     const initButton = getSafeElement(document.querySelector('.quiz-init'));
     const title = getSafeElement(document.querySelector('.quiz__title'));
+    const contentBlock = getSafeElement(document.querySelector('.content-wrapper'));
+    contentBlock.style.display = 'block';
     initButton.style.display = 'inline-block';
     title.style.display = 'block';
   }

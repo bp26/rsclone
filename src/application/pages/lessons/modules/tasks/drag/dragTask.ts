@@ -47,11 +47,12 @@ export class TaskDrag {
   render() {
     const initLesson = document.createElement('div');
     initLesson.classList.add('card');
+    initLesson.classList.add('rounded-4');
     initLesson.innerHTML = `
-<div class="card-body bg-dark">
+<div class="card-body bg-dark rounded-4">
   <div class="card-title text-center">${this.title}</div>
     <div class="card-text text-center">
-    <button class="btn btn-primary init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
+    <button class="btn btn-primary button init-drag-button${this.id}" type="button" data-bs-toggle="collapse" data-bs-target="#task-drag-${this.id}" aria-expended="false" aria-controls="task-drag-${this.id}">Show task</button>
   </div>
 </div>
     `;
@@ -65,10 +66,10 @@ export class TaskDrag {
     <div class="mb-3">
       <div class="bg-primary w-100 rounded-4 p-2 task-drag-area-${this.id}" data-drag-area="${this.id}" style="min-height:200px">
       <div class="container">
-        <div class="row m-1 gap-2" style="min-height:20px">
+        <div class="row m-1 gap-2" style="min-height:40px">
             <div class="col bg-light rounded-4  put-area box"></div>
         </div>
-        <div class="row m-1 gap-2" style="min-height:20px">
+        <div class="row m-1 gap-2" style="min-height:40px">
             <div class="col bg-light rounded-4  put-area box"></div>
         </div>
       </div>

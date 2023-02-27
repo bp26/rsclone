@@ -79,6 +79,10 @@ $primary: #1b2b37;
   border-radius: 5px;
 }
 
+.click-next {
+  pointer-events: all;
+}
+
 .button {
   color: $button-base-color;
   background-color: $button-base-background;
